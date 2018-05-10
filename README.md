@@ -7,6 +7,8 @@ Cookie cutter recipe for [AiiDA](http://www.aiida.net) plugins.
     pip install cookiecutter
     cookiecutter git@github.com:aiidateam/aiida-plugin-cutter.git
 
+![Demo](demo.gif "The fastest way to kickstart an AiiDA plugin.")
+
 This will produce the files and folder structure for your plugin,
 already adjusted for the name of your plugin.
 
