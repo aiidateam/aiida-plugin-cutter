@@ -1,0 +1,23 @@
+language: python
+python:
+- "2.7"
+
+cache: pip
+
+services:
+- postgresql
+
+addons:
+  postgresql: "9.5"
+
+install:
+# Upgrade pip setuptools and wheel
+- pip install -U pip wheel setuptools
+- pip install .[precommit,testing]
+
+env:
+- TEST_AIIDA_BACKEND=django
+- TEST_AIIDA_BACKEND=sqlalchemy
+
+script:
+- python -m unittest discover

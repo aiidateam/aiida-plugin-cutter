@@ -1,0 +1,46 @@
+{
+    "name": "{{cookiecutter.plugin_name}}",
+    "author": "{{cookiecutter.author}}",
+    "author_email": "{{cookiecutter.contact_email}}",
+    "description": "{{cookiecutter.short_description}}",
+    "url": "https://github.com/{{cookiecutter.github_user}}/{{cookiecutter.repo_name}}",
+    "license": "MIT",
+    "classifiers": [
+        "Programming Language :: Python"
+    ],
+    "version": "{{cookiecutter.version}}",
+    "entry_points": {
+        "aiida.calculations": [
+            "{{cookiecutter.entry_point_prefix}}.multiply = {{cookiecutter.module_name}}.calculations.multiply:MultiplyCalculation"
+        ],
+        "aiida.parsers": [
+            "{{cookiecutter.entry_point_prefix}}.product = {{cookiecutter.module_name}}.parsers.multiply:MultiplyParser"
+        ],
+        "aiida.data": [
+            "{{cookiecutter.entry_point_prefix}}.factors = {{cookiecutter.module_name}}.data.multiply:MultiplyParameters"
+        ],
+        "aiida.cmdline.data": [
+            "{{cookiecutter.entry_point_prefix}}.factors = {{cookiecutter.module_name}}.data.data_cli:cli"
+        ]
+    },
+    "scripts": ["examples/cli.py"],
+    "setup_requires": ["reentry"],
+    "reentry_register": true,
+    "install_requires": [
+        "aiida >= {{cookiecutter.aiida_min_version}}"
+    ],
+    "extras_require": {
+        "testing": [
+            "aiida-core[testing]"
+        ],
+        "pre-commit": [
+            "pre-commit",
+            "yapf",
+            "prospector",
+            "pylint"
+        ],
+        "docs": [
+            "sphinx"
+        ]
+    }
+}

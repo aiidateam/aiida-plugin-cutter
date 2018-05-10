@@ -1,0 +1,13 @@
+{
+  "plugin_name": "aiida-multiply",
+  "module_name": "{{ cookiecutter.plugin_name | replace('-', '_') }}",
+  "short_description": "AiiDA plugin template that multiplies two numbers.",
+  "entry_point_prefix": "{{ cookiecutter.module_name | replace('aiida_','') }}",
+  "github_user": "aiidateam",
+  "repo_name": "{{ cookiecutter.plugin_name }}",
+  "contact_email": "",
+  "version": "0.1-alpha",
+  "author": "The AiiDA developers group",
+  "aiida_min_version": "0.11",
+  "year": "2018"
+}
