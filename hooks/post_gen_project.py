@@ -11,7 +11,11 @@ except NameError:
     pass
 
 def hooks():
-    pass
+    print("""
+### IMPORTANT###
+Register your plugin NOW by making a pull request to the AiiDA Plugin Registry
+on https://github.com/aiidateam/aiida-registry
+""")
     #if read_user_yes_no(folder['question'], default_value=u'yes'):
     #else:
 
