@@ -1,7 +1,7 @@
 {
-  "plugin_name": "aiida-multiply",
+  "plugin_name": "aiida-diff",
   "module_name": "{{ cookiecutter.plugin_name | replace('-', '_') }}",
-  "short_description": "AiiDA plugin template that multiplies two numbers.",
+  "short_description": "AiiDA plugin for computing the difference of two files.",
   "entry_point_prefix": "{{ cookiecutter.module_name | replace('aiida_','') }}",
   "github_user": "aiidateam",
   "repo_name": "{{ cookiecutter.plugin_name }}",

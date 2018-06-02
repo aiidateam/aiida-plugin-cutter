@@ -1,11 +1,26 @@
-============================================
-Modules provided with plugin (API reference)
-============================================
+=============
+API reference
+=============
 
-.. toctree::
-    :maxdepth: 3
+List of modules provided by the plugin.
 
-    calculations
-    data
-    parsers
+Data
+++++
+
+.. automodule:: {{cookiecutter.module_name}}.data
+   :members:
+
+Calculations
+++++++++++++
+
+.. automodule:: {{cookiecutter.module_name}}.calculations
+   :members:
+
+Parsers
++++++++
+
+.. automodule:: {{cookiecutter.module_name}}.parsers
+   :members:
+
+
 

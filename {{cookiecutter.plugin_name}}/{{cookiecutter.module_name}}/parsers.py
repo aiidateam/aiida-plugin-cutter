@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+"""
+Parsers provided by the plugin
+
+Register parsers via the "aiida.parsers" entry point in setup.json.
+"""
 import json
 from aiida.parsers.parser import Parser
 from aiida.parsers.exceptions import OutputParsingError

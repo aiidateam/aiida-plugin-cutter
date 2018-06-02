@@ -10,14 +10,14 @@
     ],
     "version": "{{cookiecutter.version}}",
     "entry_points": {
+        "aiida.data": [
+            "{{cookiecutter.entry_point_prefix}}.factors = {{cookiecutter.module_name}}.data:MultiplyParameters"
+        ],
         "aiida.calculations": [
-            "{{cookiecutter.entry_point_prefix}}.multiply = {{cookiecutter.module_name}}.calculations.multiply:MultiplyCalculation"
+            "{{cookiecutter.entry_point_prefix}}.multiply = {{cookiecutter.module_name}}.calculations:MultiplyCalculation"
         ],
         "aiida.parsers": [
-            "{{cookiecutter.entry_point_prefix}}.product = {{cookiecutter.module_name}}.parsers.multiply:MultiplyParser"
-        ],
-        "aiida.data": [
-            "{{cookiecutter.entry_point_prefix}}.factors = {{cookiecutter.module_name}}.data.multiply:MultiplyParameters"
+            "{{cookiecutter.entry_point_prefix}}.product = {{cookiecutter.module_name}}.parsers:MultiplyParser"
         ],
         "aiida.cmdline.data": [
             "{{cookiecutter.entry_point_prefix}}.factors = {{cookiecutter.module_name}}.data.data_cli:cli"

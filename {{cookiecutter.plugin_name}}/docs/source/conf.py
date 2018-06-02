@@ -58,10 +58,10 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'{{cookiecutter.plugin_name}}'
-copyright_first_year = 2017
-copyright_owners = "My Institution, Country"
+copyright_first_year = "{{cookiecutter.year}}"
+copyright_owners = "{{cookiecutter.author}}"
 
-current_year = time.localtime().tm_year
+current_year = str(time.localtime().tm_year)
 copyright_year_string = current_year if current_year == copyright_first_year else "{}-{}".format(copyright_first_year, current_year)
 # pylint: disable=redefined-builtin
 copyright = u'{}, {}. All rights reserved'.format(copyright_year_string, copyright_owners)
