@@ -5,29 +5,31 @@ Usage: verdi run submit.py
 
 Note: This script assumes you have set up computer and code as in README.md.
 """
+import {{cookiecutter.module_name}}.tests as tests
+from aiida.orm.data.singlefile import SinglefileData
 import os
 
-# use code name specified using 'verdi code setup'
-code = Code.get_from_string('{{cookiecutter.module_name}}')
-
-# use computer name specified using 'verdi computer setup'
-computer = Computer.get('localhost')
+code = tests.get_code(entry_point='{{cookiecutter.entry_point_prefix}}')
 
 # Prepare input parameters
-MultiplyParameters = DataFactory('{{cookiecutter.entry_point_prefix}}.factors')
-parameters = MultiplyParameters(x1=2, x2=3)
+from aiida.orm import DataFactory
+DiffParameters = DataFactory('{{cookiecutter.entry_point_prefix}}')
+parameters = DiffParameters({'ignore-case': True})
+
+file1 = SinglefileData(file=os.path.join(tests.TEST_DIR, 'file1.txt'))
+file2 = SinglefileData(file=os.path.join(tests.TEST_DIR, 'file2.txt'))
 
 # set up calculation
 calc = code.new_calc()
-calc.label = "{{cookiecutter.module_name}} computes 2*3"
+calc.label = "{{cookiecutter.module_name}} test"
 calc.description = "Test job submission with the {{cookiecutter.module_name}} plugin"
-calc.set_max_wallclock_seconds(30 * 60)  # 30 min
-# This line is only needed for local codes, otherwise the computer is
-# automatically set from the code
-calc.set_computer(computer)
+calc.set_max_wallclock_seconds(30)
 calc.set_withmpi(False)
-calc.set_resources({"num_machines": 1})
+calc.set_resources({"num_machines": 1, "num_mpiprocs_per_machine": 1})
+
 calc.use_parameters(parameters)
+calc.use_file1(file1)
+calc.use_file2(file2)
 
 calc.store_all()
 calc.submit()

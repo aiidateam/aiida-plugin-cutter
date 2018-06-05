@@ -1,0 +1,36 @@
+language: python
+python:
+- "2.7"
+
+cache: pip
+
+services:
+- postgresql
+
+addons:
+  postgresql: "9.5"
+
+env:
+  global: 
+  - PLUGIN_DIR: aiida-diff
+  
+  matrix:
+  - TEST_AIIDA_BACKEND: django
+    TEST_TYPE: tests
+  - TEST_AIIDA_BACKEND: sqlalchemy
+    TEST_TYPE: tests
+  - TEST_AIIDA_BACKEND: django
+    TEST_TYPE: docs
+    READTHEDOCS: 'True'
+  - TEST_AIIDA_BACKEND: django
+    TEST_TYPE: pre-commit
+
+install:
+# Upgrade pip setuptools and wheel
+- pip install -U pip wheel setuptools
+- pip install cookiecutter
+- cookiecutter --no-input .
+- pip install -e ${PLUGIN_DIR}[docs,pre-commit,testing]
+
+script:
+- .travis-data/script.sh

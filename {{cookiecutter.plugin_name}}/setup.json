@@ -11,16 +11,16 @@
     "version": "{{cookiecutter.version}}",
     "entry_points": {
         "aiida.data": [
-            "{{cookiecutter.entry_point_prefix}}.factors = {{cookiecutter.module_name}}.data:MultiplyParameters"
+            "{{cookiecutter.entry_point_prefix}} = {{cookiecutter.module_name}}.data:DiffParameters"
         ],
         "aiida.calculations": [
-            "{{cookiecutter.entry_point_prefix}}.multiply = {{cookiecutter.module_name}}.calculations:MultiplyCalculation"
+            "{{cookiecutter.entry_point_prefix}} = {{cookiecutter.module_name}}.calculations:DiffCalculation"
         ],
         "aiida.parsers": [
-            "{{cookiecutter.entry_point_prefix}}.product = {{cookiecutter.module_name}}.parsers:MultiplyParser"
+            "{{cookiecutter.entry_point_prefix}} = {{cookiecutter.module_name}}.parsers:DiffParser"
         ],
         "aiida.cmdline.data": [
-            "{{cookiecutter.entry_point_prefix}}.factors = {{cookiecutter.module_name}}.data.data_cli:cli"
+            "{{cookiecutter.entry_point_prefix}} = {{cookiecutter.module_name}}.data.data_cli:cli"
         ]
     },
     "scripts": ["examples/cli.py"],
