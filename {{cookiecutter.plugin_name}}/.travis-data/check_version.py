@@ -22,7 +22,7 @@ version = {{cookiecutter.module_name}}.__version__
 
 if version != setup_content['version']:
     print("Version number mismatch detected:")
-    print("Version number in '{}': {}".format(setup_fname, 
+    print("Version number in '{}': {}".format(setup_fname,
                                               setup_content['version']))
     print("Version number in '{}/__init__.py': {}".format(
         '{{cookiecutter.module_name}}', version))

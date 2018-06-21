@@ -7,7 +7,6 @@ testing that does not pollute your profiles/databases.
 # Helper functions for tests
 import os
 import tempfile
-import unittest
 
 TEST_DIR = os.path.dirname(os.path.realpath(__file__))
 
