@@ -31,7 +31,8 @@
     ],
     "extras_require": {
         "testing": [
-            "aiida-core[testing]"
+            "aiida-core[testing]",
+            "wheel>=0.31"
         ],
         "pre-commit": [
             "pre-commit",
