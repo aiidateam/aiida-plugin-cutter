@@ -21,3 +21,4 @@ env:
 
 script:
 - python -m unittest discover
+- python .travis-data/check_version.py
