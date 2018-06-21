@@ -2,10 +2,11 @@
 
 """
 import {{cookiecutter.module_name}}.tests as tests
+from aiida.utils.fixtures import PluginTestCase
 import os
 
 
-class TestDiff(tests.PluginTestCase):
+class TestDiff(PluginTestCase):
     def setUp(self):
         # Set up code, if it does not exist
         self.code = tests.get_code(entry_point='{{cookiecutter.entry_point_prefix}}')

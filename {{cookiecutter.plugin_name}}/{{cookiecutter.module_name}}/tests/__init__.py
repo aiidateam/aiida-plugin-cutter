@@ -111,34 +111,3 @@ def get_code(entry_point, computer_name='localhost'):
         code.store()
 
     return code
-
-
-#TODO: Replace this class by aiida.utils.fixtures.PluginTestCase when aiida-core v0.12.1 is released
-class PluginTestCase(unittest.TestCase):
-    """
-    Set up a complete temporary AiiDA environment for plugin tests
-
-    Filesystem:
-
-        * temporary config (``.aiida``) folder
-        * temporary repository folder
-
-    Database:
-
-        * temporary database cluster via the ``pgtest`` package
-        * with aiida database user
-        * with aiida_db database
-
-    AiiDA:
-
-        * set to use the temporary config folder
-        * create and configure a profile
-    """
-
-    @classmethod
-    def setUpClass(cls):
-        from aiida.utils.fixtures import _PYTEST_FIXTURE_MANAGER
-        cls.fixture_manager = _PYTEST_FIXTURE_MANAGER
-
-    def tearDown(self):
-        self.fixture_manager.reset_db()
