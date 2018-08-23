@@ -14,6 +14,8 @@ The fastest most convenient way for getting started with developing AiiDA plugin
 This will produce the files and folder structure for your plugin,
 already adjusted for the name of your plugin.
 
+For the default output of the plugin cutter, see the [aiida-diff](https://github.com/ltalirz/aiida-diff) demo plugin.
+
 ## Development
 
 The plugin cutter comes with rather strict continuous integration tests which
