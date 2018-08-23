@@ -7,7 +7,7 @@ The fastest most convenient way for getting started with developing AiiDA plugin
 ## Usage
 
     pip install cookiecutter
-    cookiecutter git@github.com:aiidateam/aiida-plugin-cutter.git
+    cookiecutter https://github.com/aiidateam/aiida-plugin-cutter.git
 
 ![Demo](https://image.ibb.co/ct6rL8/aiida_plugin_cutter.gif "The fastest way to kickstart an AiiDA plugin.")
 
@@ -24,7 +24,7 @@ The plugin cutter comes with rather strict continuous integration tests which
  * test that the code of the plugin confirms to coding standards
 
 Particularly the last test is very easy to break.
-In order to check your syntax, do:
+In order to check your syntax run
 ```
 cookiecutter --no-input -f .
 pip install -e aiida-diff[docs,pre-commit,testing]
@@ -33,6 +33,7 @@ git init && git add -A
 pre-commit install
 pre-commit run
 ```
+or simply: `./check-syntax.sh`
 
 
 ## License

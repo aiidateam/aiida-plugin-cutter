@@ -2,6 +2,8 @@
 
 {{ cookiecutter.short_description }}
 
+Templated using the [AiiDA plugin cutter](https://github.com/aiidateam/aiida-plugin-cutter).
+
 # Installation
 
 ```shell
