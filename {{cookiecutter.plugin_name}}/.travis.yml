@@ -13,12 +13,12 @@ addons:
 install:
 # Upgrade pip setuptools and wheel
 - pip install -U pip wheel setuptools
-- pip install .[precommit,testing]
+- pip install -e .[precommit,testing]
 
 env:
 - TEST_AIIDA_BACKEND=django
 - TEST_AIIDA_BACKEND=sqlalchemy
 
 script:
-- python -m unittest discover
+- python manage.py  # runs unit tests
 - python .travis-data/check_version.py
