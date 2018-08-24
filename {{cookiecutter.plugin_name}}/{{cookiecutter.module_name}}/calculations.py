@@ -1,5 +1,5 @@
 """
-Calculations provided by plugin
+Calculations provided by {{cookiecutter.module_name}}.
 
 Register calculations via the "aiida.calculations" entry point in setup.json.
 """
