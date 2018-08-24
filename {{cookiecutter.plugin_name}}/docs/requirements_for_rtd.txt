@@ -1,3 +1,1 @@
-setuptools>34
-aiida>={{cookiecutter.aiida_min_version}}
-sphinx
+-e .[docs]
