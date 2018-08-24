@@ -9,6 +9,7 @@ import os
 import tempfile
 
 TEST_DIR = os.path.dirname(os.path.realpath(__file__))
+TEST_COMPUTER = 'localhost-test'
 
 executables = {
     '{{cookiecutter.entry_point_prefix}}': 'diff',
@@ -45,7 +46,7 @@ def get_path_to_executable(executable):
     return path
 
 
-def get_computer(name='localhost'):
+def get_computer(name=TEST_COMPUTER):
     """Get local computer.
 
     Sets up local computer with 'name' or reads it from database,
@@ -65,8 +66,8 @@ def get_computer(name='localhost'):
 
         computer = Computer(
             name=name,
-            description='localhost computer set up by aiida_gudhi tests',
-            hostname='localhost',
+            description='localhost computer set up by {{cookiecutter.module_name}} tests',
+            hostname=TEST_COMPUTER,
             workdir=tempfile.mkdtemp(),
             transport_type='local',
             scheduler_type='direct',
@@ -76,7 +77,7 @@ def get_computer(name='localhost'):
     return computer
 
 
-def get_code(entry_point, computer_name='localhost'):
+def get_code(entry_point, computer_name=TEST_COMPUTER):
     """Get local code.
 
     Sets up code for given entry point on given computer.

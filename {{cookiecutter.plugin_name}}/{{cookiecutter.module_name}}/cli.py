@@ -1,21 +1,36 @@
-#!/usr/bin/env runaiida
 # -*- coding: utf-8 -*-
-import sys
+"""
+Command line interface (cli) for {{cookiecutter.module_name}}.
+
+Command line interface for plugin-specific tasks.
+
+Register new command line interfaces either via the "console_scripts" entry
+point or plug them into the 'verdi' command by using AiiDA-specific entry
+points like "aiida.cmdline.data" in setup.json.
+"""
 import os
 import click
+from aiida.cmdline.dbenv_lazyloading import load_dbenv_if_not_loaded
+import {{cookiecutter.module_name}}.tests as tests
 
 
-@click.command('cli')
+@click.command('')
 @click.argument('codelabel')
 @click.option('--submit', is_flag=True, help='Actually submit calculation')
-def main(codelabel, submit):
+def submit(codelabel, submit):
     """Command line interface for testing and submitting calculations.
 
-    This script extends submit.py, adding flexibility in the selected code/computer.
+    This command is based on examples/submit.py, but adds flexibility in the
+    selected code/computer.
 
-    Run './cli.py --help' to see options.
+    Run ``{{cookiecutter.entry_point_prefix}}-submit --help`` to see options.
     """
-    code = Code.get_from_string(codelable)
+    load_dbenv_if_not_loaded(
+    )  # Important to load the dbenv in the last moment
+    from aiida.orm import Code
+    from aiida.orm.data import SinglefileData
+
+    code = Code.get_from_string(codelabel)
 
     # Prepare input parameters
     from aiida.orm import DataFactory
@@ -43,12 +58,8 @@ def main(codelabel, submit):
         print("submitted calculation; calc=Calculation(uuid='{}') # ID={}"\
                 .format(calc.uuid,calc.dbnode.pk))
     else:
-        subfolder, script_filename = calc.submit_test()
+        subfolder, _script_filename = calc.submit_test()
         path = os.path.relpath(subfolder.abspath)
         print("Submission test successful.")
         print("Find remote folder in {}".format(path))
         print("In order to actually submit, add '--submit'")
-
-
-if __name__ == '__main__':
-    main()
