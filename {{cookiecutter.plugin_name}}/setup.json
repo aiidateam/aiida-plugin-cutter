@@ -26,7 +26,6 @@
             "{{cookiecutter.entry_point_prefix}}-submit={{cookiecutter.module_name}}.cli:submit"
         ]
     },
-    "scripts": ["examples/cli.py"],
     "setup_requires": ["reentry"],
     "reentry_register": true,
     "install_requires": [
