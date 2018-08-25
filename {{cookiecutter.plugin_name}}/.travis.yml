@@ -13,12 +13,27 @@ addons:
 install:
 # Upgrade pip setuptools and wheel
 - pip install -U pip wheel setuptools
-- pip install -e .[precommit,testing]
+- pip install -e .[testing,docs,pre-commit]
 
 env:
-- TEST_AIIDA_BACKEND=django
-- TEST_AIIDA_BACKEND=sqlalchemy
+  matrix:
+  - TEST_AIIDA_BACKEND: django
+    TEST_TYPE: tests
+  - TEST_AIIDA_BACKEND: sqlalchemy
+    TEST_TYPE: tests
+  - TEST_AIIDA_BACKEND: django
+    TEST_TYPE: docs
+    READTHEDOCS: 'True'
+  - TEST_AIIDA_BACKEND: django
+    TEST_TYPE: pre-commit
+    
+  # Remove this to enforce the AiiDA coding style
+  allow_failures: 
+  - TEST_AIIDA_BACKEND: django
+    TEST_TYPE: pre-commit
 
 script:
-- python manage.py  # runs unit tests
-- python .travis-data/check_version.py
+- if [ "$TEST_TYPE" == "tests" ] ; then python manage.py; fi  # runs unit tests
+- if [ "$TEST_TYPE" == "docs" ] ; then cd docs; make; fi  # creates documentation
+# runs precommit checks but doesn't fail if they don't pass
+- if [ "$TEST_TYPE" == "pre-commit" ] ; then pre-commit install; pre-commit run --all-files || ( git status --short; git diff ; exit 1 ); fi
