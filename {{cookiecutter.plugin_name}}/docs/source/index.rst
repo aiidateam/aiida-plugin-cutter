@@ -7,10 +7,12 @@ The {{cookiecutter.plugin_name}} plugin for `AiiDA`_
 
 ``{{cookiecutter.plugin_name}}`` is available at http://github.com/{{cookiecutter.github_user}}/{{cookiecutter.repo_name}}
 
+
 .. toctree::
    :maxdepth: 2
 
    user_guide/index
+   developer_guide/index
    module_guide/index
 
 If you use this plugin for your research, please cite the following work:
@@ -23,6 +25,10 @@ If you use AiiDA for your research, please cite the following work:
   and Boris Kozinsky, *AiiDA: automated interactive infrastructure and database
   for computational science*, Comp. Mat. Sci 111, 218-230 (2016);
   http://dx.doi.org/10.1016/j.commatsci.2015.09.013; http://www.aiida.net.
+
+``{{cookiecutter.plugin_name}}`` is released under the MIT license. 
+
+{%if cookiecutter.contact_email!=""%}Please contact {{ cookiecutter.contact_email }} for information concerning ``{{cookiecutter.plugin_name}}`` and the `AiiDA mailing list <http://www.aiida.net/mailing-list/>`_ for questions concerning ``aiida``.{%endif%}
 
 
 Indices and tables

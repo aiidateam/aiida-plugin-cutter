@@ -12,7 +12,7 @@ Templated using the [AiiDA plugin cutter](https://github.com/aiidateam/aiida-plu
 git clone https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name}} .
 cd {{ cookiecutter.repo_name }}
 pip install -e .  # also installs aiida, if missing (but not postgres)
-#pip install -e .[precommit,testing] # install extras for more features
+#pip install -e .[pre-commit,testing] # install extras for more features
 verdi quicksetup  # better to set up a new profile
 verdi calculation plugins  # should now show your calclulation plugins
 ```
@@ -46,6 +46,8 @@ python manage.py
 
 MIT
 
+{%if cookiecutter.contact_email!=""%}
 ## Contact
 
 {{ cookiecutter.contact_email }}
+{%endif%}
