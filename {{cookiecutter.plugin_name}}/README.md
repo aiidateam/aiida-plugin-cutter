@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name}}.svg?branch=master)](https://travis-ci.org/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name}}) [![Docs status](https://readthedocs.org/projects/{{ cookiecutter.plugin_name }}/badge)](http://{{ cookiecutter.plugin_name }}.readthedocs.io/)
+
 # {{ cookiecutter.plugin_name }}
 
 {{ cookiecutter.short_description }}
