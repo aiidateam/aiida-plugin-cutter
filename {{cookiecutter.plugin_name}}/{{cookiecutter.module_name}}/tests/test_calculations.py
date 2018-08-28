@@ -42,7 +42,7 @@ def test_submit(new_database, new_workdir):
     calc.set_withmpi(False)
     calc.set_resources({"num_machines": 1, "num_mpiprocs_per_machine": 1})
 
-    calc.use_parameters(parameters)
+    calc.use_diffparameters(parameters)
     calc.use_file1(file1)
     calc.use_file2(file2)
 
@@ -80,7 +80,7 @@ def test_process(new_database, new_workdir):
     calc.set_withmpi(False)
     calc.set_resources({"num_machines": 1, "num_mpiprocs_per_machine": 1})
 
-    calc.use_parameters(parameters)
+    calc.use_diffparameters(parameters)
     calc.use_file1(file1)
     calc.use_file2(file2)
 

@@ -43,7 +43,7 @@ class DiffCalculation(JobCalculation):
         """
         use_dict = JobCalculation._use_methods
         use_dict.update({
-            "parameters": {
+            "diffparameters": {
                 'valid_types': DiffParameters,
                 'additional_parameter': None,
                 'linkname': 'diffparameters',
