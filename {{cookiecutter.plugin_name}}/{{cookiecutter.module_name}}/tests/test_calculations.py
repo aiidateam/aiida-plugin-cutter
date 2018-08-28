@@ -38,6 +38,6 @@ class TestDiff(PluginTestCase):
         calc.use_file2(file2)
 
         calc.store_all()
-        calc.submit()
+        calc.submit()  # TODO this hangs if using aiida_core develop branch
         print("submitted calculation; calc=Calculation(uuid='{}') # ID={}"\
                 .format(calc.uuid,calc.dbnode.pk))

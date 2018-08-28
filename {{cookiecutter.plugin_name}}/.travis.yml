@@ -14,6 +14,15 @@ install:
 # Upgrade pip setuptools and wheel
 - pip install -U pip wheel setuptools
 - pip install -e .[testing,docs,pre-commit]
+- >
+  if [[ ! -z "${AIIDA_BRANCH}" ]]; then
+    cur_path="$(pwd)";
+    cd ..;
+    git clone --branch=${AIIDA_BRANCH} https://github.com/aiidateam/aiida_core.git;
+    cd aiida_core;
+    pip install -U .[testing];
+    cd "$cur_path";
+  fi
 
 env:
   matrix:
@@ -26,11 +35,17 @@ env:
     READTHEDOCS: 'True'
   - TEST_AIIDA_BACKEND: django
     TEST_TYPE: pre-commit
+  - TEST_AIIDA_BACKEND: django
+    TEST_TYPE: tests
+    AIIDA_BRANCH: develop
     
   # Remove this to enforce the AiiDA coding style
   allow_failures: 
   - TEST_AIIDA_BACKEND: django
     TEST_TYPE: pre-commit
+  - TEST_AIIDA_BACKEND: django
+    TEST_TYPE: tests
+    AIIDA_BRANCH: develop
 
 script:
 - if [ "$TEST_TYPE" == "tests" ] ; then python manage.py; fi  # runs unit tests
