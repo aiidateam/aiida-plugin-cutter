@@ -19,7 +19,7 @@ def get_code(workdir):
     return code
 
 
-def test_example(new_database, new_workdir):
+def test_submit(new_database, new_workdir):
     
     code = get_code(new_workdir)
 
@@ -45,7 +45,7 @@ def test_example(new_database, new_workdir):
     calc.use_file2(file2)
 
     calc.store_all()
-    calc.submit()
+    calc.submit()  # TODO this hangs when using aiida develop branch on travis
     print("submitted calculation; calc=Calculation(uuid='{}') # ID={}".format(calc.uuid,calc.dbnode.pk))
 
 

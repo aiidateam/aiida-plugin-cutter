@@ -25,7 +25,7 @@ A quick demo of how to submit a calculation:
 ```shell
 verdi daemon start         # make sure the daemon is running
 cd examples
-verdi run submit.py        # submit test calculation
+verdi run test_submit.py        # submit test calculation
 verdi calculation list -a  # check status of calculation
 ```
 
@@ -39,7 +39,7 @@ If you have already set up your own {{cookiecutter.module_name}} code using `ver
 The following will discover and run all unit test:
 ```shell
 pip install -e .[testing]
-python manage.py
+pytest -v
 ```
 
 ## License

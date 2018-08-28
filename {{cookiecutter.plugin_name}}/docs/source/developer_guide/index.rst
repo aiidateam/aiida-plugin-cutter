@@ -8,7 +8,7 @@ Running the tests
 The following will discover and run all unit test::
 
     pip install -e .[testing]
-    python manage.py
+    pytest -v
 
 Continuous integration
 ++++++++++++++++++++++
