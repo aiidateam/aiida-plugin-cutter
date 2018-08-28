@@ -16,6 +16,7 @@ def get_code(workdir):
     return code
     
 
+# pylint: disable=unused-argument
 def test_submit(new_database, new_workdir):
     """Test submitting a calculation"""
     from aiida.orm.data.singlefile import SinglefileData
@@ -48,10 +49,11 @@ def test_submit(new_database, new_workdir):
 
     # output input files and scripts to temporary folder
     with SandboxFolder() as folder:
-        subfolder, script_filename = calc.submit_test(folder=folder)
+        subfolder, script_filename = calc.submit_test(folder=folder)  # pylint: disable=unused-variable
         print("inputs created successfully at {}".format(subfolder.abspath))
 
 
+# pylint: disable=unused-argument
 @pytest.mark.process_execution
 def test_process(new_database, new_workdir):
     """Test running a calculation
@@ -85,7 +87,8 @@ def test_process(new_database, new_workdir):
 
     # test process execution and check the expected outputs
     # for diff 0=no differences, 1=differences, >1=error
-    tests.test_calculation_execution(calc, allowed_returncodes=(1,), check_paths=[calc._OUTPUT_FILE_NAME])
+    tests.test_calculation_execution(calc, allowed_returncodes=(1,), 
+                                     check_paths=[calc._OUTPUT_FILE_NAME])  # pylint: disable=protected-access
 
     
     

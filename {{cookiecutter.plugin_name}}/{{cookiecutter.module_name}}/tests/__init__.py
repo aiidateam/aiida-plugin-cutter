@@ -8,7 +8,6 @@ testing that does not pollute your profiles/databases.
 import os
 import stat
 import subprocess
-import sys
 
 TEST_DIR = os.path.dirname(os.path.realpath(__file__))
 TEST_COMPUTER = 'localhost-test'
@@ -136,7 +135,7 @@ def test_calculation_execution(calc, allowed_returncodes=(0,), check_paths=None)
         print("inputs created at {}".format(subfolder.abspath))
 
         script_path = os.path.join(subfolder.abspath, script_filename)
-        scheduler_stderr = calc._SCHED_ERROR_FILE
+        scheduler_stderr = calc._SCHED_ERROR_FILE  # pylint: disable=protected-access
 
         # we first need to make sure the script is executable
         st = os.stat(script_path)

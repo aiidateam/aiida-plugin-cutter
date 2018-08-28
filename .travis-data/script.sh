@@ -12,5 +12,5 @@ elif [ "$TEST_TYPE" == "pre-commit" ] ; then
     pre-commit run --all-files || ( git status --short ; git diff ; exit 1 )
 else
     cd $PLUGIN_DIR
-    python manage.py
+    pytest -v
 fi
