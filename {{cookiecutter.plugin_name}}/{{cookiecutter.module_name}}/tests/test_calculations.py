@@ -43,5 +43,5 @@ class TestDiff(PluginTestCase):
         from aiida.common.folders import SandboxFolder
         with SandboxFolder() as folder:
             subfolder, script_filename = calc.submit_test(folder=folder)
-            print("inputs created successfully at {}".format(subfolder.abspath))
-
+            print("inputs created successfully at {0} with script {1}".format(
+                subfolder.abspath, script_filename))
