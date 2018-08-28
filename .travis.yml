@@ -30,7 +30,8 @@ install:
 - pip install -U pip wheel setuptools
 - pip install cookiecutter
 - cookiecutter --no-input .
-- pip install -e ${PLUGIN_DIR}[docs,pre-commit,testing]
+- pip install ${PLUGIN_DIR}[docs,pre-commit,testing]
+- reentry scan
 
 script:
 - .travis-data/script.sh
