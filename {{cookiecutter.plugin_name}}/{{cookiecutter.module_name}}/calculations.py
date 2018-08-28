@@ -46,7 +46,7 @@ class DiffCalculation(JobCalculation):
             "parameters": {
                 'valid_types': DiffParameters,
                 'additional_parameter': None,
-                'linkname': 'parameters',
+                'linkname': 'diffparameters',
                 'docstring': ("Command line parameters for diff")
             },
             "file1": {
@@ -83,7 +83,7 @@ class DiffCalculation(JobCalculation):
                                        "calculation")
 
         try:
-            parameters = new_inputdict.pop(self.get_linkname('parameters'))
+            parameters = new_inputdict.pop(self.get_linkname('diffparameters'))
         except KeyError:
             raise InputValidationError("No parameters specified for this "
                                        "calculation")
