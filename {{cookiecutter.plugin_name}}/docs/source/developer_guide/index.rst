@@ -10,6 +10,24 @@ The following will discover and run all unit test::
     pip install -e .[testing]
     python manage.py
 
+Automatic coding style checks
++++++++++++++++++++++++++++++
+
+Enable enable automatic checks of code sanity and coding style::
+
+    pip install -e .[pre-commit]
+    pre-commit install
+
+After this, the `yapf <https://github.com/google/yapf>`_ formatter, 
+the `pylint <https://www.pylint.org/>`_ linter
+and the `prospector <https://pypi.org/project/prospector/>`_ code analyzer will
+run at every commit.
+
+If you ever need to skip these pre-commit hooks, just use::
+
+    git commit -n
+
+
 Continuous integration
 ++++++++++++++++++++++
 
@@ -35,7 +53,7 @@ Done.
 PyPI release
 ++++++++++++
 
-Your plugin is already prepared for being uploaded to the `Python Package Index <https://pypi.org/>`_.
+Your plugin is ready to be uploaded to the `Python Package Index <https://pypi.org/>`_.
 Just register for an account and::
 
     pip install twine
@@ -45,5 +63,4 @@ Just register for an account and::
 After this, you (and everyone else) should be able to::
 
     pip install {{cookiecutter.plugin_name}}
-
 
