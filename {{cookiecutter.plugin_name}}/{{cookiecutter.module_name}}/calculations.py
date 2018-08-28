@@ -74,6 +74,8 @@ class DiffCalculation(JobCalculation):
                 be returned by get_inputs_dict
         """
         # Check inputdict
+        original_inputdict = inputdict.copy()
+        
         try:
             code = inputdict.pop(self.get_linkname('code'))
         except KeyError:
