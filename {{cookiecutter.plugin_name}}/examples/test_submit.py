@@ -53,6 +53,6 @@ if __name__ == "__main__":
 
     wrkdir = "./aiida_workdir"
     if not os.path.exists(wrkdir):
-        os.makedirs("./aiida_workdir")
+        os.makedirs(wrkdir)
 
-    test_example(None, "./aiida_workdir")
+    test_example(None, os.path.abspath(wrkdir))

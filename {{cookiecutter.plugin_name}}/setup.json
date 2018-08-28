@@ -11,7 +11,7 @@
     "version": "{{cookiecutter.version}}",
     "entry_points": {
         "aiida.data": [
-            "{{cookiecutter.entry_point_prefix}} = {{cookiecutter.module_name}}.data:DiffParameters"
+            "{{cookiecutter.entry_point_prefix}} = {{cookiecutter.module_name}}.data.diffparam:DiffParameters"
         ],
         "aiida.calculations": [
             "{{cookiecutter.entry_point_prefix}} = {{cookiecutter.module_name}}.calculations:DiffCalculation"
