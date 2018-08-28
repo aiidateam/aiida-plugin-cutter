@@ -72,7 +72,7 @@ def get_computer(name=TEST_COMPUTER, workdir=None):
 
         computer = Computer(
             name=name,
-            description='localhost computer set up by aiida_crystal17 tests',
+            description='localhost computer set up by {{cookiecutter.module_name}} tests',
             hostname=name,
             workdir=workdir,
             transport_type='local',
