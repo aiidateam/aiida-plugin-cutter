@@ -1,2 +1,2 @@
 file with content
-content2
+content2 
