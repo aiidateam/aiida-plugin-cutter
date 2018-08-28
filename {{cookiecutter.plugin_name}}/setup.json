@@ -30,18 +30,20 @@
     "setup_requires": ["reentry"],
     "reentry_register": true,
     "install_requires": [
-        "aiida >= {{cookiecutter.aiida_min_version}}"
+        "aiida-core>={{cookiecutter.aiida_min_version}},<1.0.0"
     ],
     "extras_require": {
         "testing": [
-            "aiida-core[testing]",
+            "mock==2.0.0",
+            "pgtest==1.1.0",
+            "sqlalchemy-diff==0.1.3",
             "wheel>=0.31"
         ],
         "pre-commit": [
-            "pre-commit",
-            "yapf",
-            "prospector",
-            "pylint"
+            "pre-commit==1.8.2",
+            "yapf==0.21.0",
+            "prospector==0.12.7",
+            "pylint==1.8.4"
         ],
         "docs": [
             "sphinx"
