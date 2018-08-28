@@ -33,7 +33,7 @@ env:
     TEST_TYPE: pre-commit
 
 script:
-- if [ "$TEST_TYPE" == "tests" ] ; then python manage.py; fi  # runs unit tests
+- if [ "$TEST_TYPE" == "tests" ] ; then pytest -v; fi  # runs unit tests
 - if [ "$TEST_TYPE" == "docs" ] ; then cd docs; make; fi  # creates documentation
 # runs precommit checks but doesn't fail if they don't pass
 - if [ "$TEST_TYPE" == "pre-commit" ] ; then pre-commit install; pre-commit run --all-files || ( git status --short; git diff ; exit 1 ); fi

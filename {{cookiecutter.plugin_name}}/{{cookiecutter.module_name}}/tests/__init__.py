@@ -6,7 +6,9 @@ testing that does not pollute your profiles/databases.
 
 # Helper functions for tests
 import os
-import tempfile
+import stat
+import subprocess
+import sys
 
 TEST_DIR = os.path.dirname(os.path.realpath(__file__))
 TEST_COMPUTER = 'localhost-test'
@@ -46,13 +48,14 @@ def get_path_to_executable(executable):
     return path
 
 
-def get_computer(name=TEST_COMPUTER):
+def get_computer(name=TEST_COMPUTER, workdir=None):
     """Get local computer.
 
     Sets up local computer with 'name' or reads it from database,
     if it exists.
     
     :param name: Name of local computer
+    :param workdir: path to work directory (required if creating a new computer)
 
     :return: The computer node 
     :rtype: :py:class:`aiida.orm.Computer` 
@@ -64,20 +67,25 @@ def get_computer(name=TEST_COMPUTER):
         computer = Computer.get(name)
     except NotExistent:
 
+        if workdir is None:
+            raise ValueError("to create a new computer, a work directory must be supplied")
+
         computer = Computer(
             name=name,
-            description='localhost computer set up by {{cookiecutter.module_name}} tests',
-            hostname=TEST_COMPUTER,
-            workdir=tempfile.mkdtemp(),
+            description='localhost computer set up by aiida_crystal17 tests',
+            hostname=name,
+            workdir=workdir,
             transport_type='local',
             scheduler_type='direct',
             enabled_state=True)
         computer.store()
 
+        # TODO configure computer for user, see aiida_core.aiida.cmdline.commands.computer.Computer.computer_configure
+
     return computer
 
 
-def get_code(entry_point, computer_name=TEST_COMPUTER):
+def get_code(entry_point, computer):
     """Get local code.
 
     Sets up code for given entry point on given computer.
@@ -91,8 +99,6 @@ def get_code(entry_point, computer_name=TEST_COMPUTER):
     from aiida.orm import Code
     from aiida.common.exceptions import NotExistent
 
-    computer = get_computer(computer_name)
-
     try:
         executable = executables[entry_point]
     except KeyError:
@@ -100,7 +106,7 @@ def get_code(entry_point, computer_name=TEST_COMPUTER):
                        .format(entry_point, executables.keys()))
 
     try:
-        code = Code.get_from_string('{}@{}'.format(executable, computer_name))
+        code = Code.get_from_string('{}@{}'.format(executable, computer.get_name()))
     except NotExistent:
         path = get_path_to_executable(executable)
         code = Code(
