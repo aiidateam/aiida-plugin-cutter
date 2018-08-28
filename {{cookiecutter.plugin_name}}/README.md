@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name}}.svg?branch=master)](https://travis-ci.org/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name}}) [![Docs status](https://readthedocs.org/projects/{{ cookiecutter.plugin_name }}/badge)](http://{{ cookiecutter.plugin_name }}.readthedocs.io/)
+[![Build Status](https://travis-ci.org/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name}}.svg?branch=master)](https://travis-ci.org/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name}}) [![Docs status](https://readthedocs.org/projects/{{ cookiecutter.plugin_name }}/badge)](http://{{ cookiecutter.plugin_name }}.readthedocs.io/) [![PyPI version](https://badge.fury.io/py/{{ cookiecutter.plugin_name }}.svg)](https://badge.fury.io/py/{{ cookiecutter.plugin_name }})
 
 # {{ cookiecutter.plugin_name }}
 
