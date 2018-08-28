@@ -29,7 +29,7 @@ def test_submit(new_database, new_workdir):
     from aiida.orm import DataFactory
     DiffParameters = DataFactory('{{cookiecutter.entry_point_prefix}}')
     parameters = DiffParameters({'ignore-case': True})
-    print("input DiffParameters class: {1}, {0}, {2}".format(parameters, parameters.__class__), '{{cookiecutter.entry_point_prefix}}')
+    print("input DiffParameters class: {1}, {0}, {2}".format(parameters, parameters.__class__, '{{cookiecutter.entry_point_prefix}}'))
 
     file1 = SinglefileData(file=os.path.join(tests.TEST_DIR, "input_files", 'file1.txt'))
     file2 = SinglefileData(file=os.path.join(tests.TEST_DIR, "input_files", 'file2.txt'))
