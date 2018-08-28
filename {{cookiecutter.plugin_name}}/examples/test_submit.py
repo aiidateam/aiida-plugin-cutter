@@ -13,14 +13,13 @@ def get_code(workdir):
     """get the crystal17.basic code """
     computer = tests.get_computer(workdir=workdir)
     # get code
-    code = tests.get_code(
-        entry_point='{{cookiecutter.entry_point_prefix}}', computer=computer)
+    code = tests.get_code(entry_point='{{cookiecutter.entry_point_prefix}}', computer=computer)
 
     return code
 
 
 def test_submit(new_database, new_workdir):
-    
+
     code = get_code(new_workdir)
 
     # Prepare input parameters
@@ -29,8 +28,10 @@ def test_submit(new_database, new_workdir):
     parameters = DiffParameters({'ignore-case': True})
 
     SinglefileData = DataFactory("singlefile")
-    file1 = SinglefileData(file=os.path.join(tests.TEST_DIR, "input_files", 'file1.txt'))
-    file2 = SinglefileData(file=os.path.join(tests.TEST_DIR, "input_files", 'file2.txt'))
+    file1 = SinglefileData(
+        file=os.path.join(tests.TEST_DIR, "input_files", 'file1.txt'))
+    file2 = SinglefileData(
+        file=os.path.join(tests.TEST_DIR, "input_files", 'file2.txt'))
 
     # set up calculation
     calc = code.new_calc()
@@ -46,7 +47,8 @@ def test_submit(new_database, new_workdir):
 
     calc.store_all()
     calc.submit()  # TODO this hangs when using aiida develop branch on travis
-    print("submitted calculation; calc=Calculation(uuid='{}') # ID={}".format(calc.uuid,calc.dbnode.pk))
+    print("submitted calculation; calc=Calculation(uuid='{}') # ID={}".format(
+        calc.uuid, calc.dbnode.pk))
 
 
 if __name__ == "__main__":

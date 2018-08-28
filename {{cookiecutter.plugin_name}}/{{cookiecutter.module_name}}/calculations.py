@@ -75,7 +75,7 @@ class DiffCalculation(JobCalculation):
         """
         # Check inputdict
         new_inputdict = inputdict.copy()
-        
+
         try:
             code = new_inputdict.pop(self.get_linkname('code'))
         except KeyError:
@@ -96,14 +96,16 @@ class DiffCalculation(JobCalculation):
         except KeyError:
             raise InputValidationError("Missing file1")
         if not isinstance(file1, SinglefileData):
-            raise InputValidationError("file1 not of type SinglefileData: {}".format(file1))
+            raise InputValidationError(
+                "file1 not of type SinglefileData: {}".format(file1))
 
         try:
             file2 = new_inputdict.pop(self.get_linkname('file2'))
         except KeyError:
             raise InputValidationError("Missing file2")
         if not isinstance(file2, SinglefileData):
-            raise InputValidationError("file2 not of type SinglefileData: {}".format(file2))
+            raise InputValidationError(
+                "file2 not of type SinglefileData: {}".format(file2))
 
         if new_inputdict:
             raise ValidationError("Unknown inputs besides DiffParameters")
