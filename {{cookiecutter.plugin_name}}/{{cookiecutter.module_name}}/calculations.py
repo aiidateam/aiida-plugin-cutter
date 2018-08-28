@@ -87,21 +87,21 @@ class DiffCalculation(JobCalculation):
                                        "calculation")
         if not isinstance(parameters, DiffParameters):
             raise InputValidationError("parameters not of type "
-                                       "DiffParameters")
+                                       "DiffParameters: {}".format(parameters))
 
         try:
             file1 = inputdict.pop(self.get_linkname('file1'))
         except KeyError:
             raise InputValidationError("Missing file1")
         if not isinstance(file1, SinglefileData):
-            raise InputValidationError("file1 not of type SinglefileData")
+            raise InputValidationError("file1 not of type SinglefileData: {}".format(file1))
 
         try:
             file2 = inputdict.pop(self.get_linkname('file2'))
         except KeyError:
             raise InputValidationError("Missing file2")
         if not isinstance(file2, SinglefileData):
-            raise InputValidationError("file2 not of type SinglefileData")
+            raise InputValidationError("file2 not of type SinglefileData: {}".format(file2))
 
         if inputdict:
             raise ValidationError("Unknown inputs besides DiffParameters")
