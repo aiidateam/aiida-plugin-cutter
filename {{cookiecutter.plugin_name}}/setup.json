@@ -26,6 +26,7 @@
             "{{cookiecutter.entry_point_prefix}}-submit={{cookiecutter.module_name}}.cli:submit"
         ]
     },
+    "include_package_data": true,
     "setup_requires": ["reentry"],
     "reentry_register": true,
     "install_requires": [
