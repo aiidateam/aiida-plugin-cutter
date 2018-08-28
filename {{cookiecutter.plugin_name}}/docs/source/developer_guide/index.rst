@@ -31,3 +31,19 @@ is ready for `ReadTheDocs <https://readthedocs.org/>`_:
 #. In **Admin => Advanced settings => Requirements file** enter ``docs/requirements_for_rtd.txt``
 
 Done.
+
+PyPI release
+++++++++++++
+
+Your plugin is already prepared for being uploaded to the `Python Package Index <https://pypi.org/>`_.
+Just register for an account and::
+
+    pip install twine
+    python setup.py sdist bdist_wheel
+    twine upload dist/*
+
+After this, you (and everyone else) should be able to::
+
+    pip install {{cookiecutter.plugin_name}}
+
+
