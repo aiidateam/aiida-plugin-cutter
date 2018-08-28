@@ -117,5 +117,45 @@ def get_code(entry_point, computer):
         code.store()
 
     return code
+    
 
+def test_calculation_execution(calc, allowed_returncodes=(0,), check_paths=None):
+    """ test that a calculation executes successfully
+
+    :param calc: the calculation
+    :param allowed_returncodes: raise RunTimeError if return code is not in allowed_returncodes
+    :param check_paths: raise OSError if these relative paths are not in the folder after execution
+    :return:
+    """
+    from aiida.common.folders import SandboxFolder
+
+    # output input files and scripts to temporary folder
+    with SandboxFolder() as folder:
+
+        subfolder, script_filename = calc.submit_test(folder=folder)
+        print("inputs created at {}".format(subfolder.abspath))
+
+        script_path = os.path.join(subfolder.abspath, script_filename)
+        scheduler_stderr = calc._SCHED_ERROR_FILE
+
+        # we first need to make sure the script is executable
+        st = os.stat(script_path)
+        os.chmod(script_path, st.st_mode | stat.S_IEXEC)
+        # now call script, NB: bash -l -c is required to access global variable loaded in .bash_profile
+        returncode = subprocess.call(["bash", "-l", "-c", script_path], cwd=subfolder.abspath)
+
+        if returncode not in allowed_returncodes:
+
+            err_msg = "process failed (and couldn't find stderr file: {})".format(scheduler_stderr)
+            stderr_path = os.path.join(subfolder.abspath, scheduler_stderr)
+            if os.path.exists(stderr_path):
+                with open(stderr_path) as f:
+                    err_msg = "Process failed with stderr:\n{}".format(f.read())
+            raise RuntimeError(err_msg)
+
+        if check_paths is not None:
+            for outpath in check_paths:
+                subfolder.get_abs_path(outpath, check_existence=True)
+
+        print("calculation completed execution")
 
