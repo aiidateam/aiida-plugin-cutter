@@ -6,7 +6,7 @@ The fastest most convenient way for getting started with developing AiiDA plugin
 
 ## Usage
 
-    pip install cookiecutter
+    pip install cookiecutter yapf
     cookiecutter https://github.com/aiidateam/aiida-plugin-cutter.git
 
 ![Demo](https://image.ibb.co/ct6rL8/aiida_plugin_cutter.gif "The fastest way to kickstart an AiiDA plugin.")
