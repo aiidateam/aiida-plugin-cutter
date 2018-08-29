@@ -6,3 +6,4 @@
 .project
 *.egg*
 .DS_Store
+.coverage
