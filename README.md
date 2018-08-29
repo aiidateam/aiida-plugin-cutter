@@ -4,6 +4,8 @@ Cookie cutter recipe for [AiiDA](http://www.aiida.net) plugins.
 
 The fastest most convenient way for getting started with developing AiiDA plugins.
 
+For the default output of the plugin cutter, see the [aiida-diff](https://github.com/aiidateam/aiida-diff) demo plugin.
+
 ## Usage
 
     pip install cookiecutter yapf
@@ -13,8 +15,6 @@ The fastest most convenient way for getting started with developing AiiDA plugin
 
 This will produce the files and folder structure for your plugin,
 already adjusted for the name of your plugin.
-
-For the default output of the plugin cutter, see the [aiida-diff](https://github.com/ltalirz/aiida-diff) demo plugin.
 
 ## Development
 

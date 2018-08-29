@@ -1,6 +1,2 @@
 cookiecutter
-# pre-commit dependencies
-pre-commit
 yapf
-prospector
-pylint
