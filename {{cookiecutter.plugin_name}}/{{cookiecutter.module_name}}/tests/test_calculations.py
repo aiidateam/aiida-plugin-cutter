@@ -38,6 +38,10 @@ class TestDiff(PluginTestCase):
         calc.use_file2(file2)
 
         calc.store_all()
-        calc.submit()
-        print("submitted calculation; calc=Calculation(uuid='{}') # ID={}"\
-                .format(calc.uuid,calc.dbnode.pk))
+
+        # output input files and scripts to temporary folder
+        from aiida.common.folders import SandboxFolder
+        with SandboxFolder() as folder:
+            subfolder, script_filename = calc.submit_test(folder=folder)
+            print("inputs created successfully at {0} with script {1}".format(
+                subfolder.abspath, script_filename))

@@ -14,6 +14,7 @@ install:
 # Upgrade pip setuptools and wheel
 - pip install -U pip wheel setuptools
 - pip install -e .[testing,docs,pre-commit]
+- reentry scan -r aiida
 
 env:
   matrix:
