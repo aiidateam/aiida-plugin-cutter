@@ -13,7 +13,7 @@ addons:
 install:
 # Upgrade pip setuptools and wheel
 - pip install -U pip wheel setuptools
-- pip install .[testing,docs,pre-commit]
+- pip install -e .[testing,docs,pre-commit]
 - reentry scan
 
 env:

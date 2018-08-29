@@ -31,7 +31,7 @@ install:
 - pip install cookiecutter
 - cookiecutter --no-input .
 - cd ${PLUGIN_DIR}
-- pip install .[docs,pre-commit,testing]
+- pip install -e .[docs,pre-commit,testing]
 - reentry scan
 
 script:
