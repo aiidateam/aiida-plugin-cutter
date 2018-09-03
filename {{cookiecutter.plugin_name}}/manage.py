@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import sys
 import unittest
 from {{cookiecutter.module_name}}.tests import get_backend

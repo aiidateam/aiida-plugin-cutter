@@ -4,6 +4,7 @@ Calculations provided by {{cookiecutter.module_name}}.
 Register calculations via the "aiida.calculations" entry point in setup.json.
 """
 
+from __future__ import absolute_import
 from aiida.orm.calculation.job import JobCalculation
 from aiida.orm.data.singlefile import SinglefileData
 from aiida.common.utils import classproperty

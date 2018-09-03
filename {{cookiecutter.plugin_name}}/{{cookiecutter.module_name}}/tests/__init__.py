@@ -5,6 +5,7 @@ testing that does not pollute your profiles/databases.
 """
 
 # Helper functions for tests
+from __future__ import absolute_import
 import os
 import tempfile
 
@@ -96,8 +97,9 @@ def get_code(entry_point, computer_name=TEST_COMPUTER):
     try:
         executable = executables[entry_point]
     except KeyError:
-        raise KeyError("Entry point {} not recognized. Allowed values: {}"
-                       .format(entry_point, executables.keys()))
+        raise KeyError(
+            "Entry point {} not recognized. Allowed values: {}".format(
+                entry_point, list(executables.keys())))
 
     try:
         code = Code.get_from_string('{}@{}'.format(executable, computer_name))

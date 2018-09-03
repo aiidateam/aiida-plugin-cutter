@@ -8,7 +8,10 @@ Register new command line interfaces either via the "console_scripts" entry
 point or plug them into the 'verdi' command by using AiiDA-specific entry
 points like "aiida.cmdline.data" in setup.json.
 """
+from __future__ import print_function
+from __future__ import absolute_import
 import os
+
 import click
 from aiida.cmdline.dbenv_lazyloading import load_dbenv_if_not_loaded
 import {{cookiecutter.module_name}}.tests as tests
