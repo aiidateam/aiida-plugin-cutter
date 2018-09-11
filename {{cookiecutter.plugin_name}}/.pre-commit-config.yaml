@@ -14,8 +14,6 @@
   hooks:
   - id: prospector
     language: system
-    exclude: '^(tests/)|(examples/)'
-
 
 - repo: local
   hooks:

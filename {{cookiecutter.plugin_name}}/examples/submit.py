@@ -5,14 +5,14 @@ Usage: verdi run submit.py
 
 Note: This script assumes you have set up computer and code as in README.md.
 """
+import os
 import {{cookiecutter.module_name}}.tests as tests
 from aiida.orm.data.singlefile import SinglefileData
-import os
+from aiida.orm import DataFactory
 
 code = tests.get_code(entry_point='{{cookiecutter.entry_point_prefix}}')
 
 # Prepare input parameters
-from aiida.orm import DataFactory
 DiffParameters = DataFactory('{{cookiecutter.entry_point_prefix}}')
 parameters = DiffParameters({'ignore-case': True})
 
