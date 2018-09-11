@@ -8,6 +8,7 @@ else
 fi
 
 cat <<EOF
-\n### IMPORTANT###
+
+### IMPORTANT###
 Register your plugin NOW by making a pull request to the AiiDA Plugin Registry
 EOF
