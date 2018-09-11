@@ -45,10 +45,8 @@ Online documentation
 The documentation of ``{{cookiecutter.plugin_name}}``
 is ready for `ReadTheDocs <https://readthedocs.org/>`_:
 
-#. Add the ``{{ cookiecutter.repo_name}}`` repository on your RTD profile, preferably using ``{{ cookiecutter.plugin_name}}`` as the project name
-#. In **Admin => Advanced settings => Requirements file** enter ``docs/requirements_for_rtd.txt``
+Simply add the ``{{ cookiecutter.repo_name}}`` repository on your RTD profile, preferably using ``{{ cookiecutter.plugin_name}}`` as the project name - that's it!
 
-Done.
 
 PyPI release
 ++++++++++++
