@@ -1,4 +1,4 @@
-#import sys
+import sys
 import unittest
 from {{cookiecutter.module_name}}.tests import get_backend
 from aiida.utils.fixtures import TestRunner
