@@ -13,7 +13,7 @@ The {{cookiecutter.plugin_name}} plugin for `AiiDA`_
 
    user_guide/index
    developer_guide/index
-   module_guide/index
+   API documentation <apidoc/{{cookiecutter.module_name}}>
 
 If you use this plugin for your research, please cite the following work:
 

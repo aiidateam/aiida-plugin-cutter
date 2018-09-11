@@ -28,7 +28,7 @@ env:
 install:
 # Upgrade pip setuptools and wheel
 - pip install -U pip wheel setuptools
-- pip install cookiecutter
+- pip install cookiecutter yapf
 - cookiecutter --no-input .
 - pip install -e ${PLUGIN_DIR}[docs,pre-commit,testing]
 - reentry scan -r aiida
