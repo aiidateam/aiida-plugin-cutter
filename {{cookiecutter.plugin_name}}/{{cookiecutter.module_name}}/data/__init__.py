@@ -7,6 +7,7 @@ Register data types via the "aiida.data" entry point in setup.json.
 
 # You can directly use or subclass aiida.orm.data.Data
 # or any other data type listed under 'verdi data'
+from __future__ import absolute_import
 from aiida.orm.data.parameter import ParameterData
 from voluptuous import Schema, Optional
 
@@ -66,4 +67,4 @@ class DiffParameters(ParameterData):
 
         parameters += [file1_name, file2_name]
 
-        return map(str, parameters)
+        return [str(p) for p in parameters]

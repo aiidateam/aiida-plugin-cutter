@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import sys
 import click
 from aiida.cmdline.commands import data_cmd

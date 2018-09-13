@@ -4,6 +4,10 @@ Parsers provided by {{cookiecutter.module_name}}.
 
 Register parsers via the "aiida.parsers" entry point in setup.json.
 """
+from __future__ import absolute_import
+
+from six.moves import zip
+
 from aiida.parsers.parser import Parser
 from aiida.parsers.exceptions import OutputParsingError
 
@@ -59,12 +63,11 @@ class DiffParser(Parser):
         if set(output_files) <= set(list_of_files):
             pass
         else:
-            self.logger.error(
-                "Not all expected output files {} were found".format(
-                    output_files))
+            self.logger.error("Not all expected output files {} were found".
+                              format(output_files))
 
         # Use something like this to loop over multiple output files
-        for fname, link in list(zip(output_files, output_links)):
+        for fname, link in zip(output_files, output_links):
 
             node = SinglefileData(file=out_folder.get_abs_path(fname))
             node_list.append((link, node))

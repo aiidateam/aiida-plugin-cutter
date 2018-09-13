@@ -29,7 +29,8 @@
     "setup_requires": ["reentry"],
     "reentry_register": true,
     "install_requires": [
-        "aiida-core>={{cookiecutter.aiida_min_version}},<1.0.0"
+        "aiida-core>={{cookiecutter.aiida_min_version}},<1.0.0",
+        "six"
     ],
     "extras_require": {
         "testing": [
@@ -40,10 +41,10 @@
             "coverage"
         ],
         "pre-commit": [
-            "pre-commit==1.8.2",
+            "pre-commit==1.11.0",
             "yapf==0.24.0",
-            "prospector==0.12.7",
-            "pylint==1.8.4"
+            "prospector==0.12.11",
+            "pylint==1.9.3"
         ],
         "docs": [
             "sphinx"
