@@ -6,10 +6,10 @@ testing that does not pollute your profiles/databases.
 
 # Helper functions for tests
 from __future__ import absolute_import
-from aiida import get_strict_version
 from distutils.version import StrictVersion
 import os
 import tempfile
+import aiida
 
 TEST_DIR = os.path.dirname(os.path.realpath(__file__))
 TEST_COMPUTER = 'localhost-test'
@@ -18,7 +18,7 @@ executables = {
     '{{cookiecutter.entry_point_prefix}}': 'diff',
 }
 
-aiida_version = get_strict_version()
+aiida_version = StrictVersion(aiida.get_version())
 
 def get_backend_str():
     """ Return database backend string.
@@ -71,23 +71,35 @@ def get_computer(name=TEST_COMPUTER):
     from aiida.orm import Computer
     from aiida.common.exceptions import NotExistent
 
-    try:
-        if aiida_version < StrictVersion('1.0a3'):
+    if aiida_version < StrictVersion('1.0a0'):
+        try:
             computer = Computer.get(name)
-        else:
-            backend = get_backend()
-            computer = backend.computers.get(name=name)
-    except NotExistent:
+        except NotExistent:
+            computer = Computer(
+                name=name,
+                description='localhost computer set up by aiida_diff tests',
+                hostname=TEST_COMPUTER,
+                workdir=tempfile.mkdtemp(),
+                transport_type='local',
+                scheduler_type='direct',
+                enabled_state=True)
+    #TODO: simpify once API improvements are in place
+    else:
+        backend = get_backend()
 
-        computer = Computer(
-            name=name,
-            description='localhost computer set up by {{cookiecutter.module_name}} tests',
-            hostname=TEST_COMPUTER,
-            workdir=tempfile.mkdtemp(),
-            transport_type='local',
-            scheduler_type='direct',
-            enabled_state=True)
-        computer.store()
+        try:
+            computer = backend.computers.get(name=name)
+        except NotExistent:
+            computer = backend.computers.create(
+                name=name,
+                description='localhost computer set up by aiida_diff tests',
+                hostname=TEST_COMPUTER,
+                workdir=tempfile.mkdtemp(),
+                transport_type='local',
+                scheduler_type='direct',
+                enabled_state=True)
+
+    computer.store()
 
     return computer
 
