@@ -6,6 +6,8 @@ testing that does not pollute your profiles/databases.
 
 # Helper functions for tests
 from __future__ import absolute_import
+from aiida import get_strict_version
+from distutils.version import StrictVersion
 import os
 import tempfile
 
@@ -16,9 +18,10 @@ executables = {
     '{{cookiecutter.entry_point_prefix}}': 'diff',
 }
 
+aiida_version = get_strict_version()
 
-def get_backend():
-    """ Return database backend.
+def get_backend_str():
+    """ Return database backend string.
 
     Reads from 'TEST_AIIDA_BACKEND' environment variable.
     Defaults to django backend.
@@ -28,6 +31,13 @@ def get_backend():
         return BACKEND_SQLA
     return BACKEND_DJANGO
 
+def get_backend():
+    """ Return database backend object.
+
+    Uses get_backend().
+    """
+    from aiida.orm.backend import construct_backend
+    return construct_backend(backend_type=get_backend_str())
 
 def get_path_to_executable(executable):
     """ Get path to local executable.
@@ -62,7 +72,11 @@ def get_computer(name=TEST_COMPUTER):
     from aiida.common.exceptions import NotExistent
 
     try:
-        computer = Computer.get(name)
+        if aiida_version < StrictVersion('1.0a3'):
+            computer = Computer.get(name)
+        else:
+            backend = get_backend()
+            computer = backend.computers.get(name=name)
     except NotExistent:
 
         computer = Computer(
