@@ -8,21 +8,34 @@ services:
 - postgresql
 
 addons:
-  postgresql: "9.5"
+  postgresql: "9.6"
 
 env:
   global: 
   - PLUGIN_DIR: aiida-diff
-  
+  - TEST_AIIDA_BACKEND: django
+
   matrix:
-  - TEST_AIIDA_BACKEND: django
+  - AIIDA_VERSION: stable
     TEST_TYPE: tests
-  - TEST_AIIDA_BACKEND: sqlalchemy
+  - AIIDA_VERSION: stable
     TEST_TYPE: tests
-  - TEST_AIIDA_BACKEND: django
+    TEST_AIIDA_BACKEND: sqlalchemy
+  - AIIDA_VERSION: stable
     TEST_TYPE: docs
     READTHEDOCS: 'True'
-  - TEST_AIIDA_BACKEND: django
+  - AIIDA_VERSION: stable
+    TEST_TYPE: pre-commit
+
+  - AIIDA_VERSION: develop
+    TEST_TYPE: tests
+  - AIIDA_VERSION: develop
+    TEST_TYPE: tests
+    TEST_AIIDA_BACKEND: sqlalchemy
+  - AIIDA_VERSION: develop
+    TEST_TYPE: docs
+    READTHEDOCS: 'True'
+  - AIIDA_VERSION: develop
     TEST_TYPE: pre-commit
 
 install:
@@ -31,6 +44,7 @@ install:
 - pip install cookiecutter yapf
 - cookiecutter --no-input .
 - pip install -e ${PLUGIN_DIR}[docs,pre-commit,testing]
+- if [ "$AIIDA_VERSION" == "develop" ]; then git clone https://github.com/aiidateam/aiida_core; pip install -e aiida_core; fi # installs develop branch
 - reentry scan -r aiida
 
 script:
