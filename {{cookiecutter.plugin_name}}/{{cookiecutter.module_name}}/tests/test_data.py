@@ -7,7 +7,6 @@ from __future__ import absolute_import
 import {{cookiecutter.module_name}}.utils as utils
 import unittest
 from aiida.utils.fixtures import PluginTestCase
-from distutils.version import StrictVersion
 
 
 class TestDataCli(PluginTestCase):
@@ -20,7 +19,7 @@ class TestDataCli(PluginTestCase):
         self.parameters.store()
         self.runner = CliRunner()
 
-    @unittest.skipIf(utils.AIIDA_VERSION < StrictVersion('1.0a3'),
+    @unittest.skipIf(utils.AIIDA_VERSION < utils.StrictVersion('1.0a3'),
                      "verdi cmdline not yet moved to click")
     def test_data_diff_list(self):
         """Test whether 'verdi data {{cookiecutter.entry_point_prefix}} list' can be reached"""
@@ -28,7 +27,7 @@ class TestDataCli(PluginTestCase):
 
         self.runner.invoke(list_, catch_exceptions=False)
 
-    @unittest.skipIf(utils.AIIDA_VERSION < StrictVersion('1.0a3'),
+    @unittest.skipIf(utils.AIIDA_VERSION < utils.StrictVersion('1.0a3'),
                      "verdi cmdline not yet moved to click")
     def test_data_diff_export(self):
         """Test whether 'verdi data {{cookiecutter.entry_point_prefix}} export' can be reached"""

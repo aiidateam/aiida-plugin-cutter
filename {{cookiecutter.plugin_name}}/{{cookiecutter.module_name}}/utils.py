@@ -8,7 +8,7 @@ Useful for:
 from __future__ import absolute_import
 
 import aiida
-from distutils.version import StrictVersion
+from distutils.version import StrictVersion # pylint: disable=no-name-in-module,import-error
 
 AIIDA_VERSION = StrictVersion(aiida.get_version())
 
