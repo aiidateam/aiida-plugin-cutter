@@ -9,12 +9,13 @@ directly into the 'verdi' command by using AiiDA-specific entry points like
 from __future__ import absolute_import
 import sys
 import click
-from aiida.cmdline.commands import data_cmd
-from aiida.cmdline.dbenv_lazyloading import load_dbenv_if_not_loaded
+from {{cookiecutter.module_name}} import load_verdi_data, load_dbenv_if_not_loaded
+
+VERDI_DATA = load_verdi_data()
 
 
 # See aiida.cmdline.data entry point in setup.json
-@data_cmd.group('{{cookiecutter.entry_point_prefix}}')
+@VERDI_DATA.group('{{cookiecutter.entry_point_prefix}}')
 def data_cli():
     """Command line interface for {{cookiecutter.plugin_name}}"""
     pass
