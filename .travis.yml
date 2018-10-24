@@ -14,6 +14,7 @@ env:
   global: 
   - PLUGIN_DIR: aiida-diff
   - TEST_AIIDA_BACKEND: django
+  - AIIDA_DEVELOP_GIT_HASH: 7854680b268dcf29425a866256c9b34bdaa40ae5
 
   matrix:
   - AIIDA_VERSION: stable
@@ -50,7 +51,7 @@ install:
 - pip install cookiecutter yapf
 - cookiecutter --no-input .
 - pip install -e ${PLUGIN_DIR}[docs,pre-commit,testing]
-- if [ "$AIIDA_VERSION" == "develop" ]; then git clone https://github.com/aiidateam/aiida_core; pip install -e aiida_core; fi # installs develop branch
+- if [ "$AIIDA_VERSION" == "develop" ]; then .travis-data/install_aiida_github.sh ;  # installs develop branch
 - reentry scan -r aiida
 
 script:
