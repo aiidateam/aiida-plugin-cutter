@@ -72,6 +72,7 @@ def get_computer(name=TEST_COMPUTER):
         try:
             computer = Computer.get(name)
         except NotExistent:
+            # pylint: disable=abstract-class-instantiated,no-value-for-parameter, unexpected-keyword-arg
             computer = Computer(
                 name=name,
                 description='localhost computer set up by aiida_diff tests',
