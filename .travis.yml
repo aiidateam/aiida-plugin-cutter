@@ -44,8 +44,7 @@ matrix:
   exclude:
   # stable version doesn't work with python3
   - python: "3.6"
-    env:
-      AIIDA_VERSION: stable
+    env: AIIDA_VERSION=stable
 
 install:
 # Upgrade pip setuptools and wheel
