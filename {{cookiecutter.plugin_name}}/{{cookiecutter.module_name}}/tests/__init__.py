@@ -6,10 +6,9 @@ testing that does not pollute your profiles/databases.
 
 # Helper functions for tests
 from __future__ import absolute_import
-from distutils.version import StrictVersion
 import os
 import tempfile
-import aiida
+import {{cookiecutter.module_name}}.utils as utils
 
 TEST_DIR = os.path.dirname(os.path.realpath(__file__))
 TEST_COMPUTER = 'localhost-test'
@@ -17,8 +16,6 @@ TEST_COMPUTER = 'localhost-test'
 executables = {
     '{{cookiecutter.entry_point_prefix}}': 'diff',
 }
-
-aiida_version = StrictVersion(aiida.get_version())
 
 def get_backend_str():
     """ Return database backend string.
@@ -71,7 +68,7 @@ def get_computer(name=TEST_COMPUTER):
     from aiida.orm import Computer
     from aiida.common.exceptions import NotExistent
 
-    if aiida_version < StrictVersion('1.0a0'):
+    if utils.AIIDA_VERSION < utils.StrictVersion('1.0a0'):
         try:
             computer = Computer.get(name)
         except NotExistent:
