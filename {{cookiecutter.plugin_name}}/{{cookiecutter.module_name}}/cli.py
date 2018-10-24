@@ -9,7 +9,7 @@ directly into the 'verdi' command by using AiiDA-specific entry points like
 from __future__ import absolute_import
 import sys
 import click
-from {{cookiecutter.module_name}} import load_verdi_data, load_dbenv_if_not_loaded
+from {{cookiecutter.module_name}}.utils import load_verdi_data, load_dbenv_if_not_loaded
 
 VERDI_DATA = load_verdi_data()
 
