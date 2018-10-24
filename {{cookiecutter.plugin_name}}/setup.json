@@ -20,7 +20,7 @@
             "{{cookiecutter.entry_point_prefix}} = {{cookiecutter.module_name}}.parsers:DiffParser"
         ],
         "aiida.cmdline.data": [
-            "{{cookiecutter.entry_point_prefix}} = {{cookiecutter.module_name}}.data.data_cli:cli"
+            "{{cookiecutter.entry_point_prefix}} = {{cookiecutter.module_name}}.cli:data_cli"
         ]
     },
     "setup_requires": ["reentry"],

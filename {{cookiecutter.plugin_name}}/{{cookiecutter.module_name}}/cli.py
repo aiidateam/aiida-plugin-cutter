@@ -1,3 +1,11 @@
+"""
+Command line interface (cli) for {{cookiecutter.module_name}}.
+
+Register new commands either via the "console_scripts" entry point or plug them
+directly into the 'verdi' command by using AiiDA-specific entry points like
+"aiida.cmdline.data" (both in the setup.json file).
+"""
+
 from __future__ import absolute_import
 import sys
 import click
@@ -7,12 +15,12 @@ from aiida.cmdline.dbenv_lazyloading import load_dbenv_if_not_loaded
 
 # See aiida.cmdline.data entry point in setup.json
 @data_cmd.group('{{cookiecutter.entry_point_prefix}}')
-def cli():
+def data_cli():
     """Command line interface for {{cookiecutter.plugin_name}}"""
     pass
 
 
-@cli.command('list')
+@data_cli.command('list')
 def list_():  # pylint: disable=redefined-builtin
     """
     Display all DiffParameters nodes
@@ -35,7 +43,7 @@ def list_():  # pylint: disable=redefined-builtin
     sys.stdout.write(s)
 
 
-@cli.command('export')
+@data_cli.command('export')
 @click.option(
     '--outfile',
     '-o',
