@@ -1,68 +1,66 @@
-# -*- coding: utf-8 -*-
 """
 Command line interface (cli) for {{cookiecutter.module_name}}.
 
-Command line interface for plugin-specific tasks.
-
-Register new command line interfaces either via the "console_scripts" entry
-point or plug them into the 'verdi' command by using AiiDA-specific entry
-points like "aiida.cmdline.data" in setup.json.
+Register new commands either via the "console_scripts" entry point or plug them
+directly into the 'verdi' command by using AiiDA-specific entry points like
+"aiida.cmdline.data" (both in the setup.json file).
 """
-from __future__ import print_function
+
 from __future__ import absolute_import
-import os
-
+import sys
 import click
+from aiida.cmdline.commands import data_cmd
 from aiida.cmdline.dbenv_lazyloading import load_dbenv_if_not_loaded
-import {{cookiecutter.module_name}}.tests as tests
 
 
-@click.command('')
-@click.argument('codelabel')
-@click.option('--submit', is_flag=True, help='Actually submit calculation')
-def submit(codelabel, submit):
-    """Command line interface for testing and submitting calculations.
+# See aiida.cmdline.data entry point in setup.json
+@data_cmd.group('{{cookiecutter.entry_point_prefix}}')
+def data_cli():
+    """Command line interface for {{cookiecutter.plugin_name}}"""
+    pass
 
-    This command is based on examples/submit.py, but adds flexibility in the
-    selected code/computer.
 
-    Run ``{{cookiecutter.entry_point_prefix}}-submit --help`` to see options.
+@data_cli.command('list')
+def list_():  # pylint: disable=redefined-builtin
+    """
+    Display all DiffParameters nodes
     """
     load_dbenv_if_not_loaded(
     )  # Important to load the dbenv in the last moment
-    from aiida.orm import Code
-    from aiida.orm.data import SinglefileData
 
-    code = Code.get_from_string(codelabel)
-
-    # Prepare input parameters
+    from aiida.orm.querybuilder import QueryBuilder
     from aiida.orm import DataFactory
     DiffParameters = DataFactory('{{cookiecutter.entry_point_prefix}}')
-    parameters = DiffParameters({'ignore-case': True})
 
-    file1 = SinglefileData(file=os.path.join(tests.TEST_DIR, 'file1.txt'))
-    file2 = SinglefileData(file=os.path.join(tests.TEST_DIR, 'file2.txt'))
+    qb = QueryBuilder()
+    qb.append(DiffParameters)
+    results = qb.all()
 
-    # set up calculation
-    calc = code.new_calc()
-    calc.label = "{{cookiecutter.module_name}} test"
-    calc.description = "Test job submission with the {{cookiecutter.module_name}} plugin"
-    calc.set_max_wallclock_seconds(30)
-    calc.set_withmpi(False)
-    calc.set_resources({"num_machines": 1, "num_mpiprocs_per_machine": 1})
+    s = ""
+    for result in results:
+        obj = result[0]
+        s += "{}, pk: {}\n".format(str(obj), obj.pk)
+    sys.stdout.write(s)
 
-    calc.use_parameters(parameters)
-    calc.use_file1(file1)
-    calc.use_file2(file2)
 
-    if submit:
-        calc.store_all()
-        calc.submit()
-        print("submitted calculation; calc=Calculation(uuid='{}') # ID={}"\
-                .format(calc.uuid,calc.dbnode.pk))
+@data_cli.command('export')
+@click.option(
+    '--outfile',
+    '-o',
+    type=click.Path(dir_okay=False),
+    help='Write output to file (default: print to stdout).')
+@click.argument('pk', type=int)
+def export(outfile, pk):
+    """Export a DiffParameters node, identified by PK, to plain text"""
+    load_dbenv_if_not_loaded(
+    )  # Important to load the dbenv in the last moment
+
+    from aiida.orm import load_node
+    node = load_node(pk)
+    string = str(node)
+
+    if outfile:
+        with open(outfile, 'w') as f:
+            f.write(string)
     else:
-        subfolder, _script_filename = calc.submit_test()
-        path = os.path.relpath(subfolder.abspath)
-        print("Submission test successful.")
-        print("Find remote folder in {}".format(path))
-        print("In order to actually submit, add '--submit'")
+        click.echo(string)
