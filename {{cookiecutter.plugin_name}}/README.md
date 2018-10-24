@@ -32,6 +32,12 @@ verdi run submit.py        # submit test calculation
 verdi calculation list -a  # check status of calculation
 ```
 
+The plugin also includes verdi commands to inspect its data types:
+```shell
+verdi data {{cookiecutter.entry_point_prefix} list
+verdi data {{cookiecutter.entry_point_prefix} export <PK>
+```
+
 ## Tests
 
 The following will discover and run all unit test:

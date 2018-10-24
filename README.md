@@ -20,8 +20,10 @@ already adjusted for the name of your plugin.
 
 Plugins templated using the plugin cutter
 
+* include a calculation, parser and data type as well as an example of
+  how to submit a calculation
+* include basic regression tests (submitting a calculation, ...)
 * can be directly pip-installed (and are prepared for submisson to [PyPI](https://pypi.org/)
-* include basic regression tests (submitting a calculation)
 * include a documentation template ready for [Read the Docs](http://aiida-plugin-template.readthedocs.io/en/latest/)
 * come with [Travis CI](https://travis-ci.org) configuration - enable it to run tests and check test coverage at every commit
 * come with pre-commit hooks that sanitize coding style and check for syntax errors - enable via `pre-commit install`
