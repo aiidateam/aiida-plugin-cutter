@@ -32,11 +32,6 @@ verdi run submit.py        # submit test calculation
 verdi calculation list -a  # check status of calculation
 ```
 
-If you have already set up your own {{cookiecutter.module_name}} code using `verdi code setup`, you may want to try the following command:
-```
-{{cookiecutter.entry_point_prefix}}-submit  # uses {{cookiecutter.module_name}}.cli
-```
-
 ## Tests
 
 The following will discover and run all unit test:
