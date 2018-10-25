@@ -27,7 +27,7 @@ A quick demo of how to submit a calculation::
 
     verdi daemon start         # make sure the daemon is running
     cd examples
-    verdi run submit.py        # submit test calculation
+    verdi run test_submit.py        # submit test calculation
     verdi calculation list -a  # check status of calculation
 
 If you have already set up your own {{cookiecutter.module_name}} code using

@@ -40,10 +40,10 @@ verdi data {{cookiecutter.entry_point_prefix}} export <PK>
 
 ## Tests
 
-The following will discover and run all unit test:
+The following will discover and run all unit tests:
 ```shell
 pip install -e .[testing]
-python manage.py
+pytest -v
 ```
 
 ## License
