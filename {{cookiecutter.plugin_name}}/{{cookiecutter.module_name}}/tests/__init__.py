@@ -18,24 +18,6 @@ executables = {
     '{{cookiecutter.entry_point_prefix}}': 'diff',
 }
 
-def get_backend_str():
-    """ Return database backend string.
-
-    Reads from 'TEST_AIIDA_BACKEND' environment variable.
-    Defaults to django backend.
-    """
-    from aiida.backends.profile import BACKEND_DJANGO, BACKEND_SQLA
-    if os.environ.get('TEST_AIIDA_BACKEND') == BACKEND_SQLA:
-        return BACKEND_SQLA
-    return BACKEND_DJANGO
-
-def get_backend():
-    """ Return database backend object.
-
-    Uses get_backend().
-    """
-    from aiida.orm.backend import construct_backend
-    return construct_backend(backend_type=get_backend_str())
 
 def get_path_to_executable(executable):
     """ Get path to local executable.
@@ -89,7 +71,8 @@ def get_computer(name=TEST_COMPUTER, workdir=None):
                 enabled_state=True)
     #TODO: simpify once API improvements are in place
     else:
-        backend = get_backend()
+        from aiida.orm.backend import construct_backend
+        backend = construct_backend()
 
         try:
             computer = backend.computers.get(name=name)
