@@ -18,29 +18,67 @@ env:
   - AIIDA_DEVELOP_GIT_HASH: 7854680b268dcf29425a866256c9b34bdaa40ae5
 
   matrix:
-  - AIIDA_VERSION: stable
-    TEST_TYPE: tests
-  - AIIDA_VERSION: stable
-    TEST_TYPE: tests
-    TEST_AIIDA_BACKEND: sqlalchemy
-  - AIIDA_VERSION: stable
-    TEST_TYPE: docs
-    READTHEDOCS: 'True'
-  - AIIDA_VERSION: stable
-    TEST_TYPE: pre-commit
+    include:
+    # python27, stable aiida-core
+    - name: "python-2.7 stable (django)"
+      python: 2.7
+      env:
+        AIIDA_VERSION: stable
+        TEST_TYPE: tests
+    - name: "python-2.7 stable (sqla)"
+      python: 2.7
+      env:
+        AIIDA_VERSION: stable
+        TEST_TYPE: tests
+        TEST_AIIDA_BACKEND: sqlalchemy
+    - name: "python-2.7 stable (docs)"
+      python: 2.7
+      env:
+        AIIDA_VERSION: stable
+        TEST_TYPE: docs
+        READTHEDOCS: 'True'
+    - name: "python-2.7 stable (pre-commit)"
+      python: 2.7
+      env:
+        AIIDA_VERSION: stable
+        TEST_TYPE: pre-commit
 
-  - AIIDA_VERSION: develop
-    TEST_TYPE: tests
-  - AIIDA_VERSION: develop
-    TEST_TYPE: tests
-    TEST_AIIDA_BACKEND: sqlalchemy
-
-matrix:
-  exclude:
-  # stable version doesn't work with python3
-  - python: "3.6"
-    env:
-      AIIDA_VERSION: stable
+    # python27, develop aiida-core
+    - name: "python-2.7 develop (django)"
+      python: 2.7
+      env:
+        AIIDA_VERSION: develop
+        TEST_TYPE: tests
+    - name: "python-2.7 develop (sqla)"
+      python: 2.7
+      env:
+        AIIDA_VERSION: develop
+        TEST_TYPE: tests
+        TEST_AIIDA_BACKEND: sqlalchemy
+         
+    # python36, develop aiida-core
+    - name: "python-3.6 develop (django)"
+      python: 3.6
+      env:
+        AIIDA_VERSION: develop
+        TEST_TYPE: tests
+    - name: "python-3.6 develop (sqla)"
+      python: 3.6
+      env:
+        AIIDA_VERSION: develop
+        TEST_TYPE: tests
+        TEST_AIIDA_BACKEND: sqlalchemy
+    - name: "python-3.6 develop (docs)"
+      python: 3.6
+      env:
+        AIIDA_VERSION: develop
+        TEST_TYPE: docs
+        READTHEDOCS: 'True'
+    - name: "python-3.6 develop (pre-commit)"
+      python: 3.6
+      env:
+        AIIDA_VERSION: develop
+        TEST_TYPE: pre-commit
 
 install:
 # Upgrade pip setuptools and wheel
