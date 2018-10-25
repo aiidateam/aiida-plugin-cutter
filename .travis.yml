@@ -33,11 +33,6 @@ env:
   - AIIDA_VERSION: develop
     TEST_TYPE: tests
     TEST_AIIDA_BACKEND: sqlalchemy
-  - AIIDA_VERSION: develop
-    TEST_TYPE: docs
-    READTHEDOCS: 'True'
-  - AIIDA_VERSION: develop
-    TEST_TYPE: pre-commit
 
 matrix:
   exclude:
