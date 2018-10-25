@@ -1,6 +1,6 @@
+---
+# Configuration of integration tests on travis-ci.org
 language: python
-python:
-- "2.7"
 
 cache: pip
 
@@ -10,36 +10,93 @@ services:
 addons:
   postgresql: "9.6"
 
+env:
+  global:
+  - TEST_AIIDA_BACKEND: django
+  - TEST_AIIDA_BACKEND: django
+  - AIIDA_DEVELOP_GIT_HASH: 7854680b268dcf29425a866256c9b34bdaa40ae5
+
+matrix:
+  include:
+  # python27, stable aiida-core
+  - name: "python-2.7 stable (django)"
+    python: 2.7
+    env:
+      AIIDA_VERSION: stable
+      TEST_TYPE: tests
+  - name: "python-2.7 stable (sqla)"
+    python: 2.7
+    env:
+      AIIDA_VERSION: stable
+      TEST_TYPE: tests
+      TEST_AIIDA_BACKEND: sqlalchemy
+  - name: "python-2.7 stable (docs)"
+    python: 2.7
+    env:
+      AIIDA_VERSION: stable
+      TEST_TYPE: docs
+      READTHEDOCS: 'True'
+  - name: "python-2.7 stable (pre-commit)"
+    python: 2.7
+    env:
+      AIIDA_VERSION: stable
+      TEST_TYPE: pre-commit
+
+  # python27, develop aiida-core
+  - name: "python-2.7 develop (django)"
+    python: 2.7
+    env:
+      AIIDA_VERSION: develop
+      TEST_TYPE: tests
+  - name: "python-2.7 develop (sqla)"
+    python: 2.7
+    env:
+      AIIDA_VERSION: develop
+      TEST_TYPE: tests
+      TEST_AIIDA_BACKEND: sqlalchemy
+
+  # python36, develop aiida-core
+  - name: "python-3.6 develop (django)"
+    python: 3.6
+    env:
+      AIIDA_VERSION: develop
+      TEST_TYPE: tests
+  - name: "python-3.6 develop (sqla)"
+    python: 3.6
+    env:
+      AIIDA_VERSION: develop
+      TEST_TYPE: tests
+      TEST_AIIDA_BACKEND: sqlalchemy
+  - name: "python-3.6 develop (docs)"
+    python: 3.6
+    env:
+      AIIDA_VERSION: develop
+      TEST_TYPE: docs
+      READTHEDOCS: 'True'
+  - name: "python-3.6 develop (pre-commit)"
+    python: 3.6
+    env:
+      AIIDA_VERSION: develop
+      TEST_TYPE: pre-commit
+
+  # Remove this to enforce the AiiDA coding style
+  allow_failures: 
+  - TEST_TYPE: pre-commit
+
 before_install:
 # Upgrade pip setuptools and wheel
 - pip install -U pip wheel setuptools
 
 install:
+- if [ "$AIIDA_VERSION" == "develop" ]; then .travis-data/install_aiida_github.sh ; fi  # installs develop branch
 - pip install -e .[testing,docs,pre-commit]
 - reentry scan -r aiida
 - pip install coveralls
 
-env:
-  matrix:
-  - TEST_AIIDA_BACKEND: django
-    TEST_TYPE: tests
-  - TEST_AIIDA_BACKEND: sqlalchemy
-    TEST_TYPE: tests
-  - TEST_AIIDA_BACKEND: django
-    TEST_TYPE: docs
-    READTHEDOCS: 'True'
-  - TEST_AIIDA_BACKEND: django
-    TEST_TYPE: pre-commit
-    
-  # Remove this to enforce the AiiDA coding style
-  allow_failures: 
-  - TEST_AIIDA_BACKEND: django
-    TEST_TYPE: pre-commit
-
 script:
-- if [ "$TEST_TYPE" == "tests" ] ; then coverage run --append pytest -v; fi  # runs unit tests
+- if [ "$TEST_TYPE" == "tests" ] ; then py.test --cov {{cookiecutter.module_name}} --cov-append . ; fi  # runs unit tests
 - if [ "$TEST_TYPE" == "docs" ] ; then cd docs; make; fi  # creates documentation
-# runs precommit checks but doesn't fail if they don't pass
+# runs precommit checks (failures allowed)
 - if [ "$TEST_TYPE" == "pre-commit" ] ; then pre-commit install; pre-commit run --all-files || ( git status --short; git diff ; exit 1 ); fi
 
 after_success:
