@@ -114,7 +114,7 @@ def get_computer(name=TEST_COMPUTER, workdir=None):
     return computer
 
 
-def get_code(entry_point, computer=TEST_COMPUTER):
+def get_code(entry_point, computer=None):
     """Get local code.
 
     Sets up code for given entry point on given computer.
@@ -134,6 +134,9 @@ def get_code(entry_point, computer=TEST_COMPUTER):
         raise KeyError(
             "Entry point {} not recognized. Allowed values: {}".format(
                 entry_point, list(executables.keys())))
+
+    if computer is None:
+        computer = get_computer()
 
     try:
         code = Code.get_from_string('{}@{}'.format(executable,
