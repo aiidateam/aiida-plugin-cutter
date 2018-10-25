@@ -27,8 +27,10 @@
     "setup_requires": ["reentry"],
     "reentry_register": true,
     "install_requires": [
-        "aiida-core>={{cookiecutter.aiida_min_version}},<1.0.0",
-        "six"
+        "aiida-core>={{cookiecutter.aiida_min_version}},<1.0.0; python_version < '3'",
+        "aiida-core>=1.0.0a0; python_version >= '3'",
+        "six",
+        "voluptuous"
     ],
     "extras_require": {
         "testing": [
