@@ -6,6 +6,7 @@ testing that does not pollute your profiles/databases.
 
 # Helper functions for tests
 from __future__ import absolute_import
+from __future__ import print_function
 import os
 import tempfile
 import {{cookiecutter.module_name}}.utils as utils
@@ -159,6 +160,7 @@ def test_calculation_execution(calc,
     :param check_paths: raise OSError if these relative paths are not in the folder after execution
     :return:
     """
+    # pylint: disable=too-many-locals
     from aiida.common.folders import SandboxFolder
     import stat
     import subprocess

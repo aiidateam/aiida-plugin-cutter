@@ -67,4 +67,4 @@ class DiffParameters(ParameterData):
 
         parameters += [file1_name, file2_name]
 
-        return map(str, parameters)
+        return [str(p) for p in parameters]

@@ -18,7 +18,7 @@ def test_process(new_database, new_workdir):
     from aiida.orm.data.singlefile import SinglefileData
 
     # get code
-    tests.code = tests.get_code()
+    code = tests.get_code(entry_point='{{cookiecutter.entry_point_prefix}}')
 
     # Prepare input parameters
     from aiida.orm import DataFactory
@@ -50,7 +50,6 @@ def test_process(new_database, new_workdir):
     #    subfolder, script_filename = calc.submit_test(folder=folder)
     #    print("inputs created successfully at {0} with script {1}".format(
     #        subfolder.abspath, script_filename))
-=======
     # test process execution and check the expected outputs
     # for diff 0=no differences, 1=differences, >1=error
     tests.test_calculation_execution(
