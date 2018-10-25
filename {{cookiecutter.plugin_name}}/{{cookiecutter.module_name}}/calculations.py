@@ -75,36 +75,40 @@ class DiffCalculation(JobCalculation):
                 be returned by get_inputs_dict
         """
         # Check inputdict
+        new_inputdict = inputdict.copy()
+
         try:
-            code = inputdict.pop(self.get_linkname('code'))
+            code = new_inputdict.pop(self.get_linkname('code'))
         except KeyError:
             raise InputValidationError("No code specified for this "
                                        "calculation")
 
         try:
-            parameters = inputdict.pop(self.get_linkname('parameters'))
+            parameters = new_inputdict.pop(self.get_linkname('parameters'))
         except KeyError:
             raise InputValidationError("No parameters specified for this "
                                        "calculation")
         if not isinstance(parameters, DiffParameters):
             raise InputValidationError("parameters not of type "
-                                       "DiffParameters")
+                                       "DiffParameters: {}".format(parameters))
 
         try:
-            file1 = inputdict.pop(self.get_linkname('file1'))
+            file1 = new_inputdict.pop(self.get_linkname('file1'))
         except KeyError:
             raise InputValidationError("Missing file1")
         if not isinstance(file1, SinglefileData):
-            raise InputValidationError("file1 not of type SinglefileData")
+            raise InputValidationError(
+                "file1 not of type SinglefileData: {}".format(file1))
 
         try:
-            file2 = inputdict.pop(self.get_linkname('file2'))
+            file2 = new_inputdict.pop(self.get_linkname('file2'))
         except KeyError:
             raise InputValidationError("Missing file2")
         if not isinstance(file2, SinglefileData):
-            raise InputValidationError("file2 not of type SinglefileData")
+            raise InputValidationError(
+                "file2 not of type SinglefileData: {}".format(file2))
 
-        if inputdict:
+        if new_inputdict:
             raise ValidationError("Unknown inputs besides DiffParameters")
 
         # Prepare CodeInfo object for aiida

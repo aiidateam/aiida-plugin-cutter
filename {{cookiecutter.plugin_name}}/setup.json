@@ -11,7 +11,7 @@
     "version": "{{cookiecutter.version}}",
     "entry_points": {
         "aiida.data": [
-            "{{cookiecutter.entry_point_prefix}} = {{cookiecutter.module_name}}.data:DiffParameters"
+            "{{cookiecutter.entry_point_prefix}} = {{cookiecutter.module_name}}.data.diffparam:DiffParameters"
         ],
         "aiida.calculations": [
             "{{cookiecutter.entry_point_prefix}} = {{cookiecutter.module_name}}.calculations:DiffCalculation"
@@ -23,6 +23,7 @@
             "{{cookiecutter.entry_point_prefix}} = {{cookiecutter.module_name}}.cli:data_cli"
         ]
     },
+    "include_package_data": true,
     "setup_requires": ["reentry"],
     "reentry_register": true,
     "install_requires": [
@@ -35,7 +36,8 @@
             "pgtest==1.1.0",
             "sqlalchemy-diff==0.1.3",
             "wheel>=0.31",
-            "coverage"
+            "coverage",
+            "pytest==3.6.3"
         ],
         "pre-commit": [
             "pre-commit==1.11.0",
