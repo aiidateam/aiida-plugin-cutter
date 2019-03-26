@@ -42,11 +42,10 @@
             "pytest-cov==2.6.0"
         ],
         "pre-commit": [
-            "pre-commit==1.14.4",
-            "yapf==0.26.0",
-            "prospector==1.1.5",
-            "pylint==1.9.4; python_version<'3.0'",
-            "pylint==2.2.2; python_version>='3.0'"
+            "pre-commit==1.11.0",
+            "yapf==0.24.0",
+            "prospector==0.12.11",
+            "pylint==1.9.3"
         ],
         "docs": [
             "sphinx"
