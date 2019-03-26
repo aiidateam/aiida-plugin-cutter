@@ -6,13 +6,13 @@ from __future__ import absolute_import
 
 import {{cookiecutter.module_name}}.utils as utils
 import unittest
-from aiida.utils.fixtures import PluginTestCase
+from aiida.manage.fixtures import PluginTestCase
 
 
 class TestDataCli(PluginTestCase):
     def setUp(self):
         from click.testing import CliRunner
-        from aiida.orm import DataFactory
+        from aiida.plugins import DataFactory
 
         DiffParameters = DataFactory('{{cookiecutter.entry_point_prefix}}')
         self.parameters = DiffParameters({'ignore-case': True})
