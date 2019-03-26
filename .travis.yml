@@ -55,7 +55,8 @@ matrix:
 
 install:
 # Upgrade pip setuptools and wheel
-- pip install -U pip wheel setuptools
+- pip install -U wheel setuptools
+- pip install pip==18.1
 - pip install cookiecutter yapf
 - cookiecutter --no-input .
 - if [ "$AIIDA_VERSION" == "develop" ]; then .travis-data/install_aiida_github.sh ; fi  # installs develop branch
