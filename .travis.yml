@@ -6,40 +6,16 @@ services:
 - postgresql
 
 addons:
-  postgresql: "9.6"
+  postgresql: "11"
 
 env:
   global: 
   - PLUGIN_DIR: aiida-diff
   - TEST_AIIDA_BACKEND: django
-  - AIIDA_DEVELOP_GIT_HASH: 7854680b268dcf29425a866256c9b34bdaa40ae5
+  - AIIDA_DEVELOP_GIT_HASH: 0ca5d991d039dca2261df3d6ad8da2f03d591caa
 
 matrix:
   include:
-  # python27, stable aiida-core
-  - name: "python-2.7 stable (django)"
-    python: 2.7
-    env:
-      AIIDA_VERSION: stable
-      TEST_TYPE: tests
-  - name: "python-2.7 stable (sqla)"
-    python: 2.7
-    env:
-      AIIDA_VERSION: stable
-      TEST_TYPE: tests
-      TEST_AIIDA_BACKEND: sqlalchemy
-  - name: "python-2.7 stable (docs)"
-    python: 2.7
-    env:
-      AIIDA_VERSION: stable
-      TEST_TYPE: docs
-      READTHEDOCS: 'True'
-  - name: "python-2.7 stable (pre-commit)"
-    python: 2.7
-    env:
-      AIIDA_VERSION: stable
-      TEST_TYPE: pre-commit
-
   # python27, develop aiida-core
   - name: "python-2.7 develop (django)"
     python: 2.7

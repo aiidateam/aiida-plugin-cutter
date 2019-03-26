@@ -9,9 +9,9 @@ from __future__ import absolute_import
 from six.moves import zip
 
 from aiida.parsers.parser import Parser
-from aiida.parsers.exceptions import OutputParsingError
+from aiida.common.exceptions import OutputParsingError
 
-from aiida.orm import CalculationFactory
+from aiida.plugins import CalculationFactory
 DiffCalculation = CalculationFactory('{{cookiecutter.entry_point_prefix}}')
 
 
@@ -31,7 +31,7 @@ class DiffParser(Parser):
             raise OutputParsingError("Can only parse DiffCalculation")
 
     # pylint: disable=protected-access
-    def parse_with_retrieved(self, retrieved):
+    def parse(self, **kwargs):
         """
         Parse outputs, store results in database.
 

@@ -8,7 +8,7 @@ import shutil
 import pytest
 import os
 
-from aiida.utils.fixtures import fixture_manager
+from aiida.manage.fixtures import fixture_manager
 
 def get_backend_str():
     """ Return database backend string.

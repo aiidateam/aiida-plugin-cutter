@@ -21,7 +21,7 @@ cmdline_options = {
 }
 
 
-class DiffParameters(ParameterData):
+class DiffParameters(Dict):
     """
     Command line options for diff.
     """

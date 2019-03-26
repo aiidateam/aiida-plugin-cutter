@@ -5,17 +5,17 @@ Register calculations via the "aiida.calculations" entry point in setup.json.
 """
 
 from __future__ import absolute_import
-from aiida.orm.calculation.job import JobCalculation
-from aiida.orm.data.singlefile import SinglefileData
+from aiida.engine.calculation.job import CalcJob
+from aiida.orm.nodes.singlefile import SinglefileData
 from aiida.common.utils import classproperty
 from aiida.common.exceptions import (InputValidationError, ValidationError)
 from aiida.common.datastructures import (CalcInfo, CodeInfo)
-from aiida.orm import DataFactory
+from aiida.plugins import DataFactory
 
 DiffParameters = DataFactory('{{cookiecutter.entry_point_prefix}}')
 
 
-class DiffCalculation(JobCalculation):
+class DiffCalculation(CalcJob):
     """
     AiiDA calculation plugin wrapping the diff executable.
     
@@ -65,7 +65,7 @@ class DiffCalculation(JobCalculation):
         })
         return use_dict
 
-    def _prepare_for_submission(self, tempfolder, inputdict):
+    def prepare_for_submission(self, tempfolder, inputdict):
         """
         Create input files.
 
