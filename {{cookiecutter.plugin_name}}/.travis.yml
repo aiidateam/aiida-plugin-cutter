@@ -15,6 +15,8 @@ env:
   global:
   - TEST_AIIDA_BACKEND: django
   - AIIDA_DEVELOP_GIT_HASH: 0ca5d991d039dca2261df3d6ad8da2f03d591caa
+  # show timings of tests
+  - PYTEST_ADDOPTS: --duration 0
 
 matrix:
   include:
