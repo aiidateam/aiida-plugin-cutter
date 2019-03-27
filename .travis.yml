@@ -78,5 +78,5 @@ script:
         pre-commit install;
         pre-commit run --all-files || ( git status --short ; git diff ; exit 1 );
     else
-        pytest -v --duration 0;
+        pytest -v;
     fi
