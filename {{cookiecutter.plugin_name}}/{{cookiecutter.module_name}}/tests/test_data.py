@@ -4,7 +4,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
 
-import unittest
 from aiida.manage.fixtures import PluginTestCase
 
 

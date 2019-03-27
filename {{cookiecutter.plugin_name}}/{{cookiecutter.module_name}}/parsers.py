@@ -8,14 +8,12 @@ from __future__ import absolute_import
 
 from six.moves import zip
 
+from aiida.engine import ExitCode
 from aiida.parsers.parser import Parser
 from aiida.common import exceptions
-
 from aiida.plugins import CalculationFactory
+
 DiffCalculation = CalculationFactory('{{cookiecutter.entry_point_prefix}}')
-
-from aiida.engine import ExitCode
-
 
 class DiffParser(Parser):
     """
