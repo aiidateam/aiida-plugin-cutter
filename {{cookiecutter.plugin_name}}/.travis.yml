@@ -33,7 +33,7 @@ matrix:
   - name: "python-2.7 develop (pre-commit)"
     python: 2.7
     env:
-      AIIDA_VERSION: stable
+      AIIDA_VERSION: develop
       TEST_TYPE: pre-commit
 
   # python36, develop aiida-core
