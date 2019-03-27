@@ -10,7 +10,7 @@ import pytest
 
 
 
-# pylint: disable=unused-argument
+# pylint: disable=unused-argument,too-many-locals
 @pytest.mark.process_execution
 def test_process(new_database, new_workdir):
     """Test running a calculation
@@ -19,7 +19,8 @@ def test_process(new_database, new_workdir):
     from aiida.engine import run_get_node
 
     # get code
-    code = tests.get_code(entry_point='{{cookiecutter.entry_point_prefix}}')
+    computer = tests.get_computer(workdir=new_workdir)
+    code = tests.get_code(entry_point='{{cookiecutter.entry_point_prefix}}', computer=computer)
 
     # Prepare input parameters
     DiffParameters = DataFactory('{{cookiecutter.entry_point_prefix}}')
@@ -54,6 +55,8 @@ def test_process(new_database, new_workdir):
 
     _result, node = run_get_node(CalculationFactory('{{cookiecutter.entry_point_prefix}}'), **inputs)
 
-    print(node.outputs)
+    computed_diff = node.outputs.{{cookiecutter.entry_point_prefix}}.get_content()
+    assert 'content1' in computed_diff
+    assert 'content2' in computed_diff
 
 

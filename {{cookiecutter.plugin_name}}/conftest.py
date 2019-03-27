@@ -42,7 +42,7 @@ def new_database(aiida_profile):
 
 @pytest.fixture(scope='function')
 def new_workdir():
-    """get a new temporary folder to use as the computer's wrkdir"""
+    """get a new temporary folder to use as the computer's workdir"""
     dirpath = tempfile.mkdtemp()
     yield dirpath
     shutil.rmtree(dirpath)

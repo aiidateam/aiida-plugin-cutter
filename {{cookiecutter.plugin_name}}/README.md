@@ -17,7 +17,7 @@ cd {{ cookiecutter.repo_name }}
 pip install -e .  # also installs aiida, if missing (but not postgres)
 # pip install -e .[pre-commit,testing] # install extras for more features
 verdi quicksetup  # better to set up a new profile
-verdi calculation plugins  # should now show your calclulation plugins
+verdi plugin list aiida.calculations  # should now show your calclulation plugins
 ```
 
 ## Usage
