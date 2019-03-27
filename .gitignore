@@ -4,3 +4,4 @@
 *~
 .DS_Store
 aiida-diff/
+.pytest_cache/
