@@ -5,7 +5,8 @@ language: python
 cache: pip
 
 services:
-- postgresql
+  - postgresql
+  - rabbitmq
 
 addons:
   postgresql: "9.6"
@@ -13,35 +14,10 @@ addons:
 env:
   global:
   - TEST_AIIDA_BACKEND: django
-  - TEST_AIIDA_BACKEND: django
-  - AIIDA_DEVELOP_GIT_HASH: 7854680b268dcf29425a866256c9b34bdaa40ae5
+  - AIIDA_DEVELOP_GIT_HASH: 0ca5d991d039dca2261df3d6ad8da2f03d591caa
 
 matrix:
   include:
-  # python27, stable aiida-core
-  - name: "python-2.7 stable (django)"
-    python: 2.7
-    env:
-      AIIDA_VERSION: stable
-      TEST_TYPE: tests
-  - name: "python-2.7 stable (sqla)"
-    python: 2.7
-    env:
-      AIIDA_VERSION: stable
-      TEST_TYPE: tests
-      TEST_AIIDA_BACKEND: sqlalchemy
-  - name: "python-2.7 stable (docs)"
-    python: 2.7
-    env:
-      AIIDA_VERSION: stable
-      TEST_TYPE: docs
-      READTHEDOCS: 'True'
-  - name: "python-2.7 stable (pre-commit)"
-    python: 2.7
-    env:
-      AIIDA_VERSION: stable
-      TEST_TYPE: pre-commit
-
   # python27, develop aiida-core
   - name: "python-2.7 develop (django)"
     python: 2.7
@@ -54,6 +30,11 @@ matrix:
       AIIDA_VERSION: develop
       TEST_TYPE: tests
       TEST_AIIDA_BACKEND: sqlalchemy
+  - name: "python-2.7 develop (pre-commit)"
+    python: 2.7
+    env:
+      AIIDA_VERSION: stable
+      TEST_TYPE: pre-commit
 
   # python36, develop aiida-core
   - name: "python-3.6 develop (django)"
@@ -86,6 +67,7 @@ matrix:
 before_install:
 # Upgrade pip setuptools and wheel
 - pip install -U pip wheel setuptools
+- pip install pip==18.1
 
 install:
 - if [ "$AIIDA_VERSION" == "develop" ]; then .travis-data/install_aiida_github.sh ; fi  # installs develop branch
