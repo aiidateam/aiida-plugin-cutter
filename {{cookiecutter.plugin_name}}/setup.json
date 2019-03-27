@@ -43,9 +43,9 @@
         ],
         "pre-commit": [
             "pre-commit==1.11.0",
-            "yapf==0.24.0",
+            "yapf==0.26.0",
             "prospector==0.12.11",
-            "pylint==1.9.3"
+            "pylint==1.9.4"
         ],
         "docs": [
             "sphinx"
