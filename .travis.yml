@@ -3,7 +3,8 @@ language: python
 cache: pip
 
 services:
-- postgresql
+  - postgresql
+  - rabbitmq
 
 addons:
   postgresql: "11"
