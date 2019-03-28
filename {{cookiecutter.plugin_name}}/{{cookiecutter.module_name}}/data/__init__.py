@@ -8,7 +8,7 @@ Register data types via the "aiida.data" entry point in setup.json.
 # You can directly use or subclass aiida.orm.data.Data
 # or any other data type listed under 'verdi data'
 from __future__ import absolute_import
-from aiida.orm.data.parameter import ParameterData
+from aiida.orm import Dict
 from voluptuous import Schema, Optional
 
 # A subset of diff's command line options
@@ -21,7 +21,7 @@ cmdline_options = {
 }
 
 
-class DiffParameters(ParameterData):
+class DiffParameters(Dict):
     """
     Command line options for diff.
     """
@@ -35,16 +35,9 @@ class DiffParameters(ParameterData):
 
         Usage: ``DiffParameters(dict{'ignore-case': True})``
 
-        .. note:: As of 2017-09, the constructor must also support a single dbnode
-          argument (to reconstruct the object from a database node).
-          For this reason, positional arguments are not allowed.
         """
-        if 'dbnode' in kwargs:
-            super(DiffParameters, self).__init__(**kwargs)
-        else:
-            # validate dictionary
-            dict = self.validate(dict)
-            super(DiffParameters, self).__init__(dict=dict, **kwargs)
+        dict = self.validate(dict)
+        super(DiffParameters, self).__init__(dict=dict, **kwargs)
 
     def validate(self, parameters_dict):
         """Validate command line options."""

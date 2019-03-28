@@ -9,7 +9,6 @@ from __future__ import absolute_import
 from __future__ import print_function
 import os
 import tempfile
-import {{cookiecutter.module_name}}.utils as utils
 
 TEST_DIR = os.path.dirname(os.path.realpath(__file__))
 TEST_COMPUTER = 'localhost-test'
@@ -53,46 +52,22 @@ def get_computer(name=TEST_COMPUTER, workdir=None):
     from aiida.orm import Computer
     from aiida.common.exceptions import NotExistent
 
-    if utils.AIIDA_VERSION < utils.StrictVersion('1.0a0'):
-        try:
-            computer = Computer.get(name)
-        except NotExistent:
-            # pylint: disable=abstract-class-instantiated,no-value-for-parameter, unexpected-keyword-arg
-            if workdir is None:
-                workdir=tempfile.mkdtemp()
+    try:
+        computer = Computer.objects.get(name=name)
+    except NotExistent:
+        if workdir is None:
+            workdir=tempfile.mkdtemp()
 
-            computer = Computer(
-                name=name,
-                description='localhost computer set up by {{cookiecutter.module_name}} tests',
-                hostname=name,
-                workdir=workdir,
-                transport_type='local',
-                scheduler_type='direct',
-                enabled_state=True)
-    #TODO: simpify once API improvements are in place
-    else:
-        from aiida.orm.backend import construct_backend
-        backend = construct_backend()
-
-        try:
-            computer = backend.computers.get(name=name)
-        except NotExistent:
-            if workdir is None:
-                workdir=tempfile.mkdtemp()
-
-            computer = backend.computers.create(
-                name=name,
-                description='localhost computer set up by {{cookiecutter.module_name}} tests',
-                hostname=name,
-                workdir=workdir,
-                transport_type='local',
-                scheduler_type='direct',
-                enabled_state=True)
-
-    computer.store()
-
-    # TODO configure computer for user, see
-    # aiida_core.aiida.cmdline.commands.computer.Computer.computer_configure
+        computer = Computer(
+            name=name,
+            description='localhost computer set up by {{cookiecutter.module_name}} tests',
+            hostname=name,
+            workdir=workdir,
+            transport_type='local',
+            scheduler_type='direct',
+            enabled_state=True)
+        computer.store()
+        computer.configure()
 
     return computer
 

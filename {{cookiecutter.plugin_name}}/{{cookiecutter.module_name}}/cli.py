@@ -9,13 +9,12 @@ directly into the 'verdi' command by using AiiDA-specific entry points like
 from __future__ import absolute_import
 import sys
 import click
-from {{cookiecutter.module_name}}.utils import load_verdi_data, load_dbenv_if_not_loaded
-
-VERDI_DATA = load_verdi_data()
+from aiida.cmdline.utils.decorators import load_dbenv_if_not_loaded
+from aiida.cmdline.commands.cmd_data import verdi_data
 
 
 # See aiida.cmdline.data entry point in setup.json
-@VERDI_DATA.group('{{cookiecutter.entry_point_prefix}}')
+@verdi_data.group('{{cookiecutter.entry_point_prefix}}')
 def data_cli():
     """Command line interface for {{cookiecutter.plugin_name}}"""
     pass
@@ -29,8 +28,8 @@ def list_():  # pylint: disable=redefined-builtin
     load_dbenv_if_not_loaded(
     )  # Important to load the dbenv in the last moment
 
-    from aiida.orm.querybuilder import QueryBuilder
-    from aiida.orm import DataFactory
+    from aiida.orm import QueryBuilder
+    from aiida.plugins import DataFactory
     DiffParameters = DataFactory('{{cookiecutter.entry_point_prefix}}')
 
     qb = QueryBuilder()

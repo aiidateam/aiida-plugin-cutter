@@ -6,6 +6,9 @@ The fastest most convenient way for getting started with developing AiiDA plugin
 
 For the default output of the plugin cutter, see the [aiida-diff](https://github.com/aiidateam/aiida-diff) demo plugin.
 
+Note: This cuts plugins for `aiida-core>=1.0.0`. 
+See the `support/aiida-0.x` branch for cutting plugins for older versions of `aiida-core`.
+
 ## Usage
 
     pip install cookiecutter yapf

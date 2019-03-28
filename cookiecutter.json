@@ -8,6 +8,6 @@
   "contact_email": "",
   "version": "0.1.0a0",
   "author": "The AiiDA developers group",
-  "aiida_min_version": "0.12.2",
+  "aiida_min_version": "1.0.0b1",
   "year": "2018"
 }

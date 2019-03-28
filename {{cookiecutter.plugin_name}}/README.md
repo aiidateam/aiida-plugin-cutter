@@ -15,9 +15,9 @@ Templated using the [AiiDA plugin cutter](https://github.com/aiidateam/aiida-plu
 git clone https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name}} .
 cd {{ cookiecutter.repo_name }}
 pip install -e .  # also installs aiida, if missing (but not postgres)
-#pip install -e .[pre-commit,testing] # install extras for more features
+# pip install -e .[pre-commit,testing] # install extras for more features
 verdi quicksetup  # better to set up a new profile
-verdi calculation plugins  # should now show your calclulation plugins
+verdi plugin list aiida.calculations  # should now show your calclulation plugins
 ```
 
 ## Usage
@@ -29,7 +29,7 @@ A quick demo of how to submit a calculation:
 verdi daemon start         # make sure the daemon is running
 cd examples
 verdi run submit.py        # submit test calculation
-verdi calculation list -a  # check status of calculation
+verdi process list -a  # check status of calculation
 ```
 
 The plugin also includes verdi commands to inspect its data types:
