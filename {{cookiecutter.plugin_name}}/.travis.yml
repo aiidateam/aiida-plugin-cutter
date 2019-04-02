@@ -72,7 +72,7 @@ before_install:
 - pip install pip==18.1
 
 install:
-- if [ "$AIIDA_VERSION" == "develop" ]; then .travis-data/install_aiida_github.sh ; fi  # installs develop branch
+- if [ "$AIIDA_VERSION" == "develop" ]; then .ci/install_aiida_github.sh ; fi  # installs develop branch
 - pip install -e .[testing,docs,pre-commit]
 - reentry scan -r aiida
 - pip install coveralls
