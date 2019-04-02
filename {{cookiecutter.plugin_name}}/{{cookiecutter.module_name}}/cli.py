@@ -9,9 +9,9 @@ directly into the 'verdi' command by using AiiDA-specific entry points like
 from __future__ import absolute_import
 import sys
 import click
-from aiida.cmdline.utils.decorators import load_dbenv_if_not_loaded
+from aiida.cmdline.utils import decorators
 from aiida.cmdline.commands.cmd_data import verdi_data
-
+from aiida.cmdline.params.types import DataParamType
 
 # See aiida.cmdline.data entry point in setup.json
 @verdi_data.group('{{cookiecutter.entry_point_prefix}}')
@@ -21,13 +21,11 @@ def data_cli():
 
 
 @data_cli.command('list')
+@decorators.with_dbenv()
 def list_():  # pylint: disable=redefined-builtin
     """
     Display all DiffParameters nodes
     """
-    load_dbenv_if_not_loaded(
-    )  # Important to load the dbenv in the last moment
-
     from aiida.orm import QueryBuilder
     from aiida.plugins import DataFactory
     DiffParameters = DataFactory('{{cookiecutter.entry_point_prefix}}')
@@ -44,19 +42,15 @@ def list_():  # pylint: disable=redefined-builtin
 
 
 @data_cli.command('export')
+@click.argument('node', metavar='IDENTIFIER', type=DataParamType())
 @click.option(
     '--outfile',
     '-o',
     type=click.Path(dir_okay=False),
     help='Write output to file (default: print to stdout).')
-@click.argument('pk', type=int)
-def export(outfile, pk):
-    """Export a DiffParameters node, identified by PK, to plain text"""
-    load_dbenv_if_not_loaded(
-    )  # Important to load the dbenv in the last moment
-
-    from aiida.orm import load_node
-    node = load_node(pk)
+@decorators.with_dbenv()
+def export(node, outfile):
+    """Export a DiffParameters node, identified by PK, UUID or label, to plain text"""
     string = str(node)
 
     if outfile:

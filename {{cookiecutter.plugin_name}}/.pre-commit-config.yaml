@@ -31,6 +31,6 @@
 
   - id: version-number
     name: Check version numbers
-    entry: python ./.travis-data/check_version.py
+    entry: python ./.ci/check_version.py
     language: system
     files: '^(setup.json)|({{cookiecutter.module_name}}/__init__.py)'
