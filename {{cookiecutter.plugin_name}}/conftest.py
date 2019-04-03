@@ -26,14 +26,14 @@ def get_backend_str():
     raise ValueError("Unknown backend '{}' read from TEST_AIIDA_BACKEND environment variable".format(backend_env))
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope='session', autouse=True)
 def aiida_profile():
     """setup a test profile for the duration of the tests"""
     with fixture_manager() as fixture_mgr:
         yield fixture_mgr
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='function', autouse=True)
 def clear_database(aiida_profile):
     """clear the database after each test"""
     yield

@@ -62,7 +62,7 @@ install:
 - pip install pip==18.1
 - pip install cookiecutter yapf
 - cookiecutter --no-input .
-- if [ "$AIIDA_VERSION" == "develop" ]; then .travis-data/install_aiida_github.sh ; fi  # installs develop branch
+- if [ "$AIIDA_VERSION" == "develop" ]; then ${PLUGIN_DIR}/.ci/install_aiida_github.sh ; fi  # installs develop branch
 - pip install -e ${PLUGIN_DIR}[docs,pre-commit,testing]
 - reentry scan -r aiida
 - cd ${PLUGIN_DIR}
