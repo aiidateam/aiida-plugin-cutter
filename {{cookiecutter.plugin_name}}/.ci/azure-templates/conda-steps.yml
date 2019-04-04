@@ -1,0 +1,13 @@
+---
+steps:
+- bash: echo "##vso[task.prependpath]$CONDA/bin"
+  displayName: Add conda to PATH
+
+- bash: sudo chown -R $USER /usr/share/miniconda
+  displayName: Take ownership of conda installation
+
+- script: conda install --yes --quiet -c conda-forge postgresql==10.5 rabbitmq-server==3.7.14
+  displayName: Install postgresql and rabbitmq
+
+- script: rabbitmq-server -detached >/dev/null 2>&1
+  displayName: Start rabbitmq server

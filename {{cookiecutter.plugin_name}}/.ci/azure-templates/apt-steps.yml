@@ -1,0 +1,7 @@
+---
+steps:
+- bash: |
+    sudo apt-get update &&
+    sudo apt-get -y install postgresql rabbitmq-server &&
+    sudo updatedb
+  displayName: Install postgresql and rabbitmq

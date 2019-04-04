@@ -64,8 +64,7 @@ def get_computer(name=TEST_COMPUTER, workdir=None):
             hostname=name,
             workdir=workdir,
             transport_type='local',
-            scheduler_type='direct',
-            enabled_state=True)
+            scheduler_type='direct')
         computer.store()
         computer.configure()
 
