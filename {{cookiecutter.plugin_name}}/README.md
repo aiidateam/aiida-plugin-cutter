@@ -7,15 +7,37 @@
 
 {{ cookiecutter.short_description }}
 
-Templated using the [AiiDA plugin cutter](https://github.com/aiidateam/aiida-plugin-cutter).
+This plugin is the default output of the 
+[AiiDA plugin cutter](https://github.com/aiidateam/aiida-plugin-cutter),
+intended to help developers get started with their AiiDA plugins.
+
+## Features
+
+ * Add input files using `SinglefileData`:
+   ```python
+   SinglefileData = DataFactory('singlefile')
+   inputs['file1'] = SinglefileData(file='/path/to/file1')
+   inputs['file2'] = SinglefileData(file='/path/to/file2')
+   ```
+
+ * Specify command line options via a python dictionary and `DiffParameters`:
+   ```python
+   d = { 'ignore-case': True }
+   DiffParameters = DataFactory('{{cookiecutter.entry_point_prefix}}')
+   inputs['parameters'] = DiffParameters(dict=d)
+   ```
+
+ * `DiffParameters` dictionaries are validated using [voluptuous](https://github.com/alecthomas/voluptuous).
+   Find out about supported options:
+   ```python
+   DiffParameters = DataFactory('{{cookiecutter.entry_point_prefix}}')
+   print(DiffParameters.schema.schema)
+   ```
 
 ## Installation
 
 ```shell
-git clone https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name}} .
-cd {{ cookiecutter.repo_name }}
-pip install -e .  # also installs aiida, if missing (but not postgres)
-# pip install -e .[pre-commit,testing] # install extras for more features
+pip install {{ cookiecutter.plugin_name}}
 verdi quicksetup  # better to set up a new profile
 verdi plugin list aiida.calculations  # should now show your calclulation plugins
 ```
@@ -38,13 +60,17 @@ verdi data {{cookiecutter.entry_point_prefix}} list
 verdi data {{cookiecutter.entry_point_prefix}} export <PK>
 ```
 
-## Tests
+## Development
 
-The following will discover and run all unit tests:
 ```shell
-pip install -e .[testing]
-pytest -v
+git clone https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name}} .
+cd {{ cookiecutter.repo_name }}
+pip install -e .[pre-commit,testing]  # install extra dependencies
+pre-commit install  # install pre-commit hooks
+pytest -v  # discover and run all tests
 ```
+
+See the [developer guide](http://{{ cookiecutter.plugin_name }}.readthedocs.io/en/latest/developer_guide/index.html) for more information.
 
 ## License
 
