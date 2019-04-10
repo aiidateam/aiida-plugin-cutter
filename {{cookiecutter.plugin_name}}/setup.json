@@ -6,7 +6,11 @@
     "url": "https://github.com/{{cookiecutter.github_user}}/{{cookiecutter.repo_name}}",
     "license": "MIT",
     "classifiers": [
-        "Programming Language :: Python"
+        "Programming Language :: Python",
+        "Intended Audience :: Science/Research",
+        "License :: OSI Approved :: MIT License",
+        "Natural Language :: English",
+        "Frameworks :: AiiDA"
     ],
     "version": "{{cookiecutter.version}}",
     "entry_points": {
