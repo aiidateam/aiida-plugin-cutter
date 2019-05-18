@@ -1,13 +1,13 @@
 {
   "plugin_name": "aiida-diff",
   "module_name": "{{ cookiecutter.plugin_name | replace('-', '_') }}",
-  "short_description": "AiiDA demo plugin that computes the difference between two files.",
+  "short_description": "AiiDA demo plugin that wraps the `diff` executable for computing the difference between two files.",
   "entry_point_prefix": "{{ cookiecutter.module_name | replace('aiida_','') }}",
   "github_user": "aiidateam",
   "repo_name": "{{ cookiecutter.plugin_name }}",
   "contact_email": "",
   "version": "0.1.0a0",
-  "author": "The AiiDA developers group",
-  "aiida_min_version": "1.0.0b1",
-  "year": "2018"
+  "author": "The AiiDA Team",
+  "aiida_min_version": "1.0.0b3",
+  "year": "2019"
 }

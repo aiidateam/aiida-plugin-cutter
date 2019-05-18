@@ -14,49 +14,43 @@ addons:
 env:
   global:
   - TEST_AIIDA_BACKEND: django
-  - AIIDA_DEVELOP_GIT_HASH: 0ca5d991d039dca2261df3d6ad8da2f03d591caa
   # show timings of tests
   - PYTEST_ADDOPTS: --durations=0
 
 matrix:
   include:
   # python27, develop aiida-core
-  - name: "python-2.7 develop (django)"
+  - name: "python-2.7 (django)"
     python: 2.7
     env:
-      AIIDA_VERSION: develop
       TEST_TYPE: tests
-  - name: "python-2.7 develop (sqla)"
+  - name: "python-2.7 (sqla)"
     python: 2.7
     env:
-      AIIDA_VERSION: develop
       TEST_TYPE: tests
       TEST_AIIDA_BACKEND: sqlalchemy
-  - name: "python-2.7 develop (pre-commit)"
+  - name: "python-2.7 (pre-commit)"
     python: 2.7
     env:
-      AIIDA_VERSION: develop
       TEST_TYPE: pre-commit
 
   # python36, develop aiida-core
-  - name: "python-3.6 develop (django)"
+  - name: "python-3.6 (django)"
     python: 3.6
     env:
       AIIDA_VERSION: develop
       TEST_TYPE: tests
-  - name: "python-3.6 develop (sqla)"
+  - name: "python-3.6 (sqla)"
     python: 3.6
     env:
-      AIIDA_VERSION: develop
       TEST_TYPE: tests
       TEST_AIIDA_BACKEND: sqlalchemy
-  - name: "python-3.6 develop (docs)"
+  - name: "python-3.6 (docs)"
     python: 3.6
     env:
-      AIIDA_VERSION: develop
       TEST_TYPE: docs
       READTHEDOCS: 'True'
-  - name: "python-3.6 develop (pre-commit)"
+  - name: "python-3.6 (pre-commit)"
     python: 3.6
     env:
       AIIDA_VERSION: develop
@@ -69,10 +63,8 @@ matrix:
 before_install:
 # Upgrade pip setuptools and wheel
 - pip install -U pip wheel setuptools
-- pip install pip==18.1
 
 install:
-- if [ "$AIIDA_VERSION" == "develop" ]; then .ci/install_aiida_github.sh ; fi  # installs develop branch
 - pip install -e .[testing,docs,pre-commit]
 - reentry scan -r aiida
 - pip install coveralls
