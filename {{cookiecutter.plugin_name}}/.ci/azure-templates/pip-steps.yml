@@ -5,13 +5,5 @@ steps:
     versionSpec: '$(python.version)'
     architecture: 'x64'
 
-# remove once https://github.com/aiidateam/aiida_core/issues/2414 is solved
-- script: python -m pip install pip==18.1
-  displayName: 'Fix pip version'
-
-# remove once aiida-core==1.0.0b2 is released
-- script: .ci/install_aiida_github.sh && reentry scan
-  displayName: 'Install aiida-core develop version'
-
 - script: python -m pip install -e .[testing,pre-commit,docs] && reentry scan
   displayName: 'Install package with dependencies'
