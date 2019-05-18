@@ -11,6 +11,7 @@ addons:
 
 env:
   global:
+  - PLUGIN_DIR: aiida-diff
   - TEST_AIIDA_BACKEND: django
   # show timings of tests
   - PYTEST_ADDOPTS: "--durations=0"
