@@ -2,9 +2,6 @@
 trigger:
 - master
 
-variables:
-  AIIDA_DEVELOP_GIT_HASH: e852d66fc51345fbdb8ebf98580a5646d79bc043
-
 jobs:
 - job: test
   pool:
