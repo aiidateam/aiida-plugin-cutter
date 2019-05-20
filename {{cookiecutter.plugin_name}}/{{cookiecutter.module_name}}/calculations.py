@@ -33,7 +33,7 @@ class DiffCalculation(CalcJob):
         spec.input('parameters', valid_type=DiffParameters, help='Command line parameters for diff')
         spec.input('file1', valid_type=SinglefileData, help='First file to be compared.')
         spec.input('file2', valid_type=SinglefileData, help='Second file to be compared.')
-        spec.output('diff', valid_type=SinglefileData, help='diff between file1 and file2.')
+        spec.output('{{cookiecutter.entry_point_prefix}}', valid_type=SinglefileData, help='diff between file1 and file2.')
 
     def prepare_for_submission(self, folder):
         """

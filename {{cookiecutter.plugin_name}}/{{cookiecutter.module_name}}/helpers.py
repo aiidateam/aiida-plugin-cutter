@@ -15,7 +15,7 @@ import tempfile
 LOCALHOST_NAME = 'localhost-test'
 
 executables = {
-    'diff': 'diff',
+    '{{cookiecutter.entry_point_prefix}}': 'diff',
 }
 
 
