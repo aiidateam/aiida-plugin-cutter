@@ -11,7 +11,7 @@ addons:
 
 env:
   global:
-  - PLUGIN_DIR: aiida-diff
+  - PLUGIN_NAME: aiida-ck
   - TEST_AIIDA_BACKEND: django
   # show timings of tests
   - PYTEST_ADDOPTS: "--durations=0"
@@ -60,10 +60,10 @@ install:
 - pip install -U wheel setuptools
 - pip install cookiecutter yapf
 # Change plugin_name to test we're not specific to "aiida-diff"
-- cookiecutter --no-input . plugin_name=aiida-ck
-- pip install -e ${PLUGIN_DIR}[docs,pre-commit,testing]
+- cookiecutter --no-input . plugin_name=${PLUGIN_NAME}
+- pip install -e ${PLUGIN_NAME}[docs,pre-commit,testing]
 - reentry scan -r aiida
-- cd ${PLUGIN_DIR}
+- cd ${PLUGIN_NAME}
 
 script:
 - >
