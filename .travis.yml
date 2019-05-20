@@ -59,7 +59,8 @@ install:
 # Upgrade pip setuptools and wheel
 - pip install -U wheel setuptools
 - pip install cookiecutter yapf
-- cookiecutter --no-input .
+# Change plugin_name to test we're not specific to "aiida-diff"
+- cookiecutter --no-input . plugin_name=aiida-ck
 - pip install -e ${PLUGIN_DIR}[docs,pre-commit,testing]
 - reentry scan -r aiida
 - cd ${PLUGIN_DIR}
