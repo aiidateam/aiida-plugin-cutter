@@ -6,14 +6,12 @@ Register parsers via the "aiida.parsers" entry point in setup.json.
 """
 from __future__ import absolute_import
 
-from six.moves import zip
-
 from aiida.engine import ExitCode
 from aiida.parsers.parser import Parser
-from aiida.common import exceptions
 from aiida.plugins import CalculationFactory
 
 DiffCalculation = CalculationFactory('{{cookiecutter.entry_point_prefix}}')
+
 
 class DiffParser(Parser):
     """
@@ -29,6 +27,7 @@ class DiffParser(Parser):
         :param node: ProcessNode of calculation
         :param type node: :class:`aiida.orm.ProcessNode`
         """
+        from aiida.common import exceptions
         super(DiffParser, self).__init__(node)
         if not issubclass(node.process_class, DiffCalculation):
             raise exceptions.ParsingError("Can only parse DiffCalculation")
@@ -41,29 +40,21 @@ class DiffParser(Parser):
         """
         from aiida.orm import SinglefileData
 
-        # Check that the retrieved folder is there
-        try:
-            output_folder = self.retrieved
-        except exceptions.NotExistent:
-            return self.exit_codes.ERROR_NO_RETRIEVED_FOLDER
+        output_filename = self.node.get_option('output_filename')
 
-        # Check the folder content is as expected
-        list_of_files = output_folder.list_object_names()
-        output_files = [self.node.get_option('output_filename')]
-        output_links = ['{{cookiecutter.entry_point_prefix}}']
-        # Note: set(A) <= set(B) checks whether A is a subset
-        if set(output_files) <= set(list_of_files):
-            pass
-        else:
-            self.logger.error(
-                "Not all expected output files {} were found".format(
-                    output_files))
+        # Check that folder content is as expected
+        files_retrieved = self.retrieved.list_object_names()
+        files_expected = [output_filename]
+        # Note: set(A) <= set(B) checks whether A is a subset of B
+        if not set(files_expected) <= set(files_retrieved):
+            self.logger.error("Found files '{}', expected to find '{}'".format(
+                files_retrieved, files_expected))
+            return self.exit_codes.ERROR_MISSING_OUTPUT_FILES
 
-        # Use something like this to loop over multiple output files
-        for fname, link in zip(output_files, output_links):
-
-            with output_folder.open(fname, 'rb') as handle:
-                node = SinglefileData(file=handle)
-            self.out(link, node)
+        # add output file
+        self.logger.info("Parsing '{}'".format(output_filename))
+        with self.retrieved.open(output_filename, 'rb') as handle:
+            output_node = SinglefileData(file=handle)
+        self.out('{{cookiecutter.entry_point_prefix}}', output_node)
 
         return ExitCode(0)

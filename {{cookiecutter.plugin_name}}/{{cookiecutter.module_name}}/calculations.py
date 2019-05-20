@@ -35,6 +35,9 @@ class DiffCalculation(CalcJob):
         spec.input('file2', valid_type=SinglefileData, help='Second file to be compared.')
         spec.output('{{cookiecutter.entry_point_prefix}}', valid_type=SinglefileData, help='diff between file1 and file2.')
 
+        spec.exit_code(100, 'ERROR_MISSING_OUTPUT_FILES', message='Calculation did not produce all expected output files.')
+
+
     def prepare_for_submission(self, folder):
         """
         Create input files.
@@ -49,7 +52,7 @@ class DiffCalculation(CalcJob):
             file2_name=self.inputs.file2.filename)
         codeinfo.code_uuid = self.inputs.code.uuid
         codeinfo.stdout_name = self.metadata.options.output_filename
-        codeinfo.withmpi = False
+        codeinfo.withmpi = self.inputs.metadata.options.withmpi
 
         # Prepare a `CalcInfo` to be returned to the engine
         calcinfo = datastructures.CalcInfo()

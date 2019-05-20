@@ -74,7 +74,8 @@ class DiffParameters(Dict):
 
         pm_dict = self.get_dict()
         for k in pm_dict.keys():
-            parameters += ['--' + k]
+            if pm_dict[k]:
+                parameters += ['--' + k]
 
         parameters += [file1_name, file2_name]
 
