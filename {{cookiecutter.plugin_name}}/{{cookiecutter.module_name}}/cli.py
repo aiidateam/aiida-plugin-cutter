@@ -18,7 +18,6 @@ from aiida.cmdline.params.types import DataParamType
 @verdi_data.group('{{cookiecutter.entry_point_prefix}}')
 def data_cli():
     """Command line interface for {{cookiecutter.plugin_name}}"""
-    pass
 
 
 @data_cli.command('list')

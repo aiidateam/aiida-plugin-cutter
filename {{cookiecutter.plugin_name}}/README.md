@@ -1,15 +1,29 @@
-[![Build Status](https://travis-ci.org/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name}}.svg?branch=master)](https://travis-ci.org/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name}}) 
-[![Coverage Status](https://coveralls.io/repos/github/{{ cookiecutter.github_user}}/{{ cookiecutter.repo_name }}/badge.svg?branch=master)](https://coveralls.io/github/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }}?branch=master) 
-[![Docs status](https://readthedocs.org/projects/{{ cookiecutter.plugin_name }}/badge)](http://{{ cookiecutter.plugin_name }}.readthedocs.io/) 
+[![Build Status](https://travis-ci.org/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name}}.svg?branch=master)](https://travis-ci.org/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name}})
+[![Coverage Status](https://coveralls.io/repos/github/{{ cookiecutter.github_user}}/{{ cookiecutter.repo_name }}/badge.svg?branch=master)](https://coveralls.io/github/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }}?branch=master)
+[![Docs status](https://readthedocs.org/projects/{{ cookiecutter.plugin_name }}/badge)](http://{{ cookiecutter.plugin_name }}.readthedocs.io/)
 [![PyPI version](https://badge.fury.io/py/{{ cookiecutter.plugin_name }}.svg)](https://badge.fury.io/py/{{ cookiecutter.plugin_name }})
 
 # {{ cookiecutter.plugin_name }}
 
 {{ cookiecutter.short_description }}
 
-This plugin is the default output of the 
+This plugin is the default output of the
 [AiiDA plugin cutter](https://github.com/aiidateam/aiida-plugin-cutter),
 intended to help developers get started with their AiiDA plugins.
+
+Plugins templated using the plugin cutter
+
+* include a calculation, parser and data type as well as an example of
+  how to submit a calculation
+* include basic regression tests using the [pytest](https://docs.pytest.org/en/latest/) framework ( (submitting a calculation, ...)
+* can be directly pip-installed (and are prepared for submisson to [PyPI](https://pypi.org/)
+* include a documentation template ready for [Read the Docs](http://aiida-diff.readthedocs.io/en/latest/)
+* come with [Travis CI](https://travis-ci.org) configuration - enable it to run tests and check test coverage at every commit
+* come with pre-commit hooks that sanitize coding style and check for syntax errors - enable via `pre-commit install`
+
+For more information on how to take advantage of these features,
+see the [developer guide](https://aiida-diff.readthedocs.io/en/latest/developer_guide) of your plugin.
+
 
 ## Features
 
@@ -41,6 +55,7 @@ pip install {{ cookiecutter.plugin_name}}
 verdi quicksetup  # better to set up a new profile
 verdi plugin list aiida.calculations  # should now show your calclulation plugins
 ```
+
 
 ## Usage
 
