@@ -11,5 +11,5 @@ def clear_database_auto(clear_database):  # pylint: disable=unused-argument
 def {{cookiecutter.entry_point_prefix}}_code(aiida_local_code_factory):
     """Get a {{cookiecutter.entry_point_prefix}} code.
     """
-    {{cookiecutter.entry_point_prefix}}_code = aiida_local_code_factory('diff', '{{cookiecutter.entry_point_prefix}}')
+    {{cookiecutter.entry_point_prefix}}_code = aiida_local_code_factory(executable='diff', entry_point='{{cookiecutter.entry_point_prefix}}')
     return {{cookiecutter.entry_point_prefix}}_code
