@@ -4,7 +4,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 
-from aiida.manage.fixtures import PluginTestCase
+from aiida.manage.tests.unittest_classes import PluginTestCase
 
 
 class TestDataCli(PluginTestCase):
