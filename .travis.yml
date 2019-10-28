@@ -1,6 +1,5 @@
 language: python
-
-cache: pip
+dist: trusty
 
 services:
   - postgresql
@@ -59,7 +58,7 @@ install:
 # Upgrade pip setuptools and wheel
 - pip install -U wheel setuptools
 - pip install cookiecutter yapf
-- pip install git+https://github.com/ltalirz/aiida_core/tree/add-pytest-fixtures2
+- pip install git+https://github.com/ltalirz/aiida_core.git@add-pytest-fixtures2
 # Change plugin_name to test we're not specific to "aiida-diff"
 - cookiecutter --no-input . plugin_name=${PLUGIN_NAME}
 - pip install -e ${PLUGIN_NAME}[docs,pre-commit,testing]
