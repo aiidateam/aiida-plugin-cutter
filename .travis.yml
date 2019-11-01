@@ -11,7 +11,7 @@ addons:
 env:
   global:
   - PLUGIN_NAME: aiida-ck
-  - TEST_AIIDA_BACKEND: django
+  - AIIDA_TEST_BACKEND: django
   # show timings of tests
   - PYTEST_ADDOPTS: "--durations=0"
 
@@ -26,7 +26,7 @@ matrix:
     python: 2.7
     env:
       TEST_TYPE: tests
-      TEST_AIIDA_BACKEND: sqlalchemy
+      AIIDA_TEST_BACKEND: sqlalchemy
   - name: "python-2.7 (pre-commit)"
     python: 2.7
     env:
@@ -42,7 +42,7 @@ matrix:
     python: 3.6
     env:
       TEST_TYPE: tests
-      TEST_AIIDA_BACKEND: sqlalchemy
+      AIIDA_TEST_BACKEND: sqlalchemy
   - name: "python-3.6 (docs)"
     python: 3.6
     env:

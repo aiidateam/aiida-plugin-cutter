@@ -8,7 +8,7 @@ import os
 from {{cookiecutter.module_name}} import tests
 
 
-def test_process(aiida_code):
+def test_process({{cookiecutter.entry_point_prefix}}_code):
     """Test running a calculation
     note this does not test that the expected outputs are created of output parsing"""
     from aiida.plugins import DataFactory, CalculationFactory
@@ -26,7 +26,7 @@ def test_process(aiida_code):
 
     # set up calculation
     inputs = {
-        'code': aiida_code,
+        'code': {{cookiecutter.entry_point_prefix}}_code,
         'parameters': parameters,
         'file1': file1,
         'file2': file2,
