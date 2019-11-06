@@ -35,3 +35,8 @@ If you have already set up your own {{cookiecutter.module_name}} code using
 
     {{cookiecutter.entry_point_prefix}}-submit  # uses {{cookiecutter.module_name}}.cli
 
+Available calculations
+++++++++++++++++++++++
+
+.. aiida-calcjob:: DiffCalculation
+    :module: {{cookiecutter.module_name}}.calculations

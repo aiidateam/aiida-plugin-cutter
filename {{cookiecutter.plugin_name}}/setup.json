@@ -53,7 +53,9 @@
             "pylint==2.3.1; python_version>='3.0'"
         ],
         "docs": [
-            "sphinx"
+            "sphinx",
+            "sphinxcontrib-contentui",
+            "sphinxcontrib-details-directive; python_version>='3.0'"
         ]
     }
 }
