@@ -42,8 +42,14 @@ if not on_rtd:  # only import and set the theme if we're building docs locally
 else:
     # Back-end settings for readthedocs online documentation.
     from aiida.manage import configuration
+    from aiida.manage.manager import get_manager
     configuration.IN_RT_DOC_MODE = True
     configuration.BACKEND = "django"
+
+    configuration.reset_config()  # empty config was created when importing aiida
+    configuration.load_profile()  # load dummy config for RTD
+    # load DB backend (no schema check since no DB)
+    get_manager()._load_backend(schema_check=False)  # pylint: disable=protected-access
 
 # -- General configuration ------------------------------------------------
 
@@ -58,6 +64,8 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.intersphinx',
     'sphinx.ext.viewcode',
+    'sphinxcontrib.contentui',
+    'aiida.sphinxext',
 ]
 
 intersphinx_mapping = {
