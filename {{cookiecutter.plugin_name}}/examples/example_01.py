@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#!/usr/bin/env python
 """Submit a test calculation on localhost.
 
 Usage: verdi run submit.py

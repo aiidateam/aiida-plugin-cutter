@@ -16,6 +16,9 @@ import sys
 import time
 import {{cookiecutter.module_name}}
 
+from aiida.manage import configuration
+from aiida.manage.manager import get_manager
+
 # -- AiiDA-related setup --------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -26,30 +29,18 @@ import {{cookiecutter.module_name}}
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
 if not on_rtd:  # only import and set the theme if we're building docs locally
-    try:
-        import sphinx_rtd_theme
-        html_theme = 'sphinx_rtd_theme'
-        html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-    except ImportError:
-        # No sphinx_rtd_theme installed
-        pass
-    # Load the database environment by first loading the profile and then loading the backend through the manager
-    from aiida.manage.configuration import get_config, load_profile
-    from aiida.manage.manager import get_manager
-    config = get_config()
-    load_profile(config.default_profile_name)
-    get_manager().get_backend()
-else:
-    # Back-end settings for readthedocs online documentation.
-    from aiida.manage import configuration
-    from aiida.manage.manager import get_manager
-    configuration.IN_RT_DOC_MODE = True
-    configuration.BACKEND = "django"
+    import sphinx_rtd_theme
+    html_theme = 'sphinx_rtd_theme'
+    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
-    configuration.reset_config()  # empty config was created when importing aiida
-    configuration.load_profile()  # load dummy config for RTD
-    # load DB backend (no schema check since no DB)
-    get_manager()._load_backend(schema_check=False)  # pylint: disable=protected-access
+# Back-end settings for readthedocs online documentation.
+configuration.IN_RT_DOC_MODE = True
+configuration.BACKEND = "django"
+
+configuration.reset_config()  # empty config was created when importing aiida
+configuration.load_profile()  # load dummy config for RTD
+# load DB backend (no schema check since no DB)
+get_manager()._load_backend(schema_check=False)  # pylint: disable=protected-access
 
 # -- General configuration ------------------------------------------------
 
@@ -161,11 +152,9 @@ pygments_style = 'sphinx'
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-#~ html_theme_options = {
-#~ 'inner_theme': True,
-#~ 'inner_theme_name': 'bootswatch-darkly',
-#~ 'nav_fixed_top': False
-#~ }
+html_theme_options = {
+    'display_version': True,
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 #~ html_theme_path = ["."]
