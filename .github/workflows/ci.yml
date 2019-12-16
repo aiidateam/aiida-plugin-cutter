@@ -38,7 +38,7 @@ jobs:
     - name: Install python dependencies
       run: |
         pip install --upgrade pip
-        pip install cookiecutter yapf
+        pip install -r requirements.txt
         # Change plugin_name to test we're not specific to "aiida-diff"
         cookiecutter --no-input . plugin_name=${PLUGIN_NAME}
         pip install -e ${PLUGIN_NAME}[testing]
@@ -71,7 +71,7 @@ jobs:
         PLUGIN_NAME: aiida-ck
       run: |
         pip install --upgrade pip
-        pip install cookiecutter yapf
+        pip install -r requirements.txt
         # Change plugin_name to test we're not specific to "aiida-diff"
         cookiecutter --no-input . plugin_name=${PLUGIN_NAME}
         pip install -e ${PLUGIN_NAME}[docs]
@@ -95,7 +95,7 @@ jobs:
         PLUGIN_NAME: aiida-ck
       run: |
         pip install --upgrade pip
-        pip install cookiecutter yapf
+        pip install -r requirements.txt
         # Change plugin_name to test we're not specific to "aiida-diff"
         cookiecutter --no-input . plugin_name=${PLUGIN_NAME}
         pip install -e ${PLUGIN_NAME}[pre-commit,docs,testing]
