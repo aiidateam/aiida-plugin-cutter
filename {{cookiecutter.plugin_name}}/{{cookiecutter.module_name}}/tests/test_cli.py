@@ -1,9 +1,6 @@
 """ Tests for command line interface.
 
 """
-from __future__ import print_function
-from __future__ import absolute_import
-
 from aiida.manage.tests.unittest_classes import PluginTestCase
 
 
