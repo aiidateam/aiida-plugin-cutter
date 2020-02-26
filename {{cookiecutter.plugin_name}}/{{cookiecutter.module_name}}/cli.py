@@ -6,7 +6,6 @@ directly into the 'verdi' command by using AiiDA-specific entry points like
 "aiida.cmdline.data" (both in the setup.json file).
 """
 
-from __future__ import absolute_import
 import sys
 import click
 from aiida.cmdline.utils import decorators

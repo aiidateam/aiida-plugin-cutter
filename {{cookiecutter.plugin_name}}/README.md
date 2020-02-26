@@ -63,10 +63,10 @@ Here goes a complete example of how to submit a test calculation using this plug
 
 A quick demo of how to submit a calculation:
 ```shell
-verdi daemon start         # make sure the daemon is running
+verdi daemon start     # make sure the daemon is running
 cd examples
-verdi run submit.py        # submit test calculation
-verdi process list -a  # check status of calculation
+./example_01.py        # run test calculation
+verdi process list -a  # check record of calculation
 ```
 
 The plugin also includes verdi commands to inspect its data types:
