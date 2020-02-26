@@ -3,7 +3,7 @@ set -e
 
 # clean directory contents if exist (but don't delete .git directory)
 if [ -d aiida-diff ]; then
-  rm -r aiida-diff/*
+  rm -rf aiida-diff/*
 fi
 
 cookiecutter --no-input -f . version=1.0.0
