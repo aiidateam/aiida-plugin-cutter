@@ -29,8 +29,10 @@ class DiffCalculation(CalcJob):
         super(DiffCalculation, cls).define(spec)
 
         # set default values for AiiDA options
-        spec.inputs['metadata']['options']['resources']['num_machines'].default = 1
-        spec.inputs['metadata']['options']['resources']['num_mpiprocs_per_machine'].default = 1
+        spec.inputs['metadata']['options']['resources'].default = {
+                'num_machines': 1,
+                'num_mpiprocs_per_machine': 1,
+                }
         spec.inputs['metadata']['options']['parser_name'].default = '{{cookiecutter.entry_point_prefix}}'
 
         # new ports
