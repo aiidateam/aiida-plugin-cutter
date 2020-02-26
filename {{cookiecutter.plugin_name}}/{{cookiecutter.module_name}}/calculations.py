@@ -27,8 +27,13 @@ class DiffCalculation(CalcJob):
         """Define inputs and outputs of the calculation."""
         # yapf: disable
         super(DiffCalculation, cls).define(spec)
-        spec.input('metadata.options.resources', valid_type=dict, default={'num_machines': 1, 'num_mpiprocs_per_machine': 1})
-        spec.input('metadata.options.parser_name', valid_type=six.string_types, default='{{cookiecutter.entry_point_prefix}}')
+
+        # set default values for AiiDA options
+        spec.inputs['metadata']['options']['resources']['num_machines'].default = 1
+        spec.inputs['metadata']['options']['resources']['num_mpiprocs_per_machine'].default = 1
+        spec.inputs['metadata']['options']['parser_name'].default = '{{cookiecutter.entry_point_prefix}}'
+
+        # new ports
         spec.input('metadata.options.output_filename', valid_type=six.string_types, default='patch.diff')
         spec.input('parameters', valid_type=DiffParameters, help='Command line parameters for diff')
         spec.input('file1', valid_type=SinglefileData, help='First file to be compared.')
