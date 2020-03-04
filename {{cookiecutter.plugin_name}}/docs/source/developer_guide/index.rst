@@ -31,15 +31,11 @@ If you ever need to skip these pre-commit hooks, just use::
 Continuous integration
 ++++++++++++++++++++++
 
-``{{cookiecutter.plugin_name}}`` comes with a ``.travis.yml`` file for continuous integration tests on every commit using `Travis CI <http://travis-ci.com/>`_. It will:
+``{{cookiecutter.plugin_name}}`` comes with a ``.github`` folder that contains continuous integration tests on every commit using `GitHub Actions <https://github.com/features/actions>`_. It will:
 
-#. run all tests for the ``django`` and ``sqlalchemy`` ORM
+#. run all tests for the ``django`` ORM
 #. build the documentation
 #. check coding style and version number (not required to pass by default)
-
-Just enable Travis builds for the ``{{ cookiecutter.repo_name}}`` repository in your Travis account. 
-
-``{{cookiecutter.plugin_name}}`` also includes an ``azure-pipelines.yml`` file for continuous integration tests using `Azure Pipelines <https://azure.microsoft.com/en-us/services/devops/pipelines/>`_.
 
 Online documentation
 ++++++++++++++++++++
@@ -64,3 +60,5 @@ After this, you (and everyone else) should be able to::
 
     pip install {{cookiecutter.plugin_name}}
 
+You can also enable *automatic* deployment of git tags to the python package index:
+simply generate a `PyPI API token <https://pypi.org/help/#apitoken>`_ for your PyPI account and add it as a secret to your GitHub repository under the name ``pypi_token`` (Go to Settings -> Secrets).
