@@ -6,7 +6,7 @@ if [ -d aiida-diff ]; then
   rm -rf aiida-diff/*
 fi
 
-cookiecutter --no-input -f . version=1.0.0
+cookiecutter --no-input -f . version=1.1.1
 pip install -e aiida-diff[docs,pre-commit,testing]
 cd aiida-diff
 git init && git add -A
