@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 import json
 
 if __name__ == '__main__':
@@ -7,7 +7,7 @@ if __name__ == '__main__':
     with open('setup.json', 'r') as info:
         kwargs = json.load(info)
     setup(
-        packages=find_packages(),
+        packages=['{{cookiecutter.module_name}}'],
         # this doesn't work when placed in setup.json (something to do with str type)
         package_data={
             "": ["*"],
