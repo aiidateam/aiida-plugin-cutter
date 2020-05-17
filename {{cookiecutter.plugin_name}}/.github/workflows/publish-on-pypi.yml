@@ -28,7 +28,7 @@ jobs:
     - name: Assert package version
       env:
         TAG_VERSION: ${{ '{{ github.ref }}' }}
-      run: python ./.ci/check_version.py
+      run: python ./.github/check_version.py
 
     - name: Build source distribution
       run: python ./setup.py sdist
