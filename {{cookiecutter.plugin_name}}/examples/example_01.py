@@ -3,12 +3,13 @@
 
 Usage: ./example_01.py
 """
-import os
-from {{cookiecutter.module_name}} import tests, helpers
+from os import path
+from {{cookiecutter.module_name}} import helpers
 from aiida import cmdline, engine
 from aiida.plugins import DataFactory, CalculationFactory
 import click
 
+INPUT_DIR = path.join(path.dirname(path.realpath(__file__)), 'input_files')
 
 
 def test_run({{cookiecutter.entry_point_prefix}}_code):
@@ -27,9 +28,9 @@ def test_run({{cookiecutter.entry_point_prefix}}_code):
 
     SinglefileData = DataFactory('singlefile')
     file1 = SinglefileData(
-        file=os.path.join(tests.TEST_DIR, "input_files", 'file1.txt'))
+        file=path.join(INPUT_DIR, 'file1.txt'))
     file2 = SinglefileData(
-        file=os.path.join(tests.TEST_DIR, "input_files", 'file2.txt'))
+        file=path.join(INPUT_DIR, 'file2.txt'))
 
     # set up calculation
     inputs = {
