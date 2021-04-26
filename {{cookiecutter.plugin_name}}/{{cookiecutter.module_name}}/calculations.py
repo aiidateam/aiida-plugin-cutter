@@ -26,9 +26,9 @@ class DiffCalculation(CalcJob):
 
         # set default values for AiiDA options
         spec.inputs['metadata']['options']['resources'].default = {
-                'num_machines': 1,
-                'num_mpiprocs_per_machine': 1,
-                }
+            'num_machines': 1,
+            'num_mpiprocs_per_machine': 1,
+        }
         spec.inputs['metadata']['options']['parser_name'].default = '{{cookiecutter.entry_point_prefix}}'
 
         # new ports
@@ -45,8 +45,8 @@ class DiffCalculation(CalcJob):
         """
         Create input files.
 
-        :param folder: an `aiida.common.folders.Folder` where the plugin should temporarily place all files needed by
-            the calculation.
+        :param folder: an `aiida.common.folders.Folder` where the plugin should temporarily place all files 
+            needed by the calculation.
         :return: `aiida.common.datastructures.CalcInfo` instance
         """
         codeinfo = datastructures.CodeInfo()

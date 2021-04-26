@@ -12,9 +12,9 @@ import sys
 this_path = os.path.split(os.path.realpath(__file__))[0]
 
 # Get content of setup.json
-setup_fname = 'setup.json'
-setup_path = os.path.join(this_path, os.pardir, setup_fname)
-with open(setup_path) as f:
+SETUP_FNAME = 'setup.json'
+SETUP_PATH = os.path.join(this_path, os.pardir, SETUP_FNAME)
+with open(SETUP_PATH) as f:
     setup_content = json.load(f)
 
 # Get version from python package
@@ -32,5 +32,5 @@ if version != setup_content['version']:
 
 # Overwrite version in setup.json
 #setup_content['version'] = version
-#with open(setup_path, 'w') as f:
+#with open(SETUP_PATH, 'w') as f:
 #	json.dump(setup_content, f, indent=4, sort_keys=True)

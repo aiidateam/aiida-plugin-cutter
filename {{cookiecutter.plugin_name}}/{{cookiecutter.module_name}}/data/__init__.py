@@ -20,11 +20,11 @@ cmdline_options = {
 }
 
 
-class DiffParameters(Dict):
+class DiffParameters(Dict):  # pylint: disable=too-many-ancestors
     """
     Command line options for diff.
 
-    This class represents a python dictionary used to 
+    This class represents a python dictionary used to
     pass command line options to the executable.
     """
 
@@ -45,7 +45,7 @@ class DiffParameters(Dict):
         dict = self.validate(dict)
         super(DiffParameters, self).__init__(dict=dict, **kwargs)
 
-    def validate(self, parameters_dict):
+    def validate(self, parameters_dict):  # pylint: disable=no-self-use
         """Validate command line options.
 
         Uses the voluptuous package for validation. Find out about allowed keys using::

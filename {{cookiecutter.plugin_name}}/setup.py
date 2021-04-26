@@ -1,5 +1,6 @@
-from setuptools import setup, find_packages
+"""Setup script for {{cookiecutter.plugin_name}}"""
 import json
+from setuptools import setup, find_packages
 
 if __name__ == '__main__':
     # Provide static information in setup.json
