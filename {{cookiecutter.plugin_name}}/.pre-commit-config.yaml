@@ -11,13 +11,12 @@
 
 - repo: local
   hooks:
-  # prospector: collection of linters
-  - id: prospector
+  - id: pylint
     language: system
     types: [file, python]
-    name: prospector
-    description: "This hook runs Prospector: https://github.com/landscapeio/prospector"
-    entry: prospector
+    name: pylint
+    description: "This hook runs the pylint static code analyzer"
+    entry: pylint
 
   - id: version-number
     name: Check version numbers

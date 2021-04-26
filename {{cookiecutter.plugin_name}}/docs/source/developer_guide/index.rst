@@ -20,7 +20,7 @@ Enable enable automatic checks of code sanity and coding style::
 
 After this, the `yapf <https://github.com/google/yapf>`_ formatter, 
 the `pylint <https://www.pylint.org/>`_ linter
-and the `prospector <https://pypi.org/project/prospector/>`_ code analyzer will
+and the `pylint <https://www.pylint.org/>`_ code analyzer will
 run at every commit.
 
 If you ever need to skip these pre-commit hooks, just use::
