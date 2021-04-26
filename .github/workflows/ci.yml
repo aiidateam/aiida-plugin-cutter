@@ -44,7 +44,7 @@ jobs:
         pip install -r requirements.txt
         # Change plugin_name to test we're not specific to "aiida-diff"
         cookiecutter --no-input . plugin_name=${PLUGIN_NAME}
-        pip install -e ${PLUGIN_NAME}[testing]
+        pip install .${PLUGIN_NAME}[testing]
         reentry scan -r aiida
       env:
         PLUGIN_NAME: aiida-ck
@@ -76,7 +76,7 @@ jobs:
         pip install -r requirements.txt
         # Change plugin_name to test we're not specific to "aiida-diff"
         cookiecutter --no-input . plugin_name=${PLUGIN_NAME}
-        pip install -e ${PLUGIN_NAME}[docs]
+        pip install .${PLUGIN_NAME}[docs]
         reentry scan -r aiida
     - name: Build docs
       env:
