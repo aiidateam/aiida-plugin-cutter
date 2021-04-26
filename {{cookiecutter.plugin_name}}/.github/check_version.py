@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.join(this_path, os.pardir))
 import {{cookiecutter.module_name}}  # pylint: disable=wrong-import-position
 VERSION = {{cookiecutter.module_name}}.__version__
 
-if version != setup_content['version']:
+if VERSION != setup_content['version']:
     print('Version number mismatch detected:')
     print("Version number in '{}': {}".format(SETUP_FNAME,
                                               setup_content['version']))

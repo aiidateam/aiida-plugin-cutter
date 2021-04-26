@@ -3,10 +3,11 @@
 
 """
 import os
-from . import TEST_DIR
 from aiida.plugins import DataFactory, CalculationFactory
 from aiida.engine import run
 from aiida.orm import SinglefileData
+
+from . import TEST_DIR
 
 
 def test_process({{cookiecutter.entry_point_prefix}}_code):
