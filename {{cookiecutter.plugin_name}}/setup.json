@@ -32,6 +32,7 @@
     "reentry_register": true,
     "install_requires": [
         "aiida-core>={{cookiecutter.aiida_min_version}},<2.0.0",
+        "sqlalchemy<1.4",
         "six",
         "voluptuous"
     ],
@@ -44,10 +45,9 @@
             "pytest-cov"
         ],
         "pre-commit": [
-            "astroid==2.2.5",
-            "pre-commit==1.20.0",
-            "prospector==1.1.7",
-            "pylint==2.3.1"
+            "astroid<2.5",
+            "pre-commit~=2.2",
+            "pylint~=2.5.0"
         ],
         "docs": [
             "sphinx",

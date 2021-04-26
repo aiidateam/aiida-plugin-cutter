@@ -26,7 +26,7 @@ If you use AiiDA for your research, please cite the following work:
   for computational science*, Comp. Mat. Sci 111, 218-230 (2016);
   https://doi.org/10.1016/j.commatsci.2015.09.013; http://www.aiida.net.
 
-``{{cookiecutter.plugin_name}}`` is released under the MIT license. 
+``{{cookiecutter.plugin_name}}`` is released under the MIT license.
 
 {%if cookiecutter.contact_email!=""%}Please contact {{ cookiecutter.contact_email }} for information concerning ``{{cookiecutter.plugin_name}}`` and the `AiiDA mailing list <http://www.aiida.net/mailing-list/>`_ for questions concerning ``aiida``.{%endif%}
 
@@ -39,4 +39,3 @@ Indices and tables
 * :ref:`search`
 
 .. _AiiDA: http://www.aiida.net
-

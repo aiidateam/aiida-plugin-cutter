@@ -1,16 +1,16 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """Run a test calculation on localhost.
 
 Usage: ./example_01.py
 """
 from os import path
-from {{cookiecutter.module_name}} import helpers
+import click
 from aiida import cmdline, engine
 from aiida.plugins import DataFactory, CalculationFactory
-import click
+from {{cookiecutter.module_name}} import helpers
 
 INPUT_DIR = path.join(path.dirname(path.realpath(__file__)), 'input_files')
-
 
 def test_run({{cookiecutter.entry_point_prefix}}_code):
     """Run a calculation on the localhost computer.
@@ -23,7 +23,7 @@ def test_run({{cookiecutter.entry_point_prefix}}_code):
         {{cookiecutter.entry_point_prefix}}_code = helpers.get_code(entry_point='{{cookiecutter.entry_point_prefix}}', computer=computer)
 
     # Prepare input parameters
-    DiffParameters = DataFactory('{{cookiecutter.entry_point_prefix}}')
+    DiffParameters = DataFactory('{{cookiecutter.entry_point_prefix}}')  
     parameters = DiffParameters({'ignore-case': True})
 
     SinglefileData = DataFactory('singlefile')
@@ -39,7 +39,7 @@ def test_run({{cookiecutter.entry_point_prefix}}_code):
         'file1': file1,
         'file2': file2,
         'metadata': {
-            'description': "Test job submission with the {{cookiecutter.module_name}} plugin",
+            'description': 'Test job submission with the {{cookiecutter.module_name}} plugin',
         },
     }
 
@@ -49,7 +49,7 @@ def test_run({{cookiecutter.entry_point_prefix}}_code):
     result = engine.run(CalculationFactory('{{cookiecutter.entry_point_prefix}}'), **inputs)
 
     computed_diff = result['{{cookiecutter.entry_point_prefix}}'].get_content()
-    print("Computed diff between files: \n{}".format(computed_diff))
+    print('Computed diff between files: \n{}'.format(computed_diff))
 
 
 @click.command()

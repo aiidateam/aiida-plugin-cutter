@@ -118,10 +118,7 @@ See the [developer guide](http://{{ cookiecutter.plugin_name }}.readthedocs.io/e
 
 ## License
 
-MIT
-
-{%if cookiecutter.contact_email!=""%}
+MIT{%if cookiecutter.contact_email!=""%}
 ## Contact
 
-{{ cookiecutter.contact_email }}
-{%endif%}
+{{ cookiecutter.contact_email }}{%endif%}

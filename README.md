@@ -66,7 +66,6 @@ Simply run [`./update-aiida-diff.sh`](update-aiida-diff.sh) to create a clone of
 ## License
 
 MIT
-
 ## Contact
 
 Please report issues to the GitHub issue tracker. Other inquiries may be

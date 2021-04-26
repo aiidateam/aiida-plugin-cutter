@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Parsers provided by {{cookiecutter.module_name}}.
 
@@ -6,6 +7,8 @@ Register parsers via the "aiida.parsers" entry point in setup.json.
 from aiida.engine import ExitCode
 from aiida.parsers.parser import Parser
 from aiida.plugins import CalculationFactory
+from aiida.common import exceptions
+from aiida.orm import SinglefileData
 
 DiffCalculation = CalculationFactory('{{cookiecutter.entry_point_prefix}}')
 
@@ -24,10 +27,9 @@ class DiffParser(Parser):
         :param node: ProcessNode of calculation
         :param type node: :class:`aiida.orm.ProcessNode`
         """
-        from aiida.common import exceptions
         super(DiffParser, self).__init__(node)
         if not issubclass(node.process_class, DiffCalculation):
-            raise exceptions.ParsingError("Can only parse DiffCalculation")
+            raise exceptions.ParsingError('Can only parse DiffCalculation')
 
     def parse(self, **kwargs):
         """
@@ -35,8 +37,6 @@ class DiffParser(Parser):
 
         :returns: an exit code, if parsing fails (or nothing if parsing succeeds)
         """
-        from aiida.orm import SinglefileData
-
         output_filename = self.node.get_option('output_filename')
 
         # Check that folder content is as expected
