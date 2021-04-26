@@ -32,6 +32,7 @@
     "reentry_register": true,
     "install_requires": [
         "aiida-core>={{cookiecutter.aiida_min_version}},<2.0.0",
+        "sqlalchemy<1.4",
         "six",
         "voluptuous"
     ],
