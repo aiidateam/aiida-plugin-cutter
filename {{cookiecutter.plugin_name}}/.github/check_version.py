@@ -22,14 +22,14 @@ with open(SETUP_PATH) as f:
 # Get version from python package
 sys.path.insert(0, os.path.join(this_path, os.pardir))
 import {{cookiecutter.module_name}}  # pylint: disable=wrong-import-position
-version = {{cookiecutter.module_name}}.__version__
+VERSION = {{cookiecutter.module_name}}.__version__
 
 if version != setup_content['version']:
     print('Version number mismatch detected:')
-    print("Version number in '{}': {}".format(setup_fname,
+    print("Version number in '{}': {}".format(SETUP_FNAME,
                                               setup_content['version']))
     print("Version number in '{}/__init__.py': {}".format(
-        '{{cookiecutter.module_name}}', version))
+        '{{cookiecutter.module_name}}', VERSION))
     sys.exit(1)
 
 # Overwrite version in setup.json

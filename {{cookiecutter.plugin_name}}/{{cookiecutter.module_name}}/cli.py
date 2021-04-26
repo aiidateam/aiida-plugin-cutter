@@ -12,6 +12,8 @@ import click
 from aiida.cmdline.utils import decorators
 from aiida.cmdline.commands.cmd_data import verdi_data
 from aiida.cmdline.params.types import DataParamType
+from aiida.orm import QueryBuilder
+from aiida.plugins import DataFactory
 
 
 # See aiida.cmdline.data entry point in setup.json
@@ -19,15 +21,12 @@ from aiida.cmdline.params.types import DataParamType
 def data_cli():
     """Command line interface for {{cookiecutter.plugin_name}}"""
 
-
 @data_cli.command('list')
 @decorators.with_dbenv()
 def list_():  # pylint: disable=redefined-builtin
     """
     Display all DiffParameters nodes
     """
-    from aiida.orm import QueryBuilder
-    from aiida.plugins import DataFactory
     DiffParameters = DataFactory('{{cookiecutter.entry_point_prefix}}')
 
     qb = QueryBuilder()

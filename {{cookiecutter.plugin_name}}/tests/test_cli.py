@@ -2,8 +2,8 @@
 """ Tests for command line interface.
 
 """
-from aiida.manage.tests.unittest_classes import PluginTestCase
 from click.testing import CliRunner
+from aiida.manage.tests.unittest_classes import PluginTestCase
 from aiida.plugins import DataFactory
 
 from {{cookiecutter.module_name}}.cli import list_, export

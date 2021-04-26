@@ -5,13 +5,12 @@
 Usage: ./example_01.py
 """
 from os import path
-from {{cookiecutter.module_name}} import helpers
+import click
 from aiida import cmdline, engine
 from aiida.plugins import DataFactory, CalculationFactory
-import click
+from {{cookiecutter.module_name}} import helpers
 
 INPUT_DIR = path.join(path.dirname(path.realpath(__file__)), 'input_files')
-
 
 def test_run({{cookiecutter.entry_point_prefix}}_code):
     """Run a calculation on the localhost computer.
@@ -24,7 +23,7 @@ def test_run({{cookiecutter.entry_point_prefix}}_code):
         {{cookiecutter.entry_point_prefix}}_code = helpers.get_code(entry_point='{{cookiecutter.entry_point_prefix}}', computer=computer)
 
     # Prepare input parameters
-    DiffParameters = DataFactory('{{cookiecutter.entry_point_prefix}}')
+    DiffParameters = DataFactory('{{cookiecutter.entry_point_prefix}}')  
     parameters = DiffParameters({'ignore-case': True})
 
     SinglefileData = DataFactory('singlefile')
