@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Command line interface (cli) for {{cookiecutter.module_name}}.
 
@@ -33,10 +34,10 @@ def list_():  # pylint: disable=redefined-builtin
     qb.append(DiffParameters)
     results = qb.all()
 
-    s = ""
+    s = ''
     for result in results:
         obj = result[0]
-        s += "{}, pk: {}\n".format(str(obj), obj.pk)
+        s += '{}, pk: {}\n'.format(str(obj), obj.pk)
     sys.stdout.write(s)
 
 

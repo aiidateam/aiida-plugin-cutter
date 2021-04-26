@@ -90,5 +90,5 @@ class DiffParameters(Dict):  # pylint: disable=too-many-ancestors
 
         """
         string = super(DiffParameters, self).__str__()
-        string += "\n" + str(self.get_dict())
+        string += '\n' + str(self.get_dict())
         return string

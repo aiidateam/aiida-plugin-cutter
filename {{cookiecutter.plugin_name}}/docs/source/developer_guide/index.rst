@@ -18,7 +18,7 @@ Enable enable automatic checks of code sanity and coding style::
     pip install -e .[pre-commit]
     pre-commit install
 
-After this, the `yapf <https://github.com/google/yapf>`_ formatter, 
+After this, the `yapf <https://github.com/google/yapf>`_ formatter,
 the `pylint <https://www.pylint.org/>`_ linter
 and the `pylint <https://www.pylint.org/>`_ code analyzer will
 run at every commit.
@@ -87,7 +87,7 @@ After this, you (and everyone else) should be able to::
 You can also enable *automatic* deployment of git tags to the python package index:
 simply generate a `PyPI API token <https://pypi.org/help/#apitoken>`_ for your PyPI account and add it as a secret to your GitHub repository under the name ``pypi_token`` (Go to Settings -> Secrets).
 
-.. note:: 
+.. note::
 
    When updating the plugin package to a new version, remember to update the version number both in ``setup.json`` and ``{{cookiecutter.module_name}}/__init__.py``.
 
