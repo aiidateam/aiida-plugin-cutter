@@ -9,7 +9,7 @@ if __name__ == '__main__':
     with open('setup.json', 'r') as info:
         kwargs = json.load(info)
     setup(
-        packages=find_packages(exclude=['tests*']),
+        packages=find_packages(include=['{{cookiecutter.module_name}}', '{{cookiecutter.module_name}}.*']),
         # this doesn't work when placed in setup.json (something to do with str type)
         package_data={
             '': ['*'],
