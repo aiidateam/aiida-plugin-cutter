@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ Tests for calculations
 
 """
@@ -17,9 +18,9 @@ def test_process({{cookiecutter.entry_point_prefix}}_code):
 
     from aiida.orm import SinglefileData
     file1 = SinglefileData(
-        file=os.path.join(TEST_DIR, "input_files", 'file1.txt'))
+        file=os.path.join(TEST_DIR, 'input_files', 'file1.txt'))
     file2 = SinglefileData(
-        file=os.path.join(TEST_DIR, "input_files", 'file2.txt'))
+        file=os.path.join(TEST_DIR, 'input_files', 'file2.txt'))
 
     # set up calculation
     inputs = {

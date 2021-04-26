@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Check that version numbers match.
 
 Check version number in setup.json and {{cookiecutter.module_name}}/__init__.py and make sure
@@ -24,7 +25,7 @@ import {{cookiecutter.module_name}}  # pylint: disable=wrong-import-position
 version = {{cookiecutter.module_name}}.__version__
 
 if version != setup_content['version']:
-    print("Version number mismatch detected:")
+    print('Version number mismatch detected:')
     print("Version number in '{}': {}".format(setup_fname,
                                               setup_content['version']))
     print("Version number in '{}/__init__.py': {}".format(

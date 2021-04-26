@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Parsers provided by {{cookiecutter.module_name}}.
 
@@ -27,7 +28,7 @@ class DiffParser(Parser):
         from aiida.common import exceptions
         super(DiffParser, self).__init__(node)
         if not issubclass(node.process_class, DiffCalculation):
-            raise exceptions.ParsingError("Can only parse DiffCalculation")
+            raise exceptions.ParsingError('Can only parse DiffCalculation')
 
     def parse(self, **kwargs):
         """

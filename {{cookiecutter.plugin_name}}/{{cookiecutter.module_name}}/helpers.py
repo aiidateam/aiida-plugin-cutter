@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 """ Helper functions for automatically setting up computer & code.
 Helper functions for setting up 
 
  1. An AiiDA localhost computer
  2. A "diff" code on localhost
- 
+
 Note: Point 2 is made possible by the fact that the ``diff`` executable is
 available in the PATH on almost any UNIX system.
 """
@@ -34,12 +35,12 @@ def get_computer(name=LOCALHOST_NAME, workdir=None):
     """Get AiiDA computer.
     Loads computer 'name' from the database, if exists.
     Sets up local computer 'name', if it isn't found in the DB.
-    
+
     :param name: Name of computer to load or set up.
-    :param workdir: path to work directory 
+    :param workdir: path to work directory
         Used only when creating a new computer.
-    :return: The computer node 
-    :rtype: :py:class:`aiida.orm.Computer` 
+    :return: The computer node
+    :rtype: :py:class:`aiida.orm.Computer`
     """
     from aiida.orm import Computer
     from aiida.common.exceptions import NotExistent
@@ -67,11 +68,11 @@ def get_computer(name=LOCALHOST_NAME, workdir=None):
 def get_code(entry_point, computer):
     """Get local code.
     Sets up code for given entry point on given computer.
-    
+
     :param entry_point: Entry point of calculation plugin
     :param computer: (local) AiiDA computer
-    :return: The code node 
-    :rtype: :py:class:`aiida.orm.Code` 
+    :return: The code node
+    :rtype: :py:class:`aiida.orm.Code`
     """
     from aiida.orm import Code
 

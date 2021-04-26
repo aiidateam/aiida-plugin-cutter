@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """Run a test calculation on localhost.
 
 Usage: ./example_01.py
@@ -39,7 +40,7 @@ def test_run({{cookiecutter.entry_point_prefix}}_code):
         'file1': file1,
         'file2': file2,
         'metadata': {
-            'description': "Test job submission with the {{cookiecutter.module_name}} plugin",
+            'description': 'Test job submission with the {{cookiecutter.module_name}} plugin',
         },
     }
 
@@ -49,7 +50,7 @@ def test_run({{cookiecutter.entry_point_prefix}}_code):
     result = engine.run(CalculationFactory('{{cookiecutter.entry_point_prefix}}'), **inputs)
 
     computed_diff = result['{{cookiecutter.entry_point_prefix}}'].get_content()
-    print("Computed diff between files: \n{}".format(computed_diff))
+    print('Computed diff between files: \n{}'.format(computed_diff))
 
 
 @click.command()

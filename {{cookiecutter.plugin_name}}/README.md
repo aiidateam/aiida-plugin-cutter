@@ -120,8 +120,7 @@ See the [developer guide](http://{{ cookiecutter.plugin_name }}.readthedocs.io/e
 
 MIT
 
-{%if cookiecutter.contact_email!=""%}
-## Contact
+{%if cookiecutter.contact_email!=""%}## Contact
 
 {{ cookiecutter.contact_email }}
 {%endif%}

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ Tests for the plugin.
 
 Includes both tests written in unittest style (test_cli.py) and tests written
