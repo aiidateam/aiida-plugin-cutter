@@ -1,13 +1,14 @@
 # Install pre-commit hooks via:
 # pre-commit install
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v2.5.0
+  rev: v3.4.0
   hooks:
     - id: double-quote-string-fixer
     - id: end-of-file-fixer
     - id: fix-encoding-pragma
     - id: mixed-line-ending
     - id: trailing-whitespace
+    - id: check-json
 
 # yapf = yet another python formatter
 - repo: https://github.com/pre-commit/mirrors-yapf
