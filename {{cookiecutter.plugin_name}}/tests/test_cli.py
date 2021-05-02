@@ -22,7 +22,7 @@ class TestDataCli:
         Tests that it can be reached and that it lists the node we have set up.
         """
         result = self.runner.invoke(list_, catch_exceptions=False)
-        self.assertIn(str(self.parameters.pk), result.output)
+        assert str(self.parameters.pk) in result.output
 
     def test_data_diff_export(self):
         """Test 'verdi data {{cookiecutter.entry_point_prefix}} export'
@@ -32,4 +32,4 @@ class TestDataCli:
         """
         result = self.runner.invoke(export, [str(self.parameters.pk)],
                                     catch_exceptions=False)
-        self.assertIn('ignore-case', result.output)
+        assert 'ignore-case' in result.output
