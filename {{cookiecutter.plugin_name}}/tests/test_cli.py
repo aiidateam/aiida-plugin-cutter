@@ -3,15 +3,14 @@
 
 """
 from click.testing import CliRunner
-from aiida.manage.tests.unittest_classes import PluginTestCase
 from aiida.plugins import DataFactory
 
 from {{cookiecutter.module_name}}.cli import list_, export
 
-class TestDataCli(PluginTestCase):
+class TestDataCli:
     """Test verdi data cli plugin."""
 
-    def setUp(self):
+    def setup_method(self):
         DiffParameters = DataFactory('{{cookiecutter.entry_point_prefix}}')
         self.parameters = DiffParameters({'ignore-case': True})
         self.parameters.store()
