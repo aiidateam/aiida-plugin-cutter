@@ -46,13 +46,13 @@ def get_computer(name=LOCALHOST_NAME, workdir=None):
     """
 
     try:
-        computer = Computer.objects.get(name=name)
+        computer = Computer.objects.get(label=name)
     except NotExistent:
         if workdir is None:
             workdir = tempfile.mkdtemp()
 
         computer = Computer(
-            name=name,
+            label=name,
             description='localhost computer set up by aiida_diff tests',
             hostname=name,
             workdir=workdir,
