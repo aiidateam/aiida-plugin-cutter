@@ -43,7 +43,7 @@ class DiffParameters(Dict):  # pylint: disable=too-many-ancestors
 
         """
         dict = self.validate(dict)
-        super(DiffParameters, self).__init__(dict=dict, **kwargs)
+        super().__init__(dict=dict, **kwargs)
 
     def validate(self, parameters_dict):  # pylint: disable=no-self-use
         """Validate command line options.

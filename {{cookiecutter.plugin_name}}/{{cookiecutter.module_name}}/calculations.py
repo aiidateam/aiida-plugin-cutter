@@ -23,7 +23,7 @@ class DiffCalculation(CalcJob):
     def define(cls, spec):
         """Define inputs and outputs of the calculation."""
         # yapf: disable
-        super(DiffCalculation, cls).define(spec)
+        super().define(spec)
 
         # set default values for AiiDA options
         spec.inputs['metadata']['options']['resources'].default = {

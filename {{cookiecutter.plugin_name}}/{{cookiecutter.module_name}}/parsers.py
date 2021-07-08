@@ -27,7 +27,7 @@ class DiffParser(Parser):
         :param node: ProcessNode of calculation
         :param type node: :class:`aiida.orm.ProcessNode`
         """
-        super(DiffParser, self).__init__(node)
+        super().__init__(node)
         if not issubclass(node.process_class, DiffCalculation):
             raise exceptions.ParsingError('Can only parse DiffCalculation')
 
