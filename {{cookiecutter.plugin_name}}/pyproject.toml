@@ -5,6 +5,7 @@ max-line-length = 125
 disable = [
     "too-many-ancestors",
     "invalid-name",
+    "duplicate-code",
 ]
 
 [tool.pytest.ini_options]

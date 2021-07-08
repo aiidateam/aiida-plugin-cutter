@@ -23,7 +23,7 @@ class DiffCalculation(CalcJob):
     def define(cls, spec):
         """Define inputs and outputs of the calculation."""
         # yapf: disable
-        super(DiffCalculation, cls).define(spec)
+        super().define(spec)
 
         # set default values for AiiDA options
         spec.inputs['metadata']['options']['resources'].default = {
@@ -39,7 +39,7 @@ class DiffCalculation(CalcJob):
         spec.input('file2', valid_type=SinglefileData, help='Second file to be compared.')
         spec.output('{{cookiecutter.entry_point_prefix}}', valid_type=SinglefileData, help='diff between file1 and file2.')
 
-        spec.exit_code(100, 'ERROR_MISSING_OUTPUT_FILES', message='Calculation did not produce all expected output files.')
+        spec.exit_code(300, 'ERROR_MISSING_OUTPUT_FILES', message='Calculation did not produce all expected output files.')
 
 
     def prepare_for_submission(self, folder):

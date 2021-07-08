@@ -46,9 +46,8 @@
             "pytest-cov"
         ],
         "pre-commit": [
-            "astroid<2.5",
             "pre-commit~=2.2",
-            "pylint~=2.5.0"
+            "pylint>=2.5.0,<2.9"
         ],
         "docs": [
             "sphinx",
