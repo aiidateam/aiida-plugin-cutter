@@ -89,6 +89,6 @@ class DiffParameters(Dict):  # pylint: disable=too-many-ancestors
             {'ignore-case': True}
 
         """
-        string = super(DiffParameters, self).__str__()
+        string = super().__str__()
         string += '\n' + str(self.get_dict())
         return string
