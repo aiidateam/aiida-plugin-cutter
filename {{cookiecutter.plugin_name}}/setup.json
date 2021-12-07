@@ -10,6 +10,7 @@
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
+        "Development Status :: 3 - Alpha",
         "Framework :: AiiDA"
     ],
     "version": "{{cookiecutter.version}}",
