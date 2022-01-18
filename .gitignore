@@ -5,3 +5,6 @@
 .DS_Store
 aiida-diff/
 .pytest_cache/
+aiida-ck/
+.tox/
+.vscode/

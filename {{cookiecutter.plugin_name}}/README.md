@@ -1,7 +1,7 @@
-[![Build Status](https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }}/workflows/ci/badge.svg?branch=master)](https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }}/actions)
-[![Coverage Status](https://coveralls.io/repos/github/{{ cookiecutter.github_user}}/{{ cookiecutter.repo_name }}/badge.svg?branch=master)](https://coveralls.io/github/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }}?branch=master)
-[![Docs status](https://readthedocs.org/projects/{{ cookiecutter.plugin_name }}/badge)](http://{{ cookiecutter.plugin_name }}.readthedocs.io/)
-[![PyPI version](https://badge.fury.io/py/{{ cookiecutter.plugin_name }}.svg)](https://badge.fury.io/py/{{ cookiecutter.plugin_name }})
+[![Build Status][ci-badge]][ci-link]
+[![Coverage Status][cov-badge]][cov-link]
+[![Docs status][docs-badge]][docs-link]
+[![PyPI version][pypi-badge]][pypi-link]
 
 # {{ cookiecutter.plugin_name }}
 
@@ -25,22 +25,16 @@ intended to help developers get started with their AiiDA plugins.
 * [`docs/`](docs/): A documentation template ready for publication on [Read the Docs](http://aiida-diff.readthedocs.io/en/latest/)
 * [`examples/`](examples/): An example of how to submit a calculation using this plugin
 * [`tests/`](tests/): Basic regression tests using the [pytest](https://docs.pytest.org/en/latest/) framework (submitting a calculation, ...). Install `pip install -e .[testing]` and run `pytest`.
-* [`.coveragerc`](.coveragerc): Configuration of [coverage.py](https://coverage.readthedocs.io/en/latest) tool reporting which lines of your plugin are covered by tests
 * [`.gitignore`](.gitignore): Telling git which files to ignore
 * [`.pre-commit-config.yaml`](.pre-commit-config.yaml): Configuration of [pre-commit hooks](https://pre-commit.com/) that sanitize coding style and check for syntax errors. Enable via `pip install -e .[pre-commit] && pre-commit install`
 * [`.readthedocs.yml`](.readthedocs.yml): Configuration of documentation build for [Read the Docs](https://readthedocs.org/)
 * [`LICENSE`](LICENSE): License for your plugin
-* [`MANIFEST.in`](MANIFEST.in): Configure non-Python files to be included for publication on [PyPI](https://pypi.org/)
 * [`README.md`](README.md): This file
 * [`conftest.py`](conftest.py): Configuration of fixtures for [pytest](https://docs.pytest.org/en/latest/)
-* [`pytest.ini`](pytest.ini): Configuration of [pytest](https://docs.pytest.org/en/latest/) test discovery
-* [`setup.json`](setup.json): Plugin metadata for registration on [PyPI](https://pypi.org/) and the [AiiDA plugin registry](https://aiidateam.github.io/aiida-registry/) (including entry points)
-* [`setup.py`](setup.py): Installation script for pip / [PyPI](https://pypi.org/)
-
+* [`pyproject.toml`](setup.json): Python package metadata for registration on [PyPI](https://pypi.org/) and the [AiiDA plugin registry](https://aiidateam.github.io/aiida-registry/) (including entry points)
 
 See also the following video sequences from the 2019-05 AiiDA tutorial:
 
- * [aiida-diff setup.json](https://www.youtube.com/watch?v=2CxiuiA1uVs&t=240s)
  * [run aiida-diff example calculation](https://www.youtube.com/watch?v=2CxiuiA1uVs&t=403s)
  * [aiida-diff CalcJob plugin](https://www.youtube.com/watch?v=2CxiuiA1uVs&t=685s)
  * [aiida-diff Parser plugin](https://www.youtube.com/watch?v=2CxiuiA1uVs&t=936s)
@@ -109,6 +103,7 @@ verdi data {{cookiecutter.entry_point_prefix}} export <PK>
 ```shell
 git clone https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name}} .
 cd {{ cookiecutter.repo_name }}
+pip install --upgrade pip
 pip install -e .[pre-commit,testing]  # install extra dependencies
 pre-commit install  # install pre-commit hooks
 pytest -v  # discover and run all tests
@@ -122,3 +117,13 @@ MIT{%if cookiecutter.contact_email!=""%}
 ## Contact
 
 {{ cookiecutter.contact_email }}{%endif%}
+
+
+[ci-badge]: https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }}/workflows/ci/badge.svg?branch=master
+[ci-link]: https://github.com/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }}/actions
+[cov-badge]: https://coveralls.io/repos/github/{{ cookiecutter.github_user}}/{{ cookiecutter.repo_name }}/badge.svg?branch=master
+[cov-link]: https://coveralls.io/github/{{ cookiecutter.github_user }}/{{ cookiecutter.repo_name }}?branch=master
+[docs-badge]: https://readthedocs.org/projects/{{ cookiecutter.plugin_name }}/badge
+[docs-link]: http://{{ cookiecutter.plugin_name }}.readthedocs.io/
+[pypi-badge]: https://badge.fury.io/py/{{ cookiecutter.plugin_name }}.svg
+[pypi-link]: https://badge.fury.io/py/{{ cookiecutter.plugin_name }}

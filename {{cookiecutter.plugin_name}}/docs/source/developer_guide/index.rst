@@ -7,8 +7,14 @@ Running the tests
 
 The following will discover and run all unit test::
 
+    pip install --upgrade pip
     pip install -e .[testing]
     pytest -v
+
+You can also run the tests in a virtual environment with `tox <https://tox.wiki/en/latest/>`_::
+
+    pip install tox tox-conda
+    tox -e py38 -- -v
 
 Automatic coding style checks
 +++++++++++++++++++++++++++++
@@ -18,7 +24,7 @@ Enable enable automatic checks of code sanity and coding style::
     pip install -e .[pre-commit]
     pre-commit install
 
-After this, the `yapf <https://github.com/google/yapf>`_ formatter,
+After this, the `black <https://black.readthedocs.io>`_ formatter,
 the `pylint <https://www.pylint.org/>`_ linter
 and the `pylint <https://www.pylint.org/>`_ code analyzer will
 run at every commit.
@@ -27,6 +33,11 @@ If you ever need to skip these pre-commit hooks, just use::
 
     git commit -n
 
+You should also keep the pre-commit hooks up to date periodically, with::
+
+    pre-commit autoupdate
+
+Or consider using `pre-commit.ci <https://pre-commit.ci/>`_.
 
 Continuous integration
 ++++++++++++++++++++++
@@ -74,11 +85,10 @@ PyPI release
 ++++++++++++
 
 Your plugin is ready to be uploaded to the `Python Package Index <https://pypi.org/>`_.
-Just register for an account and::
+Just register for an account and use `flit <https://flit.readthedocs.io/en/latest/upload.html>`_::
 
-    pip install twine
-    python setup.py sdist bdist_wheel
-    twine upload dist/*
+    pip install flit
+    flit publish
 
 After this, you (and everyone else) should be able to::
 
@@ -86,10 +96,6 @@ After this, you (and everyone else) should be able to::
 
 You can also enable *automatic* deployment of git tags to the python package index:
 simply generate a `PyPI API token <https://pypi.org/help/#apitoken>`_ for your PyPI account and add it as a secret to your GitHub repository under the name ``pypi_token`` (Go to Settings -> Secrets).
-
-.. note::
-
-   When updating the plugin package to a new version, remember to update the version number both in ``setup.json`` and ``{{cookiecutter.module_name}}/__init__.py``.
 
 
 .. _ReadTheDocs: https://readthedocs.org/

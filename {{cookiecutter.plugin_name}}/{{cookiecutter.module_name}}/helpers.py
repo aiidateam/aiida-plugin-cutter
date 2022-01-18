@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """ Helper functions for automatically setting up computer & code.
 Helper functions for setting up
 
@@ -8,20 +7,21 @@ Helper functions for setting up
 Note: Point 2 is made possible by the fact that the ``diff`` executable is
 available in the PATH on almost any UNIX system.
 """
-import tempfile
 import shutil
-from aiida.orm import Computer, Code
-from aiida.common.exceptions import NotExistent
+import tempfile
 
-LOCALHOST_NAME = 'localhost-test'
+from aiida.common.exceptions import NotExistent
+from aiida.orm import Code, Computer
+
+LOCALHOST_NAME = "localhost-test"
 
 executables = {
-    '{{cookiecutter.entry_point_prefix}}': 'diff',
+    "{{cookiecutter.entry_point_prefix}}": "diff",
 }
 
 
 def get_path_to_executable(executable):
-    """ Get path to local executable.
+    """Get path to local executable.
     :param executable: Name of executable in the $PATH variable
     :type executable: str
     :return: path to executable
@@ -29,7 +29,7 @@ def get_path_to_executable(executable):
     """
     path = shutil.which(executable)
     if path is None:
-        raise ValueError("'{}' executable not found in PATH.".format(executable))
+        raise ValueError(f"'{executable}' executable not found in PATH.")
     return path
 
 
@@ -53,13 +53,14 @@ def get_computer(name=LOCALHOST_NAME, workdir=None):
 
         computer = Computer(
             label=name,
-            description='localhost computer set up by aiida_diff tests',
+            description="localhost computer set up by aiida_diff tests",
             hostname=name,
             workdir=workdir,
-            transport_type='local',
-            scheduler_type='direct')
+            transport_type="local",
+            scheduler_type="direct",
+        )
         computer.store()
-        computer.set_minimum_job_poll_interval(0.)
+        computer.set_minimum_job_poll_interval(0.0)
         computer.configure()
 
     return computer
@@ -80,13 +81,17 @@ def get_code(entry_point, computer):
     except KeyError as exc:
         raise KeyError(
             "Entry point '{}' not recognized. Allowed values: {}".format(
-                entry_point, list(executables.keys()))) from exc
+                entry_point, list(executables.keys())
+            )
+        ) from exc
 
-    codes = Code.objects.find(filters={'label': executable})  # pylint: disable=no-member
+    codes = Code.objects.find(  # pylint: disable=no-member
+        filters={"label": executable}
+    )
     if codes:
         return codes[0]
 
-    path = get_path_to_executable(executable)	
+    path = get_path_to_executable(executable)
     code = Code(
         input_plugin_name=entry_point,
         remote_computer_exec=[computer, path],

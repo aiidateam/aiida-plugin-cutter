@@ -1,2 +1,2 @@
 cookiecutter
-yapf==0.30.0
+black==21.12b0

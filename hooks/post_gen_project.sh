@@ -1,9 +1,9 @@
 #!/bin/bash
-if [ -x "$(command -v yapf)" ]; then
-    echo "Running yapf on {{ cookiecutter.plugin_name }}"
-    yapf -i -r '../{{ cookiecutter.plugin_name }}/'
+if [ -x "$(command -v black)" ]; then
+    echo "Running black on {{ cookiecutter.plugin_name }}"
+    black '../{{ cookiecutter.plugin_name }}/'
 else
-    echo "yapf not found. 'pip install yapf' to automatically \
+    echo "black not found. 'pip install black' to automatically \
           run formatter on {{ cookiecutter.plugin_name }}"
 fi
 
