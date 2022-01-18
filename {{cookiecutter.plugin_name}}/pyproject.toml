@@ -1,3 +1,74 @@
+[build-system]
+# build the package with [flit](https://flit.readthedocs.io)
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+# See https://www.python.org/dev/peps/pep-0621/
+name = "{{cookiecutter.plugin_name}}"
+dynamic = ["version"]  # read from {{cookiecutter.module_name}}/__init__.py
+description = "{{cookiecutter.short_description}}"
+{%- if cookiecutter.contact_email -%}
+authors = [{name = "{{cookiecutter.author}}", email = "{{cookiecutter.contact_email}}"}]
+{% else %}
+authors = [{name = "{{cookiecutter.author}}"}]
+{%- endif %}
+readme = "README.md"
+license = {file = "LICENSE"}
+classifiers = [
+    "Programming Language :: Python",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Development Status :: 3 - Alpha",
+    "Framework :: AiiDA"
+]
+keywords = ["aiida", "plugin"]
+requires-python = ">=3.7"
+dependencies = [
+    "aiida-core>={{cookiecutter.aiida_min_version}},<2.0.0",
+    "sqlalchemy<1.4",
+    "psycopg2-binary<2.9",
+    "voluptuous"
+]
+
+[project.urls]
+Source = "https://github.com/{{cookiecutter.github_user}}/{{cookiecutter.repo_name}}"
+
+[project.optional-dependencies]
+testing = [
+    "pgtest~=1.3.1",
+    "wheel~=0.31",
+    "coverage[toml]",
+    "pytest~=6.0",
+    "pytest-cov"
+]
+pre-commit = [
+    "pre-commit~=2.2",
+    "pylint>=2.5.0,<2.9"
+]
+docs = [
+    "sphinx",
+    "sphinxcontrib-contentui",
+    "sphinxcontrib-details-directive",
+    "furo"
+]
+
+[project.entry-points."aiida.data"]
+"{{cookiecutter.entry_point_prefix}}" = "{{cookiecutter.module_name}}.data:DiffParameters"
+
+[project.entry-points."aiida.calculations"]
+"{{cookiecutter.entry_point_prefix}}" = "{{cookiecutter.module_name}}.calculations:DiffCalculation"
+
+[project.entry-points."aiida.parsers"]
+"{{cookiecutter.entry_point_prefix}}" = "{{cookiecutter.module_name}}.parsers:DiffParser"
+
+[project.entry-points."aiida.cmdline.data"]
+"{{cookiecutter.entry_point_prefix}}" = "{{cookiecutter.module_name}}.cli:data_cli"
+
+[tool.flit.module]
+name = "{{cookiecutter.module_name}}"
+
 [tool.pylint.format]
 max-line-length = 125
 
@@ -6,9 +77,13 @@ disable = [
     "too-many-ancestors",
     "invalid-name",
     "duplicate-code",
+    # black compatibility
+    "C0330",
+    "C0326",
 ]
 
 [tool.pytest.ini_options]
+# Configuration for [pytest](https://docs.pytest.org)
 python_files = "test_*.py example_*.py"
 filterwarnings = [
     "ignore::DeprecationWarning:aiida:",
@@ -16,3 +91,15 @@ filterwarnings = [
     "ignore::DeprecationWarning:django:",
     "ignore::DeprecationWarning:yaml:",
 ]
+
+[tool.coverage.run]
+# Configuration of [coverage.py](https://coverage.readthedocs.io)
+# reporting which lines of your plugin are covered by tests
+source="{{cookiecutter.module_name}}"
+
+[tool.isort]
+# Configuration of [isort](https://isort.readthedocs.io)
+line_length = 120
+force_sort_within_sections = true
+sections = ['FUTURE', 'STDLIB', 'THIRDPARTY', 'AIIDA', 'FIRSTPARTY', 'LOCALFOLDER']
+known_aiida = ['aiida']

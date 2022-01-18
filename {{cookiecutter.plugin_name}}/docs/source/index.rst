@@ -1,7 +1,3 @@
-.. figure:: images/AiiDA_transparent_logo.png
-    :width: 250px
-    :align: center
-
 The {{cookiecutter.plugin_name}} plugin for `AiiDA`_
 =====================================================
 
@@ -14,6 +10,7 @@ The {{cookiecutter.plugin_name}} plugin for `AiiDA`_
    user_guide/index
    developer_guide/index
    API documentation <apidoc/{{cookiecutter.module_name}}>
+   AiiDA Documentation <https://aiida.readthedocs.io>
 
 If you use this plugin for your research, please cite the following work:
 

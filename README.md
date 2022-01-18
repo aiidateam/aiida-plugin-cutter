@@ -11,7 +11,7 @@ See the [`support/aiida-0.x` branch](https://github.com/aiidateam/aiida-plugin-c
 
 ## Usage instructions
 
-    pip install cookiecutter yapf
+    pip install cookiecutter black
     cookiecutter https://github.com/aiidateam/aiida-plugin-cutter.git
 
 ![Demo](https://image.ibb.co/ct6rL8/aiida_plugin_cutter.gif "The fastest way to kickstart an AiiDA plugin.")

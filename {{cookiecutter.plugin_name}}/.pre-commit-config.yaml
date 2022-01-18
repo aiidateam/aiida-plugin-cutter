@@ -2,22 +2,28 @@
 # pre-commit install
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v3.4.0
+  rev: v4.1.0
   hooks:
-    - id: double-quote-string-fixer
     - id: end-of-file-fixer
-    - id: fix-encoding-pragma
     - id: mixed-line-ending
     - id: trailing-whitespace
     - id: check-json
 
-# yapf = yet another python formatter
-- repo: https://github.com/pre-commit/mirrors-yapf
-  rev: v0.30.0
+- repo: https://github.com/asottile/pyupgrade
+  rev: v2.31.0
   hooks:
-  - id: yapf
-    name: yapf
-    args: ["-i"]
+  - id: pyupgrade
+    args: ["--py37-plus"]
+
+- repo: https://github.com/PyCQA/isort
+  rev: 5.10.1
+  hooks:
+    - id: isort
+
+- repo: https://github.com/psf/black
+  rev: 21.12b0
+  hooks:
+    - id: black
 
 - repo: local
   hooks:
@@ -31,9 +37,3 @@ repos:
           docs/.*|
       )$
     entry: pylint
-
-  - id: version-number
-    name: Check version numbers
-    entry: python ./.github/check_version.py
-    language: system
-    files: '^(setup.json)|({{cookiecutter.module_name}}/__init__.py)'

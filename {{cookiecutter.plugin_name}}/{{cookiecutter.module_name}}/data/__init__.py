@@ -1,22 +1,21 @@
-# -*- coding: utf-8 -*-
 """
 Data types provided by plugin
 
 Register data types via the "aiida.data" entry point in setup.json.
 """
-
 # You can directly use or subclass aiida.orm.data.Data
 # or any other data type listed under 'verdi data'
-from voluptuous import Schema, Optional
+from voluptuous import Optional, Schema
+
 from aiida.orm import Dict
 
 # A subset of diff's command line options
 cmdline_options = {
-    Optional('ignore-case'): bool,
-    Optional('ignore-file-name-case'): bool,
-    Optional('ignore-tab-expansion'): bool,
-    Optional('ignore-space-change'): bool,
-    Optional('ignore-all-space'): bool,
+    Optional("ignore-case"): bool,
+    Optional("ignore-file-name-case"): bool,
+    Optional("ignore-tab-expansion"): bool,
+    Optional("ignore-space-change"): bool,
+    Optional("ignore-all-space"): bool,
 }
 
 
@@ -74,7 +73,7 @@ class DiffParameters(Dict):  # pylint: disable=too-many-ancestors
         pm_dict = self.get_dict()
         for k in pm_dict.keys():
             if pm_dict[k]:
-                parameters += ['--' + k]
+                parameters += ["--" + k]
 
         parameters += [file1_name, file2_name]
 
@@ -90,5 +89,5 @@ class DiffParameters(Dict):  # pylint: disable=too-many-ancestors
 
         """
         string = super().__str__()
-        string += '\n' + str(self.get_dict())
+        string += "\n" + str(self.get_dict())
         return string

@@ -50,7 +50,7 @@ jobs:
         AIIDA_TEST_BACKEND: ${{ '{{ matrix.backend }}' }}
         # show timings of tests
         PYTEST_ADDOPTS: "--durations=0"
-      run: py.test --cov {{cookiecutter.module_name}} --cov-append .
+      run: pytest --cov {{cookiecutter.module_name}} --cov-append .
 
   docs:
     runs-on: ubuntu-latest
