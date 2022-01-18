@@ -80,7 +80,7 @@ PyPI release
 ++++++++++++
 
 Your plugin is ready to be uploaded to the `Python Package Index <https://pypi.org/>`_.
-Just register for an account and use `flit <https://flit.readthedocs.io/en/latest/upload.html>_::
+Just register for an account and use `flit <https://flit.readthedocs.io/en/latest/upload.html>`_::
 
     pip install flit
     flit publish
