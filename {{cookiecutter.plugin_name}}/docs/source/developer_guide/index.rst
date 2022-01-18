@@ -11,6 +11,11 @@ The following will discover and run all unit test::
     pip install -e .[testing]
     pytest -v
 
+You can also run the tests in a virtual environment with `tox <https://tox.wiki/en/latest/>`_::
+
+    pip install tox tox-conda
+    tox -e py38 -- -v
+
 Automatic coding style checks
 +++++++++++++++++++++++++++++
 
