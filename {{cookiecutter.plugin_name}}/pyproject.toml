@@ -95,7 +95,7 @@ filterwarnings = [
 [tool.coverage.run]
 # Configuration of [coverage.py](https://coverage.readthedocs.io)
 # reporting which lines of your plugin are covered by tests
-source="{{cookiecutter.module_name}}"
+source=["{{cookiecutter.module_name}}"]
 
 [tool.isort]
 # Configuration of [isort](https://isort.readthedocs.io)
