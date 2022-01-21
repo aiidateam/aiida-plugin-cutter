@@ -10,5 +10,8 @@ fi
 cat <<EOF
 
 ### IMPORTANT###
-Register your plugin NOW by making a pull request to the AiiDA Plugin Registry
+Register your plugin NOW by making a pull request to the AiiDA Plugin Registry at
+
+   https://aiidateam.github.io/aiida-registry/
+
 EOF
