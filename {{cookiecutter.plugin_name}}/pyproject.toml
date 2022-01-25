@@ -8,11 +8,11 @@ build-backend = "flit_core.buildapi"
 name = "{{cookiecutter.plugin_name}}"
 dynamic = ["version"]  # read from {{cookiecutter.module_name}}/__init__.py
 description = "{{cookiecutter.short_description}}"
-{%- if cookiecutter.contact_email -%}
+{%- if cookiecutter.contact_email %}
 authors = [{name = "{{cookiecutter.author}}", email = "{{cookiecutter.contact_email}}"}]
 {% else %}
 authors = [{name = "{{cookiecutter.author}}"}]
-{%- endif %}
+{% endif -%}
 readme = "README.md"
 license = {file = "LICENSE"}
 classifiers = [
