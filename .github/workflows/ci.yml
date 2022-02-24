@@ -10,7 +10,6 @@ jobs:
     strategy:
       matrix:
         python-version: [3.8]
-        backend: ['sqlalchemy']
         aiida-version: ['stable', 'develop']
     services:
       postgres:
@@ -60,7 +59,6 @@ jobs:
 
     - name: Run test suite
       env:
-        AIIDA_TEST_BACKEND: ${{ matrix.backend }}
         # show timings of tests
         PYTEST_ADDOPTS: "--durations=0"
         PLUGIN_NAME: aiida-ck
