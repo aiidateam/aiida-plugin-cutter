@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         python-version: [3.8]
-        backend: ['django']
+        backend: ['sqlalchemy']
         aiida-version: ['stable', 'develop']
     services:
       postgres:
@@ -53,6 +53,10 @@ jobs:
         pip install -e ${PLUGIN_NAME}[testing]
       env:
         PLUGIN_NAME: aiida-ck
+
+    - name: Run reentry scan
+      run: reentry scan
+      if: ${{ matrix.aiida-version != 'develop' }}
 
     - name: Run test suite
       env:
