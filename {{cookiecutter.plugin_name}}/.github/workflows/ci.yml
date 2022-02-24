@@ -42,7 +42,7 @@ jobs:
     - name: Install aiida develop version
       run: |
         pip install git+git://github.com/aiidateam/aiida-core
-      if: ${{ '{{ matrix.aiida-version == "develop" }}' }}
+      if: ${{ "{{ matrix.aiida-version == 'develop' }}" }}
 
     - name: Install python dependencies
       run: |
@@ -51,7 +51,7 @@ jobs:
 
     - name: Run reentry scan
       run: reentry scan
-      if: ${{ '{{ matrix.aiida-version != "develop" }}' }}
+      if: ${{ "{{ matrix.aiida-version != 'develop' }}" }}
 
     - name: Run test suite
       env:
