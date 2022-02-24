@@ -10,13 +10,13 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.8"]
-        backend: ['django']
+        aiida-version: ["stable", "develop"]
 
     services:
       postgres:
         image: postgres:10
         env:
-          POSTGRES_DB: test_${{ '{{ matrix.backend }}' }}
+          POSTGRES_DB: test_aiida
           POSTGRES_PASSWORD: ''
           POSTGRES_HOST_AUTH_METHOD: trust
         options: >-
@@ -39,15 +39,22 @@ jobs:
       with:
         python-version: ${{ '{{ matrix.python-version }}' }}
 
+    - name: Install aiida develop version
+      run: |
+        pip install git+git://github.com/aiidateam/aiida-core
+      if: ${{ matrix.aiida-version == 'develop' }}
+
     - name: Install python dependencies
       run: |
         pip install --upgrade pip
         pip install -e .[testing]
-        reentry scan -r aiida
+
+    - name: Run reentry scan
+      run: reentry scan
+      if: ${{ matrix.aiida-version != 'develop' }}
 
     - name: Run test suite
       env:
-        AIIDA_TEST_BACKEND: ${{ '{{ matrix.backend }}' }}
         # show timings of tests
         PYTEST_ADDOPTS: "--durations=0"
       run: pytest --cov {{cookiecutter.module_name}} --cov-append .
