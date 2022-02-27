@@ -15,7 +15,7 @@ Use the following commands to install the plugin::
     pip install -e .  # also installs aiida, if missing (but not postgres)
     #pip install -e .[pre-commit,testing] # install extras for more features
     verdi quicksetup  # better to set up a new profile
-    verdi calculation plugins  # should now show your calclulation plugins
+    verdi plugin list aiida.calculations  # should now show your calclulation plugins
 
 Then use ``verdi code setup`` with the ``{{cookiecutter.entry_point_prefix}}`` input plugin
 to set up an AiiDA code for {{cookiecutter.plugin_name}}.
