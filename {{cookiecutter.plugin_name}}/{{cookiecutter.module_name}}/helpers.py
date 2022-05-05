@@ -73,7 +73,7 @@ def get_code(entry_point, computer):
     :param entry_point: Entry point of calculation plugin
     :param computer: (local) AiiDA computer
     :return: The code node
-    :rtype: :py:class:`aiida.orm.codes.Code`
+    :rtype: :py:class:`aiida.orm.nodes.data.code.Code`
     """
 
     try:
