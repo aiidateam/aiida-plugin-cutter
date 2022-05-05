@@ -26,7 +26,7 @@ def test_run({{cookiecutter.entry_point_prefix}}_code):
         {{cookiecutter.entry_point_prefix}}_code = helpers.get_code(entry_point="{{cookiecutter.entry_point_prefix}}", computer=computer)
 
     # Prepare input parameters
-    DiffParameters = DataFactory("{{cookiecutter.entry_point_prefix}}")  
+    DiffParameters = DataFactory("{{cookiecutter.entry_point_prefix}}")
     parameters = DiffParameters({"ignore-case": True})
 
     SinglefileData = DataFactory("singlefile")
