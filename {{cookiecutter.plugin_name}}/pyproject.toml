@@ -87,7 +87,6 @@ python_files = "test_*.py example_*.py"
 filterwarnings = [
     "ignore::DeprecationWarning:aiida:",
     "ignore::DeprecationWarning:plumpy:",
-    "ignore::DeprecationWarning:django:",
     "ignore::DeprecationWarning:yaml:",
 ]
 

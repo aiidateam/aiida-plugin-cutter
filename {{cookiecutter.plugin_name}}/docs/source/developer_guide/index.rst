@@ -44,7 +44,7 @@ Continuous integration
 
 ``{{cookiecutter.plugin_name}}`` comes with a ``.github`` folder that contains continuous integration tests on every commit using `GitHub Actions <https://github.com/features/actions>`_. It will:
 
-#. run all tests for the ``django`` ORM
+#. run all tests
 #. build the documentation
 #. check coding style and version number (not required to pass by default)
 

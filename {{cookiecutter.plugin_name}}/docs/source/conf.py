@@ -20,8 +20,7 @@ import {{cookiecutter.module_name}}
 
 # -- AiiDA-related setup --------------------------------------------------
 
-# Load the dummy profile even if we are running locally, this way the documentation will succeed even if the current
-# default profile of the AiiDA installation does not use a Django backend.
+# Load the dummy documentation profile
 load_documentation_profile()
 
 # -- General configuration ------------------------------------------------
