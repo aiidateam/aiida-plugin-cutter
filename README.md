@@ -29,7 +29,6 @@ In order to get started with development
     ```bash
     cd aiida_<name>
     pip install -e .  # install in editable mode
-    reentry scan
     ```
 
 You are now ready to start development!
