@@ -42,7 +42,7 @@ def get_computer(name=LOCALHOST_NAME, workdir=None):
     :param workdir: path to work directory
         Used only when creating a new computer.
     :return: The computer node
-    :rtype: :py:class:`aiida.orm.Computer`
+    :rtype: :py:class:`aiida.orm.computers.Computer`
     """
 
     try:
@@ -73,7 +73,7 @@ def get_code(entry_point, computer):
     :param entry_point: Entry point of calculation plugin
     :param computer: (local) AiiDA computer
     :return: The code node
-    :rtype: :py:class:`aiida.orm.Code`
+    :rtype: :py:class:`aiida.orm.nodes.data.code.Code`
     """
 
     try:

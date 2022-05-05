@@ -14,19 +14,13 @@ import os
 import sys
 import time
 
-from reentry import manager
-
 from aiida.manage.configuration import load_documentation_profile
 
 import {{cookiecutter.module_name}}
 
 # -- AiiDA-related setup --------------------------------------------------
 
-# ensure all entry point plugins are lodaed
-manager.scan()
-
-# Load the dummy profile even if we are running locally, this way the documentation will succeed even if the current
-# default profile of the AiiDA installation does not use a Django backend.
+# Load the dummy documentation profile
 load_documentation_profile()
 
 # -- General configuration ------------------------------------------------
@@ -49,7 +43,7 @@ extensions = [
 
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
-    "aiida": ("https://aiida-core.readthedocs.io/en/latest", None),
+    "aiida": ("https://aiida.readthedocs.io/projects/aiida-core/en/latest", None),
 }
 
 # Add any paths that contain templates here, relative to this directory.

@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         python-version: [3.8]
-        aiida-version: ['stable', 'develop']
+        aiida-version: ['stable']
     services:
       postgres:
         image: postgres:10
@@ -38,11 +38,6 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Install aiida develop version
-      run: |
-        pip install git+git://github.com/aiidateam/aiida-core
-      if: ${{ matrix.aiida-version == 'develop' }}
-
     - name: Install python dependencies
       run: |
         pip install --upgrade pip
@@ -52,10 +47,6 @@ jobs:
         pip install -e ${PLUGIN_NAME}[testing]
       env:
         PLUGIN_NAME: aiida-ck
-
-    - name: Run reentry scan
-      run: reentry scan
-      if: ${{ matrix.aiida-version != 'develop' }}
 
     - name: Run test suite
       env:
@@ -107,7 +98,6 @@ jobs:
         # Change plugin_name to test we're not specific to "aiida-diff"
         cookiecutter --no-input . plugin_name=${PLUGIN_NAME}
         pip install -e ${PLUGIN_NAME}[pre-commit,docs,testing]
-        reentry scan -r aiida
     - name: Run pre-commit
       env:
         PLUGIN_NAME: aiida-ck

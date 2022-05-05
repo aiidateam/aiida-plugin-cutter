@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.8"]
-        aiida-version: ["stable", "develop"]
+        aiida-version: ["stable"]
 
     services:
       postgres:
@@ -39,19 +39,10 @@ jobs:
       with:
         python-version: ${{ '{{ matrix.python-version }}' }}
 
-    - name: Install aiida develop version
-      run: |
-        pip install git+git://github.com/aiidateam/aiida-core
-      if: ${{ "{{ matrix.aiida-version == 'develop' }}" }}
-
     - name: Install python dependencies
       run: |
         pip install --upgrade pip
         pip install -e .[testing]
-
-    - name: Run reentry scan
-      run: reentry scan
-      if: ${{ "{{ matrix.aiida-version != 'develop' }}" }}
 
     - name: Run test suite
       env:
@@ -72,7 +63,6 @@ jobs:
       run: |
         pip install --upgrade pip
         pip install -e .[docs]
-        reentry scan -r aiida
     - name: Build docs
       run: cd docs && make
 
@@ -89,7 +79,6 @@ jobs:
       run: |
         pip install --upgrade pip
         pip install -e .[pre-commit,docs,testing]
-        reentry scan -r aiida
     - name: Run pre-commit
       run: |
         pre-commit install
