@@ -56,8 +56,8 @@ def get_computer(name=LOCALHOST_NAME, workdir=None):
             description="localhost computer set up by aiida_diff tests",
             hostname=name,
             workdir=workdir,
-            transport_type="local",
-            scheduler_type="direct",
+            transport_type="core.local",
+            scheduler_type="core.direct",
         )
         computer.store()
         computer.set_minimum_job_poll_interval(0.0)
