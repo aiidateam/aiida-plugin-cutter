@@ -86,6 +86,7 @@ disable = [
 python_files = "test_*.py example_*.py"
 filterwarnings = [
     "ignore::DeprecationWarning:aiida:",
+    "ignore:Creating AiiDA configuration folder",
     "ignore::DeprecationWarning:plumpy:",
     "ignore::DeprecationWarning:yaml:",
 ]
