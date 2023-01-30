@@ -44,7 +44,7 @@ class DiffParameters(Dict):  # pylint: disable=too-many-ancestors
         dict = self.validate(dict)
         super().__init__(dict=dict, **kwargs)
 
-    def validate(self, parameters_dict):  # pylint: disable=no-self-use
+    def validate(self, parameters_dict):
         """Validate command line options.
 
         Uses the voluptuous package for validation. Find out about allowed keys using::
@@ -71,9 +71,9 @@ class DiffParameters(Dict):  # pylint: disable=too-many-ancestors
         parameters = []
 
         pm_dict = self.get_dict()
-        for k in pm_dict.keys():
-            if pm_dict[k]:
-                parameters += ["--" + k]
+        for option, enabled in pm_dict.items():
+            if enabled:
+                parameters += ["--" + option]
 
         parameters += [file1_name, file2_name]
 
