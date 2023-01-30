@@ -76,9 +76,6 @@ disable = [
     "too-many-ancestors",
     "invalid-name",
     "duplicate-code",
-    # black compatibility
-    "C0330",
-    "C0326",
 ]
 
 [tool.pytest.ini_options]

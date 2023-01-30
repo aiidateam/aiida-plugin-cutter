@@ -73,16 +73,14 @@ def get_code(entry_point, computer):
     :param entry_point: Entry point of calculation plugin
     :param computer: (local) AiiDA computer
     :return: The code node
-    :rtype: :py:class:`aiida.orm.nodes.data.code.InstalledCode`
+    :rtype: :py:class:`aiida.orm.nodes.data.code.Code`
     """
 
     try:
         executable = executables[entry_point]
     except KeyError as exc:
         raise KeyError(
-            "Entry point '{}' not recognized. Allowed values: {}".format(
-                entry_point, list(executables.keys())
-            )
+            f"Entry point '{entry_point}' not recognized. Allowed values: {list(executables.keys())}"
         ) from exc
 
     codes = Code.objects.find(  # pylint: disable=no-member

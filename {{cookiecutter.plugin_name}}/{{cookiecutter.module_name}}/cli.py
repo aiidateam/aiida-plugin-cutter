@@ -55,7 +55,7 @@ def export(node, outfile):
     string = str(node)
 
     if outfile:
-        with open(outfile, "w") as f:
+        with open(outfile, "w", encoding="utf8") as f:
             f.write(string)
     else:
         click.echo(string)
