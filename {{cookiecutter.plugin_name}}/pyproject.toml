@@ -43,7 +43,7 @@ testing = [
 ]
 pre-commit = [
     "pre-commit~=2.2",
-    "pylint>=2.5.0,<2.9"
+    "pylint~=2.15.10"
 ]
 docs = [
     "sphinx",
@@ -76,9 +76,6 @@ disable = [
     "too-many-ancestors",
     "invalid-name",
     "duplicate-code",
-    # black compatibility
-    "C0330",
-    "C0326",
 ]
 
 [tool.pytest.ini_options]
@@ -86,6 +83,7 @@ disable = [
 python_files = "test_*.py example_*.py"
 filterwarnings = [
     "ignore::DeprecationWarning:aiida:",
+    "ignore:Creating AiiDA configuration folder:",
     "ignore::DeprecationWarning:plumpy:",
     "ignore::DeprecationWarning:yaml:",
 ]
