@@ -14,14 +14,7 @@ import os
 import sys
 import time
 
-from aiida import load_profile
-
 import {{cookiecutter.module_name}}
-
-# -- AiiDA-related setup --------------------------------------------------
-
-# Load AiiDA profile
-load_profile()
 
 # -- General configuration ------------------------------------------------
 
