@@ -6,7 +6,7 @@ Cookie cutter recipe for [AiiDA](http://www.aiida.net) plugins. The fastest way 
 
 For the package structure produced by the plugin cutter, see the [aiida-diff](https://github.com/aiidateam/aiida-diff) demo plugin.
 
-Note: The plugin cutter produces plugins for `aiida-core>=1.0.0`. 
+Note: The plugin cutter produces plugins for `aiida-core>=2.0.0`. 
 See the [`support/aiida-0.x` branch](https://github.com/aiidateam/aiida-plugin-cutter/tree/support/aiida-0.x) for creating plugins for older versions of `aiida-core`.
 
 ## Usage instructions
