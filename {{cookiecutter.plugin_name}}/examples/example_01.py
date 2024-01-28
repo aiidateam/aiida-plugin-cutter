@@ -29,7 +29,7 @@ def test_run({{cookiecutter.entry_point_prefix}}_code):
     DiffParameters = DataFactory("{{cookiecutter.entry_point_prefix}}")
     parameters = DiffParameters({"ignore-case": True})
 
-    SinglefileData = DataFactory("singlefile")
+    SinglefileData = DataFactory("core.singlefile")
     file1 = SinglefileData(file=path.join(INPUT_DIR, "file1.txt"))
     file2 = SinglefileData(file=path.join(INPUT_DIR, "file2.txt"))
 

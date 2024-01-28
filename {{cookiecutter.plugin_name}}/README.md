@@ -52,7 +52,7 @@ For more information, see the [developer guide](https://aiida-diff.readthedocs.i
 
  * Add input files using `SinglefileData`:
    ```python
-   SinglefileData = DataFactory('singlefile')
+   SinglefileData = DataFactory('core.singlefile')
    inputs['file1'] = SinglefileData(file='/path/to/file1')
    inputs['file2'] = SinglefileData(file='/path/to/file2')
    ```
