@@ -14,14 +14,14 @@ import os
 import sys
 import time
 
-from aiida.manage.configuration import load_documentation_profile
+from aiida import load_profile
 
 import {{cookiecutter.module_name}}
 
 # -- AiiDA-related setup --------------------------------------------------
 
-# Load the dummy documentation profile
-load_documentation_profile()
+# Load AiiDA profile
+load_profile()
 
 # -- General configuration ------------------------------------------------
 
