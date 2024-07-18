@@ -1,9 +1,9 @@
 #!/bin/bash
-if [ -x "$(command -v black)" ]; then
-    echo "Running black on {{ cookiecutter.plugin_name }}"
-    black '../{{ cookiecutter.plugin_name }}/'
+if [ -x "$(command -v hatch)" ]; then
+    echo "Running hatch on {{ cookiecutter.plugin_name }}"
+    hatch fmt '../{{ cookiecutter.plugin_name }}/' || true
 else
-    echo "black not found. 'pip install black' to automatically \
+    echo "hatch not found. 'pip install hatch' to automatically \
           run formatter on {{ cookiecutter.plugin_name }}"
 fi
 

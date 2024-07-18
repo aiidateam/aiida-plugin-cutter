@@ -1,4 +1,4 @@
-""" Helper functions for automatically setting up computer & code.
+"""Helper functions for automatically setting up computer & code.
 Helper functions for setting up
 
  1. An AiiDA localhost computer
@@ -7,16 +7,17 @@ Helper functions for setting up
 Note: Point 2 is made possible by the fact that the ``diff`` executable is
 available in the PATH on almost any UNIX system.
 """
+
 import shutil
 import tempfile
 
 from aiida.common.exceptions import NotExistent
 from aiida.orm import Code, Computer
 
-LOCALHOST_NAME = "localhost-test"
+LOCALHOST_NAME = 'localhost-test'
 
 executables = {
-    "{{cookiecutter.entry_point_prefix}}": "diff",
+    '{{cookiecutter.entry_point_prefix}}': 'diff',
 }
 
 
@@ -53,11 +54,11 @@ def get_computer(name=LOCALHOST_NAME, workdir=None):
 
         computer = Computer(
             label=name,
-            description="localhost computer set up by aiida_diff tests",
+            description='localhost computer set up by aiida_diff tests',
             hostname=name,
             workdir=workdir,
-            transport_type="core.local",
-            scheduler_type="core.direct",
+            transport_type='core.local',
+            scheduler_type='core.direct',
         )
         computer.store()
         computer.set_minimum_job_poll_interval(0.0)
@@ -84,7 +85,7 @@ def get_code(entry_point, computer):
         ) from exc
 
     codes = Code.objects.find(  # pylint: disable=no-member
-        filters={"label": executable}
+        filters={'label': executable}
     )
     if codes:
         return codes[0]
