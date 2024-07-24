@@ -33,6 +33,13 @@ dependencies = [
 pre-commit = [
   'pre-commit~=3.5',
 ]
+docs = [
+    "sphinx",
+    "sphinxcontrib-contentui",
+    "sphinxcontrib-details-directive",
+    "furo",
+    "markupsafe<2.1"
+]
 
 [project.urls]
 Source = "https://github.com/{{cookiecutter.github_user}}/{{cookiecutter.repo_name}}"
@@ -135,14 +142,7 @@ lint-check = "ruff check --config pyproject.toml {args:.}"
 lint-fix = "ruff check --config pyproject.toml --fix --exit-non-zero-on-fix --show-fixes {args:.}"
 
 [tool.hatch.envs.docs]
-description = "Build the documentation"
-dependencies = [
-    "sphinx",
-    "sphinxcontrib-contentui",
-    "sphinxcontrib-details-directive",
-    "furo",
-    "markupsafe<2.1"
-]
+features = ["docs"]
 
 [tool.hatch.envs.docs.scripts]
 build = [
