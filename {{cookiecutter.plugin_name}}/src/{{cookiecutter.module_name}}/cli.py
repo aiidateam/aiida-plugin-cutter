@@ -17,37 +17,37 @@ from aiida.plugins import DataFactory
 
 
 # See aiida.cmdline.data entry point in setup.json
-@verdi_data.group('{{cookiecutter.entry_point_prefix}}')
+@verdi_data.group("{{cookiecutter.entry_point_prefix}}")
 def data_cli():
     """Command line interface for {{cookiecutter.plugin_name}}"""
 
 
-@data_cli.command('list')
+@data_cli.command("list")
 @decorators.with_dbenv()
 def list_():  # pylint: disable=redefined-builtin
     """
     Display all DiffParameters nodes
     """
-    diff_parameters = DataFactory('{{cookiecutter.entry_point_prefix}}')
+    diff_parameters = DataFactory("{{cookiecutter.entry_point_prefix}}")
 
     qb = QueryBuilder()
     qb.append(diff_parameters)
     results = qb.all()
 
-    s = ''
+    s = ""
     for result in results:
         obj = result[0]
-        s += f'{obj!s}, pk: {obj.pk}\n'
+        s += f"{obj!s}, pk: {obj.pk}\n"
     sys.stdout.write(s)
 
 
-@data_cli.command('export')
-@click.argument('node', metavar='IDENTIFIER', type=DataParamType())
+@data_cli.command("export")
+@click.argument("node", metavar="IDENTIFIER", type=DataParamType())
 @click.option(
-    '--outfile',
-    '-o',
+    "--outfile",
+    "-o",
     type=click.Path(dir_okay=False),
-    help='Write output to file (default: print to stdout).',
+    help="Write output to file (default: print to stdout).",
 )
 @decorators.with_dbenv()
 def export(node, outfile):
@@ -55,7 +55,7 @@ def export(node, outfile):
     string = str(node)
 
     if outfile:
-        with open(outfile, 'w', encoding='utf8') as f:
+        with open(outfile, "w", encoding="utf8") as f:
             f.write(string)
     else:
         click.echo(string)

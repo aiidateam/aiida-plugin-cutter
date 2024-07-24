@@ -10,11 +10,11 @@ from voluptuous import Optional, Schema
 
 # A subset of diff's command line options
 cmdline_options = {
-    Optional('ignore-case'): bool,
-    Optional('ignore-file-name-case'): bool,
-    Optional('ignore-tab-expansion'): bool,
-    Optional('ignore-space-change'): bool,
-    Optional('ignore-all-space'): bool,
+    Optional("ignore-case"): bool,
+    Optional("ignore-file-name-case"): bool,
+    Optional("ignore-tab-expansion"): bool,
+    Optional("ignore-space-change"): bool,
+    Optional("ignore-all-space"): bool,
 }
 
 
@@ -72,7 +72,7 @@ class DiffParameters(Dict):  # pylint: disable=too-many-ancestors
         pm_dict = self.get_dict()
         for option, enabled in pm_dict.items():
             if enabled:
-                parameters += ['--' + option]
+                parameters += ["--" + option]
 
         parameters += [file1_name, file2_name]
 
@@ -88,5 +88,5 @@ class DiffParameters(Dict):  # pylint: disable=too-many-ancestors
 
         """
         string = super().__str__()
-        string += '\n' + str(self.get_dict())
+        string += "\n" + str(self.get_dict())
         return string

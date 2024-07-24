@@ -10,7 +10,7 @@ from aiida.orm import SinglefileData
 from aiida.parsers.parser import Parser
 from aiida.plugins import CalculationFactory
 
-DiffCalculation = CalculationFactory('{{cookiecutter.entry_point_prefix}}')
+DiffCalculation = CalculationFactory("{{cookiecutter.entry_point_prefix}}")
 
 
 class DiffParser(Parser):
@@ -29,7 +29,7 @@ class DiffParser(Parser):
         """
         super().__init__(node)
         if not issubclass(node.process_class, DiffCalculation):
-            raise exceptions.ParsingError('Can only parse DiffCalculation')
+            raise exceptions.ParsingError("Can only parse DiffCalculation")
 
     def parse(self, **kwargs):
         """
@@ -37,7 +37,7 @@ class DiffParser(Parser):
 
         :returns: an exit code, if parsing fails (or nothing if parsing succeeds)
         """
-        output_filename = self.node.get_option('output_filename')
+        output_filename = self.node.get_option("output_filename")
 
         # Check that folder content is as expected
         files_retrieved = self.retrieved.list_object_names()
@@ -49,8 +49,8 @@ class DiffParser(Parser):
 
         # add output file
         self.logger.info(f"Parsing '{output_filename}'")
-        with self.retrieved.open(output_filename, 'rb') as handle:
+        with self.retrieved.open(output_filename, "rb") as handle:
             output_node = SinglefileData(file=handle)
-        self.out('{{cookiecutter.entry_point_prefix}}', output_node)
+        self.out("{{cookiecutter.entry_point_prefix}}", output_node)
 
         return ExitCode(0)

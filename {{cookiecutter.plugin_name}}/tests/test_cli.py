@@ -11,8 +11,8 @@ class TestDataCli:
 
     def setup_method(self):
         """Prepare nodes for cli tests."""
-        diff_parameters = DataFactory('{{cookiecutter.entry_point_prefix}}')
-        self.parameters = diff_parameters({'ignore-case': True})
+        diff_parameters = DataFactory("{{cookiecutter.entry_point_prefix}}")
+        self.parameters = diff_parameters({"ignore-case": True})
         self.parameters.store()
         self.runner = CliRunner()
 
@@ -31,4 +31,4 @@ class TestDataCli:
         we have set up.
         """
         result = self.runner.invoke(export, [str(self.parameters.pk)], catch_exceptions=False)
-        assert 'ignore-case' in result.output
+        assert "ignore-case" in result.output
