@@ -7,7 +7,7 @@ set -e
 if [ -d aiida-diff ]; then
   rm -rf cookiecutter_plugin_name
 fi
-cookiecutter --no-input -f . plugin_name=cookiecutter_plugin_name module_name=cookiecutter_module_name short_description=cookiecutter_short_description entry_point_prefix=cookiecutter_entry_point_prefix version=0.0.0-dev author=cookiecutter_author year=cookiecutter_year
+cookiecutter --accept-hooks no --no-input -f . plugin_name=cookiecutter_plugin_name module_name=cookiecutter_module_name short_description=cookiecutter_short_description entry_point_prefix=cookiecutter_entry_point_prefix version=0.0.0-dev author=cookiecutter_author year=cookiecutter_year
 
 cd cookiecutter_plugin_name
 git init && git add -A && git commit -am 'init'
