@@ -38,36 +38,43 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ '{{ matrix.python-version }}' }}
+    - name: Install project manager
+      run: |
+        pip install hatch
     - name: Run test suite
       env:
         PYTEST_ADDOPTS: "--durations=0"
-      run:
-        cd ${PLUGIN_NAME
-        hatch test --coverage
+      run: |
+        hatch test --cover
 
   docs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Python 3.12
+    - name: Set up Python ${{ '{{ matrix.python-version }}' }}
       uses: actions/setup-python@v5
       with:
-        python-version: "3.12"
+        python-version: ${{ '{{ matrix.python-version }}' }}
+    - name: Install project manager
+      run: |
+        pip install hatch
     - name: Build docs
-      run:
-        cd ${PLUGIN_NAME
+      run: |
         hatch run docs:build
 
-  hatch:
+  static-analysis:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Python 3.12
+    - name: Set up Python ${{ '{{ matrix.python-version }}' }}
       uses: actions/setup-python@v5
       with:
-        python-version: "3.12"
+        python-version: ${{ '{{ matrix.python-version }}' }}
+    - name: Install project manager
+      run: |
+        pip install hatch
     - name: Run formatter and linter
       run: |
         hatch fmt --check

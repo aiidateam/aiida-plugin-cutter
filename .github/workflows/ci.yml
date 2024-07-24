@@ -80,7 +80,7 @@ jobs:
         cd ${PLUGIN_NAME}
         hatch run docs:build
 
-  static-code-analysis:
+  static-analysis:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
