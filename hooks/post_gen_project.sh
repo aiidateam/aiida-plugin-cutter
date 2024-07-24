@@ -1,7 +1,9 @@
 #!/bin/bash
 if [ -x "$(command -v hatch)" ]; then
     echo "Running hatch on {{ cookiecutter.plugin_name }}"
-    hatch fmt '../{{ cookiecutter.plugin_name }}/' || true
+    # For some reason we need to invoke the formatting twice to be effective
+    hatch fmt || true
+    hatch fmt || true
 else
     echo "hatch not found. 'pip install hatch' to automatically \
           run formatter on {{ cookiecutter.plugin_name }}"
