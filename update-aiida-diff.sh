@@ -11,6 +11,3 @@ else
 fi
 
 cookiecutter --no-input -f . version=1.2.0
-cd aiida-diff
-git init && git add -A
-hatch fmt
