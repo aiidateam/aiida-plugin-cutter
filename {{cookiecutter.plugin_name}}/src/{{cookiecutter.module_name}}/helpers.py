@@ -1,4 +1,4 @@
-""" Helper functions for automatically setting up computer & code.
+"""Helper functions for automatically setting up computer & code.
 Helper functions for setting up
 
  1. An AiiDA localhost computer
@@ -7,6 +7,7 @@ Helper functions for setting up
 Note: Point 2 is made possible by the fact that the ``diff`` executable is
 available in the PATH on almost any UNIX system.
 """
+
 import shutil
 import tempfile
 

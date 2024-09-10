@@ -1,13 +1,12 @@
-"""
-Data types provided by plugin
+"""Data types provided by plugin
 
 Register data types via the "aiida.data" entry point in setup.json.
 """
+
 # You can directly use or subclass aiida.orm.data.Data
 # or any other data type listed under 'verdi data'
-from voluptuous import Optional, Schema
-
 from aiida.orm import Dict
+from voluptuous import Optional, Schema
 
 # A subset of diff's command line options
 cmdline_options = {

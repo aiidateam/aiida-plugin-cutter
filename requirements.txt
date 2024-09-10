@@ -1,2 +1,2 @@
 cookiecutter
-black==22.12.0
+hatch~=1.12.0

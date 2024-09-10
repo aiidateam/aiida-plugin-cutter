@@ -1,9 +1,11 @@
 #!/bin/bash
-if [ -x "$(command -v black)" ]; then
-    echo "Running black on {{ cookiecutter.plugin_name }}"
-    black '../{{ cookiecutter.plugin_name }}/'
+if [ -x "$(command -v hatch)" ]; then
+    echo "Running hatch on {{ cookiecutter.plugin_name }}"
+    # For some reason we need to invoke the formatting twice to be effective
+    hatch fmt || true
+    hatch fmt || true
 else
-    echo "black not found. 'pip install black' to automatically \
+    echo "hatch not found. 'pip install hatch' to automatically \
           run formatter on {{ cookiecutter.plugin_name }}"
 fi
 

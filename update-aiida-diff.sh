@@ -11,8 +11,3 @@ else
 fi
 
 cookiecutter --no-input -f . version=1.2.0
-pip install -e aiida-diff[docs,pre-commit,testing]
-cd aiida-diff
-git init && git add -A
-pre-commit install
-pre-commit run
