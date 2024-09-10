@@ -1,6 +1,6 @@
 ### Tests
 
-Tests can be run in different was
+Tests can be run in different ways
 ```
 hatch test # Run tests whith your current python version 
 hatch test --python 3.9 # Run tests for python version 3.9
